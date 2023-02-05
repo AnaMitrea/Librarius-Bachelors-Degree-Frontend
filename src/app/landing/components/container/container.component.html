@@ -1,22 +1,14 @@
 <div class='background-img'>
-
   <div class='contents' fxLayout="column" fxLayoutAlign="space-between none">
-
     <div class='top-bar'>
       <div class='top-bar-blur'></div>
       <div class='top-bar-contents' fxLayout='row' fxLayoutAlign="space-between center">
         <!-- Icon TODO add it  -->
         <p>LOGO HERE</p>
-        <!-- Login Button -->
         <button class='stroked-button' (click)='onLoginClick()'>Login</button>
       </div>
     </div>
-
-    <div class='headline' fxLayout="column" fxLayoutAlign="center center">
-      <p>All of your book collections on one platform</p>
-      <button class='full-button' (click)='onCreateAccountClick()'>Create your account</button>
-    </div>
-
-    <div class='footer'></div>
+    <router-outlet></router-outlet>
+    <div class='colored-footer'></div>
   </div>
 </div>
