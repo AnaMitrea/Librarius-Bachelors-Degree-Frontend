@@ -1,0 +1,18 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" [fixedInViewport]="true" [opened]="openNav" (mouseenter)="openNav=true" (mouseleave)="openNav=false">
+    <nav>
+      <a mat-list-item (click)="onNavItemClicked('Home')">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span *ngIf="openNav">Home</span>
+      </a>
+      <!-- Add additional navigation items here -->
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Main content goes here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<p>
+  ANA BANAN
+</p>
