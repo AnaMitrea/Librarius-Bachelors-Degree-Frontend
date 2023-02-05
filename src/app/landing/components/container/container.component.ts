@@ -13,8 +13,6 @@ export class ContainerComponent {
   constructor(private router: Router) { }
 
   onLoginClick() {
-    this.router.navigateByUrl(LOGIN_ROUTE).then(() => {
-      window.location.reload();
-    });
+    this.router.navigateByUrl(LOGIN_ROUTE).then();
   }
 }

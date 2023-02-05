@@ -11,8 +11,6 @@ export class LandingComponent {
   constructor(private router: Router) { }
 
   onCreateAccountClick() {
-    this.router.navigateByUrl(REGISTER_ROUTE).then(() => {
-      window.location.reload();
-    });
+    this.router.navigateByUrl(REGISTER_ROUTE).then();
   }
 }
