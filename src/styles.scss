@@ -1,0 +1,73 @@
+//
+//// Custom Theming for Angular Material
+//// For more information: https://material.angular.io/guide/theming
+//@use '@angular/material' as mat;
+//// Plus imports for other components in your app.
+//
+//// Include the common styles for Angular Material. We include this here so that you only
+//// have to load a single css file for Angular Material in your app.
+//// Be sure that you only ever include this mixin once!
+//@include mat.core();
+//
+//// Define the palettes for your theme using the Material Design palettes available in palette.scss
+//// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+//// hue. Available color palettes: https://material.io/design/color/
+//$licenta-primary: mat.define-palette(mat.$indigo-palette);
+//$licenta-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+//
+//// The warn palette is optional (defaults to red).
+//$licenta-warn: mat.define-palette(mat.$red-palette);
+//
+//// Create the theme object. A theme consists of configurations for individual
+//// theming systems such as "color" or "typography".
+//$licenta-theme: mat.define-light-theme((
+//  color: (
+//    primary: $licenta-primary,
+//    accent: $licenta-accent,
+//    warn: $licenta-warn,
+//  )
+//));
+//
+//// Include theme styles for core and each component used in your app.
+//// Alternatively, you can import and @include the theme mixins for each component
+//// that you are using.
+//@include mat.all-component-themes($licenta-theme);
+//
+///* You can add global styles to this file, and also import other style files */
+//
+
+$light1: #F2EBE3;
+$light2: #E1C7A2;
+$light3: #BEAF98;
+$medium-light1: #A7906F;
+$medium-light2: #986C41;
+$dark-black: #0D1713;
+$dark-blue: #4D7F7B;
+$dark-green: #4F5949;
+$dark-green-RGBA: rgba(79, 89, 73, 1);
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// ------------------ LANDING PAGE BUTTON ------------------
+.stroked-button {
+  background-color: transparent;
+  border: 3px solid $dark-green;
+  border-radius: 5px;
+  color: $dark-green;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $dark-green;
+    color: white;
+  }
+}
+
+
