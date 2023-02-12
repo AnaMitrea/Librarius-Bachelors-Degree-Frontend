@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent {
-  loginRoute = LOGIN_ROUTE;
 
   constructor(private router: Router) { }
 
