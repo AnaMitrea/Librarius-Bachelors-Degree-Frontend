@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LANDING_ROUTE, LOGIN_ROUTE} from '../../shared/constants';
+import { LANDING_ROUTE, LOGIN_ROUTE } from '../../shared/constants';
 import { Router } from '@angular/router';
 
 @Component({

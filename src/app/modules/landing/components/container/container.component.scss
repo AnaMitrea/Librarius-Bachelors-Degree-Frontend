@@ -1,8 +1,8 @@
-@import 'src/styles.scss';
+@import '../../../../../styles';
 
 .background-img {
   display: inline-block;
-  background-image: url('~src/assets/landing/shelves.jpg');
+  background-image: url('../../../../../assets/landing/shelves.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -16,6 +16,7 @@
 
 .top-bar {
   .top-bar-blur {
+    transition: all .5s linear;
     background: white;
     box-shadow: 0 4px 160px 150px white;
   }
@@ -24,12 +25,23 @@
     padding: 1% 3% 0 3%;
 
     .logo {
-      margin: 0;
-      padding: 0;
-      border: 4px solid #4F5949;
+      transition: all .2s ease-in-out;
+      .logo-img {
+        margin: 0;
+        padding: 0;
+        border: 4px solid $dark-green;
+      }
+
+      p {
+        padding-left: 5px;
+        font-size: 1.4em;
+        color: $dark-green;
+      }
 
       &:hover {
         cursor: pointer;
+        transform: scale(1.1);
+        -webkit-transform:  scale(1.1);
       }
     }
   }
@@ -38,6 +50,7 @@
 .colored-footer {
   height: 18%;
   background: #4F5949;
+  transition: all .5s linear;
 }
 
 @media only screen and (max-width: 600px) {

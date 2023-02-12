@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   {
     path: 'landing',
-    loadChildren: () => import('./landing/landing.module').then((m) => m.LandingModule),
+    loadChildren: () => import('./modules/landing/landing.module').then((m) => m.LandingModule),
   },
 ];
 

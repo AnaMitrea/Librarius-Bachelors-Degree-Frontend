@@ -28,7 +28,7 @@ const routes: Routes = [
         component: ForgotPasswordComponent
       }
     ],
-  },
+  }
 ];
 
 @NgModule({
