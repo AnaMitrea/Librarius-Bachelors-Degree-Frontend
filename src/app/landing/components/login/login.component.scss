@@ -1,1 +1,24 @@
 @import 'src/styles.scss';
+
+.login-container {
+  border-radius: 20px;
+  margin: 0 30%;
+  background: white;
+  height: 50vh;
+
+  p {
+    font-size: 1.3em;
+  }
+
+  form {
+    width: 100%;
+
+    mat-form-field {
+      width: 75%;
+    }
+
+    mat-error {
+      font-size: 0.8em;
+    }
+  }
+}

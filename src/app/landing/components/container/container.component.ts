@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LOGIN_ROUTE } from '../../constants';
+import {LANDING_ROUTE, LOGIN_ROUTE} from '../../shared/constants';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,5 +13,9 @@ export class ContainerComponent {
 
   onLoginClick() {
     this.router.navigateByUrl(LOGIN_ROUTE).then();
+  }
+
+  onLogoClick() {
+    this.router.navigateByUrl(LANDING_ROUTE).then();
   }
 }

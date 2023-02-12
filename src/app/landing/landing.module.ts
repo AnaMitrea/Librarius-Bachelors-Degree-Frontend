@@ -10,6 +10,10 @@ import { FlexModule } from 'ngx-flexible-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ContainerComponent } from './components/container/container.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 @NgModule({
@@ -25,7 +29,13 @@ import { ContainerComponent } from './components/container/container.component';
     LandingRoutingModule,
     FlexModule,
     MatButtonModule,
-    MatIconModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatStepperModule
   ]
 })
 export class LandingModule { }

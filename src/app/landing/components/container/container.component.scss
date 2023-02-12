@@ -23,6 +23,9 @@
   .top-bar-contents {
     padding: 1% 3% 0 3%;
 
+    p:hover { // momentan asa
+      cursor: pointer;
+    }
     .logo {
       // TODO
     }
@@ -30,7 +33,7 @@
 }
 
 .colored-footer {
-  height: 20%;
+  height: 18%;
   background: #4F5949;
 }
 

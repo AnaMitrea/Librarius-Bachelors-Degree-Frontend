@@ -1,7 +1,7 @@
 @import 'src/styles.scss';
 
 .headline {
-  margin: 5% 30% 0 30%;
+  margin: 0 30% 0 30%;
   background: rgba(0, 0, 0, 0.35);
   box-shadow: 0 0 85px 42px rgba(0, 0, 0, 0.40);
 
@@ -40,5 +40,10 @@
     margin: 10% 20% 0 20%;
     background: rgba(0, 0, 0, 0.30);
     box-shadow: 0 0 85px 42px rgba(0, 0, 0, 0.40);
+  }
+
+  .colored-footer {
+    height: 10%;
+    background: #4F5949;
   }
 }

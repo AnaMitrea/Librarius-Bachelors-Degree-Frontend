@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { REGISTER_ROUTE } from '../../constants';
+import { REGISTER_ROUTE } from '../../shared/constants';
 import { Router } from '@angular/router';
 
 @Component({
