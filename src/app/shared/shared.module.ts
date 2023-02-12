@@ -1,13 +1,14 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule, Optional, SkipSelf} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 // declarations and exports should be the same (=what this modules export when it is imported in another module)
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [],
+  declarations: [
+
+  ],
   exports: [
 
   ],
