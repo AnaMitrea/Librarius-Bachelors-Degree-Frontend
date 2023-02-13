@@ -1,18 +1,30 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="side" [fixedInViewport]="true" [opened]="openNav" (mouseenter)="openNav=true" (mouseleave)="openNav=false">
-    <nav>
-      <a mat-list-item (click)="onNavItemClicked('Home')">
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span *ngIf="openNav">Home</span>
+<div class="sidenav"
+     (mouseenter)='toggleCollapse()'
+     (mouseleave)='closeSidenav()'
+     [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapse()">A</button>
+    <div class="logo-text" @fadeInOut *ngIf="collapsed">Librarius</div>
+    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fal fa-times close-icon"></i>
+    </button>
+  </div>
+  <div class="user">
+    <!-- Profile picture -->
+    <!-- Name -->
+    <!-- Status -->
+    <!-- Current points -->
+  </div>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of navData">
+      <a class="sidenav-nav-link" [routerLink]="[data.routeLink]"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}"
+      >
+<!--        <i class="sidenav-link-icon" [class]="data.icon"></i>-->
+        <mat-icon class="sidenav-link-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
       </a>
-      <!-- Add additional navigation items here -->
-    </nav>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <!-- Main content goes here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-<p>
-  ANA BANAN
-</p>
+    </li>
+  </ul>
+</div>
