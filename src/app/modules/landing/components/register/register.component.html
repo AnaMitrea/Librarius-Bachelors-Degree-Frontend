@@ -1,0 +1,75 @@
+<div class="register-container" fxLayout="column" fxLayoutAlign="center center">
+  <p>Register your account</p>
+  <mat-stepper
+    class="register-stepper"
+    [linear]="true"
+    [orientation]="(stepperOrientation | async)!">
+    <mat-step [stepControl]="firstFormGroup" label="Fill out your name">
+      <form [formGroup]="firstFormGroup" fxLayout="column" fxLayoutAlign="space-between start">
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required>
+          <mat-error *ngIf="this.firstFormGroup.controls.firstName.invalid">
+            {{getErrorMsgRequired(this.firstFormGroup.controls.firstName)}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required>
+          <mat-error *ngIf="this.firstFormGroup.controls.lastName.invalid">
+            {{getErrorMsgRequired(this.firstFormGroup.controls.lastName)}}
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button (click)="onBackRegister()">Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your email">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="john@email.com" required>
+          <mat-error *ngIf="this.secondFormGroup.controls.email.invalid">
+            {{getErrorMsgEmail(this.secondFormGroup.controls.email)}}
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Fill out your password">
+      <form [formGroup]="thirdFormGroup" fxLayout="column" fxLayoutAlign="space-between start">
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" required>
+          <mat-error *ngIf="this.thirdFormGroup.controls.password.invalid">
+            {{getErrorMsgPwd(this.thirdFormGroup.controls.password)}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Repeat Your Password</mat-label>
+          <input matInput formControlName="rePassword" required>
+          <mat-error *ngIf="this.thirdFormGroup.controls.rePassword.invalid"> <!-- TODO de verificat pentru confirm -->
+            {{getErrorMsgPwd(this.thirdFormGroup.controls.rePassword)}}
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [completed]="isLastStepCompleted"  [state]="lastState">
+      <ng-template matStepLabel>Done</ng-template>
+      <p>Confirm registering your account.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="onConfirmClick()">Confirm?</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
