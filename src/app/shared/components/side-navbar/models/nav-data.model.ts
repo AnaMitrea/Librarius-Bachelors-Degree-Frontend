@@ -1,27 +1,27 @@
 export const navbarData = [
   {
     routeLink: 'dashboard',
-    icon: 'fal fa-home',
+    icon: 'dashboard',
     label: 'Dashboard'
   },
   {
     routeLink: 'wishlist',
-    icon: 'fal fa-box-open',
+    icon: 'favorite_border',
     label: 'Wishlist'
   },
   {
-    routeLink: 'favorite',
-    icon: 'fal fa-chart-bar',
-    label: 'Favorite'
+    routeLink: 'authors',
+    icon: 'create',
+    label: 'Authors'
   },
   {
     routeLink: 'statistics',
-    icon: 'fal fa-tags',
+    icon: 'show_chart',
     label: 'Statistics'
   },
   {
     routeLink: 'settings',
-    icon: 'fal fa-file',
+    icon: 'settings',
     label: 'Settings'
   }
 ];
