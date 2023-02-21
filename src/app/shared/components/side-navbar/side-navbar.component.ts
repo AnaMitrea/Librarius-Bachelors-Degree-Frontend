@@ -1,6 +1,7 @@
-import { animate, keyframes, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
-import {navbarData} from "./models/nav-data.model";
+import { INavbarConfig, navbarConfig } from './models';
+import { Router } from '@angular/router';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -21,18 +22,8 @@ interface SideNavToggle {
       ]),
       transition(':leave', [
         style({opacity: 1}),
-        animate('350ms',
+        animate('100ms',
           style({opacity: 0})
-        )
-      ])
-    ]),
-    trigger('rotate', [
-      transition(':enter', [
-        animate('1000ms',
-          keyframes([
-            style({transform: 'rotate(0deg)', offset: '0'}),
-            style({transform: 'rotate(2turn)', offset: '1'})
-          ])
         )
       ])
     ])
@@ -40,13 +31,25 @@ interface SideNavToggle {
 })
 export class SideNavbarComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
-  public collapsed = false;
-  public screenWidth = 0;
-  public navData = navbarData;
-  public userName: string;
+  navData: INavbarConfig[];
+  collapsed = false;
+  screenWidth = 0;
 
-  constructor() {
+  userName: string;
+  userStatus: string;
+  userPoints: number;
+
+
+  constructor(public router: Router) {
     this.userName = '';
+    this.userStatus = 'Beginner';
+    this.userPoints = 0;
+    this.navData = navbarConfig;
+  }
+
+  ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+    this.userName = 'User';
   }
 
   @HostListener('window:resize', ['$event'])
@@ -58,11 +61,6 @@ export class SideNavbarComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.screenWidth = window.innerWidth;
-    this.userName = 'User';
-  }
-
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
@@ -71,5 +69,9 @@ export class SideNavbarComponent implements OnInit {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+  }
+
+  onClickItemCallback(path: string) {
+    this.router.navigateByUrl(`/user/${path}`).then();
   }
 }
