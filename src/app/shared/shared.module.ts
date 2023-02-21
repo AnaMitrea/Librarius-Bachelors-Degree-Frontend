@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
 import { FlexModule } from 'ngx-flexible-layout';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -12,7 +14,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     RouterModule,
     FlexModule,
-    MatDividerModule
+    MatDividerModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
   declarations: [
     TopBarComponent,
