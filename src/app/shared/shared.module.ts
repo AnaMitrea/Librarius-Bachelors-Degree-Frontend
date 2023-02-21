@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
-import { SideNavbarComponent } from "./components/side-navbar/side-navbar.component";
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
 import { FlexModule } from 'ngx-flexible-layout';
@@ -17,11 +16,9 @@ import { MatDividerModule } from '@angular/material/divider';
   ],
   declarations: [
     TopBarComponent,
-    SideNavbarComponent,
   ],
   exports: [
-    TopBarComponent,
-    SideNavbarComponent
+    TopBarComponent
   ]
 })
 export class SharedModule { }

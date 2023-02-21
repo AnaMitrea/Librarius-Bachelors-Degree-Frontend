@@ -71,7 +71,7 @@ export class SideNavbarComponent implements OnInit {
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
 
-  onClickItemCallback(path: string) {
+  onClickItemNavigate(path: string) {
     this.router.navigateByUrl(`/user/${path}`).then();
   }
 }

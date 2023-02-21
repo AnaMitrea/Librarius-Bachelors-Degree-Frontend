@@ -10,11 +10,15 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexModule } from 'ngx-flexible-layout';
 
 
 @NgModule({
   declarations: [
     ContainerComponent,
+    SideNavbarComponent,
     DashboardComponent,
     WishlistComponent,
     AuthorsComponent,
@@ -24,7 +28,9 @@ import { SettingsComponent } from './components/settings/settings.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
+    SharedModule,
+    MatIconModule,
+    FlexModule
   ]
 })
 export class UserModule { }

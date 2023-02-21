@@ -12,7 +12,7 @@
   </div>
   <div class="user-info-container" fxLayout="column" fxLayoutAlign="start none">
     <div fxLayout="column" fxLayoutAlign="start center">
-      <img src='./assets/cat.jpg' alt=''>
+      <img src='../../../../../assets/cat.jpg' alt=''>
     </div>
     <div class='profile'
          @fadeInOut *ngIf="collapsed"
@@ -28,7 +28,7 @@
          [routerLink]="[data.routeLink]"
          routerLinkActive="active"
          [routerLinkActiveOptions]="{exact: true}"
-         (click)="onClickItemCallback(data.routeLink)"
+         (click)="onClickItemNavigate(data.routeLink)"
       >
         <mat-icon *ngIf='!!data.icon' class="sidenav-link-icon" aria-hidden="false" aria-label="Example home icon" [fontIcon]='data.icon'></mat-icon>
         <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
