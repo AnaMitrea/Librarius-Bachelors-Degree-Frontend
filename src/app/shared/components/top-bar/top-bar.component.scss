@@ -1,7 +1,14 @@
-.example-spacer {
-  flex: 1 1 auto;
+@import '../../../../styles';
+
+.text {
+  padding-left: 0.5rem;
 }
 
 .hasNavBar {
-  padding-left: 5rem;
+  padding-left: 7.2rem;
+}
+
+.top-bar-icons {
+  padding-left: 10px;
+  border-left: 1px solid #CECECE;
 }

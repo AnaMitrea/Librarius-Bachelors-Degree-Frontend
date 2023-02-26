@@ -4,15 +4,25 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { ContainerComponent } from './components/container/container.component';
 import { SharedModule } from "../../shared/shared.module";
+import { BooksCarouselComponent } from './components/books-carousel/books-carousel.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FlexModule } from 'ngx-flexible-layout';
+import { MatCardModule } from '@angular/material/card';
+import { TrendingSectionComponent } from './components/trending-section/trending-section.component';
 
 @NgModule({
   declarations: [
-    ContainerComponent
+    ContainerComponent,
+    BooksCarouselComponent,
+    TrendingSectionComponent
   ],
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        SharedModule,
-    ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    SharedModule,
+    CarouselModule,
+    FlexModule,
+    MatCardModule
+  ]
 })
 export class HomeModule { }

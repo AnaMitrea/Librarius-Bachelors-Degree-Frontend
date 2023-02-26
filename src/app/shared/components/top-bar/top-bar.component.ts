@@ -18,4 +18,15 @@ export class TopBarComponent implements OnInit, OnChanges {
     this.hasSideNavBar = this.hasSideNavBar ? this.hasSideNavBar : false;
   }
 
+  toggleFullscreen() {
+
+  }
+
+  openNotifications() {
+
+  }
+
+  openMenu() {
+
+  }
 }

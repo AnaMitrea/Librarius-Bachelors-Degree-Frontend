@@ -1,14 +1,26 @@
-<mat-toolbar [ngClass]="hasSideNavBar ? 'hasNavBar' : ''">
-  <!-- TODO Customize -->
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>My App</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
+<mat-toolbar
+  fxLayout="row" fxLayoutAlign="space-between center"
+  [ngClass]="hasSideNavBar ? 'hasNavBar' : ''">
+  <div fxLayout="row" fxLayoutAlign="space-around none" fxLayoutGap='20'
+       [ngClass]="!hasSideNavBar ? 'text' : ''">
+    <span>Explore</span>
+    <span>Challenges</span>
+    <span>What's New</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-around none" class='top-bar-icons'>
+    <button (click)='toggleFullscreen()'
+            mat-icon-button aria-label="fullscreen">
+      <mat-icon>fullscreen</mat-icon>
+    </button>
+
+    <button (click)='openNotifications()'
+            mat-icon-button aria-label="notification">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+    <button (click)='openMenu()'
+            mat-icon-button aria-label="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>

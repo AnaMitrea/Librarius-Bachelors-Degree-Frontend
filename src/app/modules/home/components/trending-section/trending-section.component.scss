@@ -1,0 +1,23 @@
+.trending {
+  margin: 0;
+  width: 100%;
+  min-height: 2vh;
+
+  .books-carousel {
+    width: 73%;
+  }
+
+  .reading-feed {
+    width: 23%;
+  }
+}
+
+.example-card {
+  max-width: 400px;
+  height: 100%;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
