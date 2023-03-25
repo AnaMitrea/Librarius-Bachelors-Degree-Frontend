@@ -1,1 +1,26 @@
-<p>top-bar works!</p>
+<mat-toolbar
+  fxLayout="row" fxLayoutAlign="space-between center"
+  [ngClass]="hasSideNavBar ? 'hasNavBar' : ''">
+  <div fxLayout="row" fxLayoutAlign="space-around none" fxLayoutGap='20'
+       [ngClass]="!hasSideNavBar ? 'text' : ''">
+    <span>Explore</span>
+    <span>Challenges</span>
+    <span>What's New</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-around none" class='top-bar-icons'>
+    <button (click)='toggleFullscreen()'
+            mat-icon-button aria-label="fullscreen">
+      <mat-icon>fullscreen</mat-icon>
+    </button>
+
+    <button (click)='openNotifications()'
+            mat-icon-button aria-label="notification">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+    <button (click)='openMenu()'
+            mat-icon-button aria-label="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

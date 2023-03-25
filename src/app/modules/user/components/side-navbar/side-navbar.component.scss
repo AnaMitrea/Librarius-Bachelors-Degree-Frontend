@@ -1,4 +1,4 @@
-@import '../../../../styles';
+@import '../../../../../styles';
 
 
 .sidenav {
@@ -17,17 +17,9 @@
     padding: 0.938rem 0.938rem 0 0.938rem;
     width: 100%;
 
-    .logo {
-      background: #fff;
-      text-align: center;
-      width: 3rem;
-      min-width: 3rem;
-      border-radius: 0.313rem;
-      padding: 0.313rem;
-      font-size: 24px;
-      font-weight: 900;
-      cursor: pointer;
-      border: none;
+    .logo-img {
+      border: 3px solid white;
+      padding: 0.2rem;
     }
 
     .logo-text {
@@ -39,31 +31,44 @@
   }
 
   .user-info-container {
-    border: 2px solid blue;
+    margin-top: 25px;
     padding: 0;
     width: 100%;
     height: 10rem;
 
-
-    .profile {
-      border: 2px solid red;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      img {
-        border-radius: 50%;
-        height: 5rem;
-      }
+    img {
+      border: 1px solid white;
+      border-radius: 50%;
+      height: 4rem;
+      box-shadow: 0 0 30px 7px rgba(255, 255, 255, 0.25);
     }
 
+    .profile {
+      height: 100%;
+      text-decoration: none;
+      transition: all .3s ease;
+      color: #fff;
 
-
+      .user-name {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      .user-status {
+        font-size: 14px;
+        font-weight: 300;
+        color: $light2;
+      }
+      .user-points {
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
   }
 }
 
 .sidenav-collapsed {
-  width: 16.5625rem;
+  width: 14rem;
 }
 
 // Icons & Labels
@@ -106,6 +111,7 @@
   .sidenav-nav-item:hover {
     .sidenav-nav-link {
       background-color: $dark-blue;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
       color: #000;
     }
   }
@@ -113,6 +119,7 @@
 
 .active {
   background-color: $dark-blue;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   .sidenav-link-icon,
   .sidenav-link-text {
