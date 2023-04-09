@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UtilsLodashDecorator } from './lodash/utils-lodash-decorator';
+import { UtilsLodashDecorator } from './utils-lodash-decorator';
 
 @Injectable({
   providedIn: 'root'

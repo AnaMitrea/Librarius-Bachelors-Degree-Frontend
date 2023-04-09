@@ -1,20 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Subject, takeUntil } from 'rxjs';
 import { Book } from '../../models';
+import { NOW, WEEK } from '@app-utils';
+import { API_URL } from '../../../../core';
+import { mapBookDtoToBook } from '../../services/transformers';
 
 @Component({
   selector: 'app-trending-section',
   templateUrl: './trending-section.component.html',
   styleUrls: ['./trending-section.component.scss']
 })
-export class TrendingSectionComponent {
+export class TrendingSectionComponent implements OnInit{
+  private destroy$ = new Subject<void>();
   public trendingNowData!: Book[];
-  public booksOfWeek!: Book[];
+  public trendingWeekData!: Book[];
 
-  constructor() {
-    this.initData();
+  constructor(private http: HttpClient) {
+    this.trendingNowData = [];
+    this.trendingWeekData = [];
   }
 
-  public initData() {
+  ngOnInit(): void {
+    this.fetchTrendingBooks(NOW)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response: any) => {
+        this.mapDataToCarousel(response.result);
+    });
+
+    this.fetchTrendingBooks(WEEK)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response: any) => {
+        this.mapDataToCarousel(response.result, true);
+    });
+  }
+
+  initData() {
     this.trendingNowData = [
       {
         id: '1',
@@ -58,7 +79,7 @@ export class TrendingSectionComponent {
       }
     ];
 
-    this.booksOfWeek = [
+    this.trendingWeekData = [
       {
         id: '1',
         position: 'assets/home/top/top-material-1.png',
@@ -140,5 +161,24 @@ export class TrendingSectionComponent {
         author: 'Author'
       }
     ];
+  }
+
+  fetchTrendingBooks(duration: string) {
+    return this.http.get(`${API_URL}api/library/book/trending?duration=${duration}`);
+  }
+
+  mapDataToCarousel(data: any, isWeeklyTrending = false) {
+    const carouselData = data.map(mapBookDtoToBook);
+
+    if (isWeeklyTrending) {
+      this.trendingWeekData = carouselData;
+    } else {
+      this.trendingNowData = carouselData;
+    }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

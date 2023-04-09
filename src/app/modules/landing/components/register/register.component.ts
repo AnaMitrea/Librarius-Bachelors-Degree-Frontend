@@ -4,12 +4,12 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { map, Observable } from "rxjs";
 import { StepperOrientation } from '@angular/material/stepper';
 import { Router } from "@angular/router";
-import { LANDING_ROUTE } from "../../shared/constants";
 import {
   getErrorMessageEmail,
   getErrorMessagePassword,
   getErrorMsgRequiredValue
 } from "../../shared/forms/error-messages";
+import { LANDING_ROUTE } from '@app-utils';
 
 @Component({
   selector: 'app-register',

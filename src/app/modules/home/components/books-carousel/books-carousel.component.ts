@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Book } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books-carousel',
@@ -10,10 +11,6 @@ import { Book } from '../../models';
 export class BooksCarouselComponent {
   @Input() booksSlides: Book[] = [];
   @Input() headerTitle: string = '';
-
-  constructor() {
-
-  }
 
   customOptions: OwlOptions = {
     loop: false,
@@ -39,5 +36,11 @@ export class BooksCarouselComponent {
       }
     },
     nav: true
+  }
+
+  constructor(private router: Router) { }
+
+  redirectToBookUrl(id: string) {
+    this.router.navigate(['/library/book', id]).then();
   }
 }

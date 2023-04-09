@@ -1,0 +1,32 @@
+@import '../../../../../styles';
+
+.reading-log {
+  padding-top: 30px;
+
+  .calendar {
+    width: 60%;
+
+    .calendar-card {
+      width: 70%;
+    }
+  }
+
+  .streaks {
+    padding: 0 4%;
+    width: 40%;
+
+    .streak-card {
+      background: $light1;
+
+      .streak-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+
+        &.longest {
+          color: #d50101;
+        }
+      }
+    }
+  }
+}

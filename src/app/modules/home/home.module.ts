@@ -9,12 +9,14 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FlexModule } from 'ngx-flexible-layout';
 import { MatCardModule } from '@angular/material/card';
 import { TrendingSectionComponent } from './components/trending-section/trending-section.component';
+import { ReadingFeedComponent } from './components/reading-feed/reading-feed.component';
 
 @NgModule({
   declarations: [
     ContainerComponent,
     BooksCarouselComponent,
-    TrendingSectionComponent
+    TrendingSectionComponent,
+    ReadingFeedComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,19 @@
+.reading-section {
+  min-height: 100vh;
+  height: 100%;
+
+  .reading-content {
+    width: 92%;
+    border: 2px solid blue;
+
+    .content {
+    }
+  }
+
+  .settings {
+    position: fixed;
+    top: 4em;
+    right: 0;
+    width: 8%;
+  }
+}

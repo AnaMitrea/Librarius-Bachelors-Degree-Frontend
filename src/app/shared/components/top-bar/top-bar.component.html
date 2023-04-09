@@ -9,7 +9,8 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="space-around none" class='top-bar-icons'>
-    <button (click)='toggleFullscreen()'
+    <button *ngIf='hasFullscreenMode'
+      (click)='toggleFullscreen()'
             mat-icon-button aria-label="fullscreen">
       <mat-icon>fullscreen</mat-icon>
     </button>
