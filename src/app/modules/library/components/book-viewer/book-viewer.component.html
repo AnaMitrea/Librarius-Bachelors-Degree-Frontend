@@ -1,1 +1,35 @@
-<p>book-viewer works!</p>
+<div
+  class='container'
+  fxLayout="column"
+  fxLayoutAlign="start none">
+
+  <div
+    class='category'
+    fxLayout="row"
+    fxLayoutAlign="start center">
+    <mat-icon>library_books</mat-icon>
+    <span>Category</span>
+  </div>
+s
+  <div class='header'>
+    <span class='title'>Title</span>
+
+    <div class='rating'>
+      <app-rating
+        color='accent'
+        [readonly]=true
+        [(ngModel)]='ratingValue'
+        [max]='maxStars'
+      ></app-rating>
+    </div>
+  </div>
+
+  <div class='details'
+       fxLayout="row"
+       fxLayoutAlign="start center">
+    <div>
+      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <button mat-raised-button>Start</button>
+    </div>
+  </div>
+</div>

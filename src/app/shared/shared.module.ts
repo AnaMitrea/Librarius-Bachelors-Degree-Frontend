@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from 'ngx-flexible-layout';
 import { TopBarComponent } from './components';
+import { RatingComponent } from './components/rating/rating.component';
 
 @NgModule({
   imports: [
@@ -20,9 +21,11 @@ import { TopBarComponent } from './components';
   ],
   declarations: [
     TopBarComponent,
+    RatingComponent,
   ],
   exports: [
-    TopBarComponent
+    TopBarComponent,
+    RatingComponent
   ]
 })
 export class SharedModule { }

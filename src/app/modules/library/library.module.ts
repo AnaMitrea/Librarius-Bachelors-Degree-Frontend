@@ -9,6 +9,7 @@ import { FlexModule } from 'ngx-flexible-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BookViewerComponent } from './components/book-viewer/book-viewer.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BookViewerComponent } from './components/book-viewer/book-viewer.compon
     SharedModule,
     FlexModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ]
 })
 export class LibraryModule { }
