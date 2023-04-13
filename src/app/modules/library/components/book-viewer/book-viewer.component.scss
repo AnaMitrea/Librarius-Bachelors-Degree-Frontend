@@ -1,12 +1,47 @@
-.container {
-  border: 2px solid red;
-  height: 100%;
+@import '../../../../../styles';
+
+.content {
+  border: 1px solid black;
+  margin: 2% 15%;
+  height: auto;
 
   .category {
-    border: 1px solid black;
+    padding: 10px 0;
+    color: $dark-blue;
+    font-weight: 400;
   }
 
   .header {
-    border: 1px solid black;
+    padding: 10px 0;
+    line-height: 20px;
+
+    .title {
+      padding: 5px 0;
+      font-weight: 500;
+      font-size: 1.5em;
+    }
+
+    .author {
+      padding: 5px 0 0 0;
+      font-weight: 400;
+      font-size: 0.9em;
+    }
+  }
+
+  .details {
+    margin-top: 2%;
+
+    .description {
+      .description-item {
+         .description-title {
+           font-weight: 500;
+           font-size: 0.9em;
+         }
+
+        .description-text {
+          font-size: 1.1em;
+        }
+      }
+    }
   }
 }

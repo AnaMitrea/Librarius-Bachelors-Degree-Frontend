@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { API_URL } from '../../../core';
 import { Book } from '../models';
 import { mapBookDtoToBook } from './transformers';
+import { LIBRARY_BOOK_ROUTE } from '@app-utils/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class TrendingService {
   constructor(private http: HttpClient) { }
 
   private fetchTrendingBooks(duration: string): Observable<any> {
-    return this.http.get(`${API_URL}api/library/book/trending?duration=${duration}`);
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/trending?duration=${duration}`);
   }
 
   getTrendingBooks(duration: string): Observable<Book[]> {

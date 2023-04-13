@@ -1,1 +1,1 @@
-export * from './constants/api.const';
+export * from './constants/index';

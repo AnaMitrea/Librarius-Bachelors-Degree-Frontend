@@ -9,7 +9,7 @@ import {
   getErrorMessagePassword,
   getErrorMsgRequiredValue
 } from "../../shared/forms/error-messages";
-import { LANDING_ROUTE } from '@app-utils';
+import { LANDING_ROUTE } from '@app-utils/constants';
 
 @Component({
   selector: 'app-register',

@@ -10,12 +10,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BookViewerComponent } from './components/book-viewer/book-viewer.component';
 import { FormsModule } from '@angular/forms';
+import { ReadingOptionsTabComponent } from './components/reading-options-tab/reading-options-tab.component';
 
 @NgModule({
   declarations: [
     ContainerComponent,
     ReadingSectionComponent,
-    BookViewerComponent
+    BookViewerComponent,
+    ReadingOptionsTabComponent
   ],
   imports: [
     CommonModule,

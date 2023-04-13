@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from 'ngx-flexible-layout';
 import { TopBarComponent } from './components';
 import { RatingComponent } from './components/rating/rating.component';
+import { BookCategoryPipe } from './pipes/book-category-pipe';
 
 @NgModule({
   imports: [
@@ -22,10 +23,12 @@ import { RatingComponent } from './components/rating/rating.component';
   declarations: [
     TopBarComponent,
     RatingComponent,
+    BookCategoryPipe
   ],
   exports: [
     TopBarComponent,
-    RatingComponent
+    RatingComponent,
+    BookCategoryPipe
   ]
 })
 export class SharedModule { }

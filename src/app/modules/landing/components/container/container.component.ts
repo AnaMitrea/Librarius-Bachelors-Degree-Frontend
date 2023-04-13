@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LANDING_ROUTE, LOGIN_ROUTE } from '@app-utils';
+import { LANDING_ROUTE, LOGIN_ROUTE } from '@app-utils/constants';
 
 @Component({
   selector: 'app-container',

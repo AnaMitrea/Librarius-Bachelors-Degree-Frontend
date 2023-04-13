@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Book } from '../../models';
-import { NOW, WEEK } from '@app-utils';
+import { NOW, WEEK } from '@app-utils/constants';
 import { TrendingService } from '../../services/trending.service';
 
 @Component({
