@@ -1,0 +1,75 @@
+<div fxLayout="column"
+    fxLayoutAlign="center center">
+
+  <button mat-icon-button [matMenuTriggerFor]="format_size_menu" aria-label="Example icon-button with a menu">
+    <mat-icon>format_size</mat-icon>
+  </button>
+  <mat-menu #format_size_menu="matMenu">
+    <div fxLayout="row"
+      fxLayoutAlign="center center">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>voicemail</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+      </button>
+    </div>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="format_color_fill_menu" aria-label="Example icon-button with a menu">
+    <mat-icon>format_color_fill</mat-icon>
+  </button>
+  <mat-menu #format_color_fill_menu="matMenu">
+    <div fxLayout="row"
+         fxLayoutAlign="center center">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>voicemail</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+      </button>
+    </div>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="format_align_justify_menu" aria-label="Example icon-button with a menu">
+    <mat-icon>format_align_justify</mat-icon>
+  </button>
+  <mat-menu #format_align_justify_menu="matMenu">
+    <div fxLayout="row"
+         fxLayoutAlign="center center">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>voicemail</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+      </button>
+    </div>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="font_download_menu" aria-label="Example icon-button with a menu">
+    <mat-icon>font_download</mat-icon>
+  </button>
+  <mat-menu #font_download_menu="matMenu">
+    <div fxLayout="row"
+         fxLayoutAlign="center center">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>voicemail</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+      </button>
+    </div>
+  </mat-menu>
+</div>

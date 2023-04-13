@@ -1,0 +1,59 @@
+@import '../../../../../styles';
+
+.container {
+  margin-top: 2%;
+  height: auto;
+
+  .content {
+    width: 85%;
+    margin-left: 20%;
+
+    .category {
+      padding: 10px 0;
+      color: $dark-blue;
+      font-weight: 400;
+    }
+
+    .header {
+      padding: 10px 0;
+      line-height: 20px;
+
+      .title {
+        padding: 5px 0;
+        font-weight: 500;
+        font-size: 1.5em;
+      }
+
+      .author {
+        padding: 5px 0 0 0;
+        font-weight: 400;
+        font-size: 0.9em;
+      }
+    }
+
+    .details {
+      margin-top: 2%;
+
+      .description {
+        .description-item {
+          .description-title {
+            font-weight: 500;
+            font-size: 0.9em;
+          }
+
+          .description-text {
+            font-size: 1.1em;
+          }
+        }
+      }
+    }
+  }
+
+  .settings {
+    position: fixed;
+    top: 4.3em;
+    right: 0;
+    width: 8%;
+  }
+}
+

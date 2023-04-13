@@ -25,9 +25,9 @@
       "dom"
     ],
     "paths": {
-      "@app-utils": ["src/app/utils/index.ts"],
-      "@app-modules": ["src/app/modules/*"],
-
+      "@app-utils/*": ["src/app/utils/*"],
+      "@app-modules/*": ["src/app/modules/*"],
+      "@app-core/*": ["src/app/core/*"]
     }
   },
   "angularCompilerOptions": {

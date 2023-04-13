@@ -1,1 +1,35 @@
-<p>dashboard works!</p>
+<div class='reading-log'
+     fxLayout="row"
+     fxLayoutAlign="center center">
+  <div class='calendar' fxLayoutAlign="center none">
+    <mat-card class="calendar-card">
+      <mat-calendar
+        [(selected)]="selected"
+      ></mat-calendar>
+    </mat-card>
+  </div>
+  <div class='streaks'
+       fxLayout="column"
+       fxLayoutAlign="center none"
+       fxLayoutGap="30px">
+    <mat-card class='streak-card'>
+      <mat-card-header>
+        <mat-icon mat-card-avatar class='streak-icon'>whatshot</mat-icon>
+        <mat-card-title>5 days</mat-card-title>
+        <mat-card-subtitle>
+          Current Streak
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class='streak-card'>
+      <mat-card-header>
+        <mat-icon mat-card-avatar class='streak-icon longest'>whatshot</mat-icon>
+        <mat-card-title>15 days</mat-card-title>
+        <mat-card-subtitle>
+          Longest Streak
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
-import { FlexModule } from 'ngx-flexible-layout';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { FlexModule } from 'ngx-flexible-layout';
+import { TopBarComponent } from './components';
+import { RatingComponent } from './components/rating/rating.component';
+import { BookCategoryPipe } from './pipes/book-category-pipe';
 
 @NgModule({
   imports: [
@@ -20,9 +22,13 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   declarations: [
     TopBarComponent,
+    RatingComponent,
+    BookCategoryPipe
   ],
   exports: [
-    TopBarComponent
+    TopBarComponent,
+    RatingComponent,
+    BookCategoryPipe
   ]
 })
 export class SharedModule { }

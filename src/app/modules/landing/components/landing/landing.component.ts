@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { REGISTER_ROUTE } from '../../shared/constants';
 import { Router } from '@angular/router';
+import { REGISTER_ROUTE } from '@app-utils/constants';
 
 @Component({
   selector: 'app-landing',
