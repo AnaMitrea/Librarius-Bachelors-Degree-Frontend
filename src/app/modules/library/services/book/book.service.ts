@@ -14,7 +14,6 @@ export class BookService {
     return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/${id}`).pipe(
       catchError(this.handleError)
     );
-
   }
 
   private handleError(error: any) {

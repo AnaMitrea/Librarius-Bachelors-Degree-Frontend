@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
 import { BookDto } from '../../../../shared/models/transfer/book-dto';
 import { API_GUTENBERG_URL } from '../../../../core';
+import { LIBRARY_BOOK_ROUTE, READ } from '@app-utils/constants';
 
 @Component({
   selector: 'app-book-viewer',
@@ -16,6 +17,7 @@ export class BookViewerComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private bookService: BookService
   ) {}
 
@@ -30,5 +32,9 @@ export class BookViewerComponent implements OnInit {
 
   getCoverImageUrl() {
     return `${API_GUTENBERG_URL}${this.bookData.coverImageUrl}`;
+  }
+
+  onReadClick(id: string) {
+    this.router.navigate([LIBRARY_BOOK_ROUTE, id, READ]);
   }
 }

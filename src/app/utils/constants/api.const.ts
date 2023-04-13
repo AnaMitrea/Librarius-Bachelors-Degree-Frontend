@@ -11,3 +11,5 @@ export const FORGOT_PASSW0RD_ROUTE: string = `${LANDING_ROUTE}/forgot-password`;
 // Library
 export const LIBRARY_ROUTE: string = '/library';
 export const LIBRARY_BOOK_ROUTE: string = `${LIBRARY_ROUTE}/book`;
+
+export const READ: string = 'read';

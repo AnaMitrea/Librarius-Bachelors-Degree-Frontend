@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BookViewerComponent } from './components/book-viewer/book-viewer.component';
 import { FormsModule } from '@angular/forms';
 import { ReadingOptionsTabComponent } from './components/reading-options-tab/reading-options-tab.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReadingOptionsTabComponent } from './components/reading-options-tab/rea
     FlexModule,
     MatIconModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule
   ]
 })
 export class LibraryModule { }

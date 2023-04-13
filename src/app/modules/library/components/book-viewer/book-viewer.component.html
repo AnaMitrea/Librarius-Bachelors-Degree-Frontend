@@ -38,7 +38,7 @@
              fxLayoutAlign="start none"
              fxLayoutGap="30px">
           <img [src]="getCoverImageUrl()" alt="book cover">
-          <button mat-raised-button>Read me</button>
+          <button mat-raised-button (click)='this.onReadClick(this.bookData.id)'>Read me</button>
         </div>
 
         <div fxLayout="column"
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <div class='options'>
-
+  <div class='settings'>
+    <app-reading-options-tab></app-reading-options-tab>
   </div>
 </div>
