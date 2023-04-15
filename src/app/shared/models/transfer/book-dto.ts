@@ -16,3 +16,8 @@ export interface BookDto {
   plainTextContentUrl: string;
   link: string;
 }
+
+export interface BookContentDto {
+  id: string;
+  content: string;
+}

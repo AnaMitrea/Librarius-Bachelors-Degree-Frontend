@@ -9,17 +9,19 @@ import { FlexModule } from 'ngx-flexible-layout';
 import { TopBarComponent } from './components';
 import { RatingComponent } from './components/rating/rating.component';
 import { BookCategoryPipe } from './pipes/book-category-pipe';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatIconModule,
-    RouterModule,
-    FlexModule,
-    MatDividerModule,
-    MatToolbarModule,
-    MatButtonModule
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        RouterModule,
+        FlexModule,
+        MatDividerModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatMenuModule
+    ],
   declarations: [
     TopBarComponent,
     RatingComponent,

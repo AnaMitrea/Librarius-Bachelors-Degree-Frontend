@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {BookService} from "@app-modules/library/services/book/book.service";
 
 @Component({
   selector: 'app-reading-section',
@@ -7,11 +8,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./reading-section.component.scss']
 })
 export class ReadingSectionComponent implements OnInit {
-  public id!: string;
-
-  constructor(private route: ActivatedRoute) {}
+  content: string = '';
+  constructor(
+    private route: ActivatedRoute,
+    private bookService: BookService
+  ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id') ?? '';
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id') ?? '';
+      this.bookService.getBookContent(id).subscribe(data => {
+        this.content = data.result.content;
+      })
+    })
   }
 }
