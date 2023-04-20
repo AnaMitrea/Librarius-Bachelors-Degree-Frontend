@@ -9,7 +9,7 @@ import { TrendingService } from '../../services/trending.service';
   templateUrl: './trending-section.component.html',
   styleUrls: ['./trending-section.component.scss']
 })
-export class TrendingSectionComponent implements OnInit{
+export class TrendingSectionComponent implements OnInit {
   private destroy$ = new Subject<void>();
   public trendingNowData!: Book[];
   public trendingWeekData!: Book[];

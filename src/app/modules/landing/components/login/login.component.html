@@ -2,10 +2,10 @@
   <p>Sign in into your account</p>
   <form [formGroup]="loginForm" (ngSubmit)="login()" fxLayout="column" fxLayoutAlign="space-around center">
     <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput type='text' formControlName='email'>
-      <mat-error *ngIf="this.loginForm.controls.email.invalid">
-        {{getErrorMsgEmail(this.loginForm.controls.email)}}
+      <mat-label>Username</mat-label>
+      <input matInput type='text' formControlName='username'>
+      <mat-error *ngIf="this.loginForm.controls.username.invalid">
+        {{getErrorMsgRequired(this.loginForm.controls.username)}}
       </mat-error>
     </mat-form-field>
     <br>

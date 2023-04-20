@@ -1,23 +1,42 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {getErrorMessageEmail, getErrorMessagePassword} from "../../shared/forms/error-messages";
+import {
+  getErrorMessageEmail,
+  getErrorMessagePassword,
+  getErrorMsgRequiredValue
+} from "../../shared/forms/error-messages";
+import {AuthService} from "@app-modules/landing/components/login/services/auth.service";
+import {readSpanComment} from "@angular/compiler-cli/src/ngtsc/typecheck/src/comments";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   hide = true;
-  getErrorMsgEmail = getErrorMessageEmail;
+  getErrorMsgRequired = getErrorMsgRequiredValue;
   getErrorMsgPwd = getErrorMessagePassword;
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    username: new FormControl('', [Validators.required]),
     password: new FormControl('', Validators.required)
   });
 
-   login() {
-    console.log(this.loginForm.value);
+  constructor(private authService: AuthService) {}
+
+  login() {
+    if (this.loginForm.invalid) return;
+
+    const username = this.loginForm.get('username')?.value;
+    const password = this.loginForm.get('password')?.value;
+
+    this.authService.login(username!, password!).subscribe(data => {
+        console.log(data);
+    });
+  }
+
+  ngOnInit(): void {
+
   }
 }
