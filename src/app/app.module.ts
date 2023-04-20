@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { SharedModule } from "./shared/shared.module";
+import {AuthInterceptorProvider} from "@app-core/interceptor/auth.interceptor";
 
 
 @NgModule({
@@ -22,10 +23,10 @@ import { SharedModule } from "./shared/shared.module";
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+  providers: [
+    AuthInterceptorProvider,
+    { provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
