@@ -1,14 +1,13 @@
 .reading-section {
   min-height: 100vh;
-  height: 100%;
+  height: auto;
 
   .reading-content {
     width: 92%;
-    height: auto;
     border: 2px solid blue;
 
     .content {
-
+      padding: 0 5%;
     }
   }
 

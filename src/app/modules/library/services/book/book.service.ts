@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { API_URL } from '@app-core/constants';
 import { LIBRARY_BOOK_ROUTE } from '@app-utils/constants';
+import { CACHE_REQUEST } from "@app-core/interceptor/cache-request-interceptor/tokens";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ export class BookService {
   constructor(private http: HttpClient) {}
 
   getBookData(id: string): Observable<any> {
-    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/${id}`).pipe(
+    const options = {
+      context: new HttpContext().set(CACHE_REQUEST, true)
+    };
+
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/${id}`, options).pipe(
       catchError(this.handleError)
     );
   }

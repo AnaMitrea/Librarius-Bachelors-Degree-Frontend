@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { SharedModule } from "./shared/shared.module";
-import {AuthInterceptorProvider} from "@app-core/interceptor/auth.interceptor";
+import { AuthInterceptorProvider, CacheRequestProvider } from "@app-core/interceptor";
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import {AuthInterceptorProvider} from "@app-core/interceptor/auth.interceptor";
   ],
   providers: [
     AuthInterceptorProvider,
-    { provide: LocationStrategy, useClass: HashLocationStrategy}
+    { provide: LocationStrategy, useClass: HashLocationStrategy},
+    CacheRequestProvider
   ],
   bootstrap: [AppComponent]
 })
