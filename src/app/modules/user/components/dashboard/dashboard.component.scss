@@ -4,7 +4,8 @@
   padding-top: 30px;
 
   .calendar {
-    width: 60%;
+    //border: 1px solid black;
+    width: 40%;
 
     .calendar-card {
       width: 70%;
@@ -24,9 +25,88 @@
         font-size: 40px;
 
         &.longest {
-          color: #d50101;
+          color: $light-orange;
         }
       }
     }
+  }
+}
+
+.tabs-container {
+  padding-top: 20px;
+  z-index: 0;
+  min-height: 200px;
+  height: 100%;
+
+  ul.tabs, ul.tabs>li, ul.tabs .tab {
+    display: block;
+    text-decoration: none;
+  }
+
+  ul {
+    z-index: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+    padding-left: 24px;
+    padding-right: 24px;
+    list-style: none;
+
+    &.tabs {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border-bottom: 1px solid $light1;
+      line-height: 1.5em;
+      white-space: nowrap;
+      margin: 20px 0;
+      position: relative;
+    }
+
+
+    &.tabs>li {
+      float: left;
+      border-top: 2px solid transparent;
+      margin-bottom: -1px;
+      -webkit-transition: border-color 0.1s ease;
+      transition: border-color 0.1s ease;
+
+      &:hover {
+        background-color: $light1;
+      }
+    }
+
+    &.tabs .tab {
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      color: #242428;
+      padding: 10px 20px 9px;
+      -webkit-transition: background-color 0.1s ease;
+      transition: background-color 0.1s ease;
+    }
+
+    &.tabs>li.selected .tab,
+    &.tabs>li[aria-selected='true'] .tab {
+      background-color: #fff;
+      border-left-color: $light1;
+      border-right-color: $light1;
+      padding-bottom: 10px;
+    }
+
+    &.tabs>li.selected,
+    &.tabs>li[aria-selected='true'] {
+      border-top: 2px solid $light-orange;
+    }
+  }
+
+  ul.tabs:after {
+    content: '';
+    display: table;
+    clear: both;
   }
 }

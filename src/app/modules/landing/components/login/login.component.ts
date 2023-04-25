@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
-  getErrorMessageEmail,
   getErrorMessagePassword,
   getErrorMsgRequiredValue
 } from "../../shared/forms/error-messages";
 import {AuthService} from "@app-modules/landing/components/login/services/auth.service";
-import {readSpanComment} from "@angular/compiler-cli/src/ngtsc/typecheck/src/comments";
+import {Router} from "@angular/router";
+import {HOME_ROUTE} from "@app-utils/constants";
+import {Utils as U} from "@app-utils/lodash/utils";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,10 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   login() {
     if (this.loginForm.invalid) return;
@@ -32,7 +36,8 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password')?.value;
 
     this.authService.login(username!, password!).subscribe(data => {
-        console.log(data);
+      const { jwtToken } = U.path(['result'], data);
+      if (!!jwtToken) this.router.navigateByUrl(`${HOME_ROUTE}`)
     });
   }
 

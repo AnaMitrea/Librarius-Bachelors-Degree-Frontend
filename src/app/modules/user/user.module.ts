@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FlexModule } from 'ngx-flexible-layout';
 import { UserRoutingModule } from './user-routing.module';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@app-shared/shared.module';
 import {
   AuthorsComponent,
   ContainerComponent,
@@ -16,6 +16,9 @@ import {
   SettingsComponent,
   SideNavbarComponent
 } from './components';
+import { UserOverviewComponent } from './components/dashboard/tabs-components/user-overview/user-overview.component';
+import { TrophyCaseComponent } from './components/dashboard/tabs-components/trophy-case/trophy-case.component';
+import { ClubsComponent } from './components/dashboard/tabs-components/clubs/clubs.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import {
     WishlistComponent,
     AuthorsComponent,
     StatisticsComponent,
-    SettingsComponent
+    SettingsComponent,
+    UserOverviewComponent,
+    TrophyCaseComponent,
+    ClubsComponent
   ],
   imports: [
     CommonModule,

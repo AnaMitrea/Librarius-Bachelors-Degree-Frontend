@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ContainerComponent } from './components/container/container.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { WishlistComponent } from './components/wishlist/wishlist.component';
-import { AuthorsComponent } from './components/authors/authors.component';
-import { StatisticsComponent } from './components/statistics/statistics.component';
-import { SettingsComponent } from './components/settings/settings.component';
+import {
+  AuthorsComponent,
+  ContainerComponent,
+  DashboardComponent,
+  SettingsComponent,
+  StatisticsComponent,
+  WishlistComponent
+} from "@app-modules/user/components";
+import {
+  UserOverviewComponent
+} from "@app-modules/user/components/dashboard/tabs-components/user-overview/user-overview.component";
+import {
+  TrophyCaseComponent
+} from "@app-modules/user/components/dashboard/tabs-components/trophy-case/trophy-case.component";
+import { ClubsComponent } from "@app-modules/user/components/dashboard/tabs-components/clubs/clubs.component";
+
 
 const routes: Routes = [
   {
@@ -20,7 +30,22 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: UserOverviewComponent,
+          },
+          {
+            path: 'trophy-case',
+            component: TrophyCaseComponent,
+          },
+          {
+            path: 'clubs',
+            component: ClubsComponent,
+          },
+        ]
       },
       {
         path: 'wishlist',

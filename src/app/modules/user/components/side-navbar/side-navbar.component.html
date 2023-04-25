@@ -27,7 +27,7 @@
       <a class="sidenav-nav-link"
          [routerLink]="[data.routeLink]"
          routerLinkActive="active"
-         [routerLinkActiveOptions]="{exact: true}"
+         [routerLinkActiveOptions]="{exact: false}"
          (click)="onClickItemNavigate(data.routeLink)"
       >
         <mat-icon *ngIf='!!data.icon' class="sidenav-link-icon" aria-hidden="false" aria-label="side nav icon" [fontIcon]='data.icon'></mat-icon>
