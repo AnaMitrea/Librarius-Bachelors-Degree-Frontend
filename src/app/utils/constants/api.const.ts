@@ -12,8 +12,16 @@ export const LOGIN_ROUTE: string = `${LANDING_ROUTE}/login`;
 export const REGISTER_ROUTE: string = `${LANDING_ROUTE}/register`;
 export const FORGOT_PASSW0RD_ROUTE: string = `${LANDING_ROUTE}/forgot-password`;
 
+
 // --- HOME ---
 export const HOME_ROUTE = '/home';
+
+// --- EXPLORE ---
+export const EXPLORE_ROUTE = '/explore';
+
+// --- CHALLENGES ---
+export const CHALLENGES_ROUTE = '/challenges';
+
 
 // --- Library ---
 export const LIBRARY_ROUTE = '/library';

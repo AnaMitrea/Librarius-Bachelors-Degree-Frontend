@@ -1,11 +1,20 @@
 <mat-toolbar
   fxLayout="row" fxLayoutAlign="space-between center"
   [ngClass]="hasSideNavBar ? 'hasNavBar' : ''">
-  <div fxLayout="row" fxLayoutAlign="space-around none" fxLayoutGap='20'
+  <div fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutGap='20'
        [ngClass]="!hasSideNavBar ? 'text' : ''">
-    <span>Explore</span>
-    <span>Challenges</span>
-    <span>What's New</span>
+      <a class="link"
+         [routerLink]="[HOME_ROUTE]"
+         (click)="onClickItemNavigate(HOME_ROUTE)"
+      >Home</a>
+      <a class="link"
+         [routerLink]="[EXPLORE_ROUTE]"
+         (click)="onClickItemNavigate(EXPLORE_ROUTE)"
+      >Explore</a>
+      <a class="link"
+         [routerLink]="[CHALLENGES_ROUTE]"
+         (click)="onClickItemNavigate(CHALLENGES_ROUTE)"
+      >Challenges</a>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="space-around none" class='top-bar-icons'>

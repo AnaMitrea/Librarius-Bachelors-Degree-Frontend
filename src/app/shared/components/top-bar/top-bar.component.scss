@@ -12,3 +12,15 @@
   padding-left: 10px;
   border-left: 1px solid #CECECE;
 }
+
+.link {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    font-weight: 500;
+    border-bottom: 2px solid $light-orange;
+  }
+}

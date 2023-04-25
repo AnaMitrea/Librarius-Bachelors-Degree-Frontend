@@ -1,6 +1,6 @@
 import {Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Router } from "@angular/router";
-import { USER_ROUTE, USER_SETTINGS_ROUTE } from "@app-utils/constants";
+import {CHALLENGES_ROUTE, EXPLORE_ROUTE, HOME_ROUTE, USER_ROUTE, USER_SETTINGS_ROUTE} from "@app-utils/constants";
 
 @Component({
   selector: 'app-top-bar',
@@ -11,6 +11,7 @@ export class TopBarComponent implements OnInit, OnChanges {
   @Input() hasSideNavBar!: boolean;
   @Input() hasFullscreenMode!: boolean;
 
+  protected readonly HOME_ROUTE = HOME_ROUTE;
   private isFullscreen = false;
 
   constructor(private router: Router) {}
@@ -61,4 +62,11 @@ export class TopBarComponent implements OnInit, OnChanges {
   onLogoutCLick() {
     // TODO
   }
+
+  onClickItemNavigate(path: string) {
+    this.router.navigateByUrl(path);
+  }
+
+  protected readonly EXPLORE_ROUTE = EXPLORE_ROUTE;
+  protected readonly CHALLENGES_ROUTE = CHALLENGES_ROUTE;
 }
