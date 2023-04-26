@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
 import { BookDto } from '@app-shared/models/transfer/book-dto';
-import { API_GUTENBERG_URL } from '../../../../core';
+import {API_GUTENBERG_URL} from "@app-core/constants";
 import { LIBRARY_BOOK_ROUTE, READ } from '@app-utils/constants';
 import {take} from "rxjs";
 

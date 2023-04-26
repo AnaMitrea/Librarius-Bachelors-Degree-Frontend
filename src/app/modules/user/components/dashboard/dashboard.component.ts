@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {USER_DASHBOARD_CLUBS_ROUTE, USER_DASHBOARD_ROUTE, USER_DASHBOARD_TROPHY_ROUTE} from "@app-utils/constants";
-import {IsActiveMatchOptions, Router} from "@angular/router";
+import { USER_DASHBOARD_CLUBS_ROUTE, USER_DASHBOARD_ROUTE, USER_DASHBOARD_TROPHY_ROUTE } from "@app-utils/constants";
+import { IsActiveMatchOptions, Router } from "@angular/router";
 
 @Component({
   selector: 'user-dashboard',

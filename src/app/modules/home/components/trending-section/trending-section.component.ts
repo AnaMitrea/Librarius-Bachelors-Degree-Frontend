@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Book } from '../../models';
 import { NOW, WEEK } from '@app-utils/constants';
@@ -9,7 +9,7 @@ import { TrendingService } from '../../services/trending.service';
   templateUrl: './trending-section.component.html',
   styleUrls: ['./trending-section.component.scss']
 })
-export class TrendingSectionComponent implements OnInit {
+export class TrendingSectionComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   public trendingNowData!: Book[];
   public trendingWeekData!: Book[];

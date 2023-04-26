@@ -6,20 +6,20 @@ import { API_URL } from '../../../core';
 import { Book } from '../models';
 import { mapBookDtoToBook } from './transformers';
 import { LIBRARY_BOOK_ROUTE } from '@app-utils/constants';
+import {ApiService} from "@app-core/domain/api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrendingService {
 
-  constructor(private http: HttpClient) { }
-
-  private fetchTrendingBooks(duration: string): Observable<any> {
-    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/trending?duration=${duration}`);
-  }
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService
+  ) { }
 
   getTrendingBooks(duration: string): Observable<Book[]> {
-    return this.fetchTrendingBooks(duration).pipe(
+    return this.apiService.getTrendingBooksForDuration(duration).pipe(
         map((response: any) => response.result.map(mapBookDtoToBook))
     );
   }
