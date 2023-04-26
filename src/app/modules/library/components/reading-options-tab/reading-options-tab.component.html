@@ -1,75 +1,87 @@
 <div fxLayout="column"
     fxLayoutAlign="center center">
 
-  <button mat-icon-button [matMenuTriggerFor]="format_size_menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button [matMenuTriggerFor]="format_size_menu" aria-label="button with a menu">
     <mat-icon>format_size</mat-icon>
   </button>
   <mat-menu #format_size_menu="matMenu">
+    <span fxLayout="row" fxLayoutAlign="center center" class="menu-header-text">Font size</span>
     <div fxLayout="row"
       fxLayoutAlign="center center">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>voicemail</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-      </button>
+      <mat-button-toggle-group [formControl]="fontSizeControl" aria-label="Font Size">
+        <mat-button-toggle value="font-size-small" class="text-small">Small</mat-button-toggle>
+        <mat-button-toggle value="font-size-medium" class="text-medium">Medium</mat-button-toggle>
+        <mat-button-toggle value="font-size-large" class="text-large">Large</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
   </mat-menu>
 
-  <button mat-icon-button [matMenuTriggerFor]="format_color_fill_menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button [matMenuTriggerFor]="format_color_fill_menu" aria-label="button with a menu">
     <mat-icon>format_color_fill</mat-icon>
   </button>
   <mat-menu #format_color_fill_menu="matMenu">
+    <span fxLayout="row" fxLayoutAlign="center center" class="menu-header-text">Color Mode</span>
     <div fxLayout="row"
          fxLayoutAlign="center center">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>voicemail</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-      </button>
+      <mat-button-toggle-group [formControl]="colorModeControl" aria-label="Color mode">
+        <mat-button-toggle value="color-mode-white" class="color-white-background">
+          <span class="text-small">White</span>
+        </mat-button-toggle>
+        <mat-button-toggle value="color-mode-sepia" class="color-sepia-background">
+          <span class="text-small">Sepia</span>
+        </mat-button-toggle>
+        <mat-button-toggle value="color-mode-black" class="color-black-background">
+          <span class="text-small">Black</span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
   </mat-menu>
 
-  <button mat-icon-button [matMenuTriggerFor]="format_align_justify_menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button [matMenuTriggerFor]="format_align_justify_menu" aria-label="button with a menu">
     <mat-icon>format_align_justify</mat-icon>
   </button>
   <mat-menu #format_align_justify_menu="matMenu">
+    <span fxLayout="row" fxLayoutAlign="center center" class="menu-header-text">Reader Width</span>
     <div fxLayout="row"
          fxLayoutAlign="center center">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>voicemail</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-      </button>
+      <mat-button-toggle-group [formControl]="readerWidthControl" aria-label="Reader Width">
+        <mat-button-toggle value="reader-width-small" class="reader-width-toggle">
+          <div class="button-toggle-icons">
+            <mat-icon [inline]="true">chevron_right</mat-icon>
+            <mat-icon [inline]="true">format_align_justify</mat-icon>
+            <mat-icon [inline]="true">chevron_left</mat-icon>
+          </div>
+          <span class="text-small">Small</span>
+        </mat-button-toggle>
+        <mat-button-toggle value="reader-width-medium" class="reader-width-toggle">
+          <div class="button-toggle-icons">
+            <mat-icon [inline]="true">format_align_justify</mat-icon>
+          </div>
+          <span class="text-small">Medium</span>
+        </mat-button-toggle>
+        <mat-button-toggle value="reader-width-large" class="reader-width-toggle">
+          <div class="button-toggle-icons">
+            <mat-icon [inline]="true">chevron_left</mat-icon>
+            <mat-icon [inline]="true">format_align_justify</mat-icon>
+            <mat-icon [inline]="true">chevron_right</mat-icon>
+          </div>
+          <span class="text-small">Large</span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
   </mat-menu>
 
-  <button mat-icon-button [matMenuTriggerFor]="font_download_menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button [matMenuTriggerFor]="font_family_menu" aria-label="button with a menu">
     <mat-icon>font_download</mat-icon>
   </button>
-  <mat-menu #font_download_menu="matMenu">
+  <mat-menu #font_family_menu="matMenu">
+    <span fxLayout="row" fxLayoutAlign="center center" class="menu-header-text">Font Family</span>
     <div fxLayout="row"
          fxLayoutAlign="center center">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>voicemail</mat-icon>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-      </button>
+      <mat-button-toggle-group [formControl]="fontFamilyControl" aria-label="Font Family">
+        <mat-button-toggle value="font-family-serif" class="font-family-serif">Serif</mat-button-toggle>
+        <mat-button-toggle value="font-family-dyslexic" class="font-family-dyslexic">Open Dyslexic</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
   </mat-menu>
 </div>

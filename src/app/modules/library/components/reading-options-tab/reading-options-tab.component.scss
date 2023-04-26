@@ -1,0 +1,60 @@
+@import "styles.scss";
+
+.text-small {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.text-medium {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.text-large {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.menu-header-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: $dark-blue;
+}
+
+.reader-width-toggle {
+  padding: 0;
+
+  .button-toggle-icons {
+    max-height: 30px;
+    max-width: 50px;
+  }
+}
+
+.color-white-background {
+  background: #FFF;
+  span {
+    color: #000;
+  }
+}
+
+.color-sepia-background {
+  background: $sepia;
+  span {
+    color: #000;
+  }
+}
+
+.color-black-background {
+  background: $iron;
+  span {
+    color: #FFF;
+  }
+}
+
+.font-family-serif {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.font-family-dyslexic {
+  font-family: 'OpenDyslexic', sans-serif;
+}

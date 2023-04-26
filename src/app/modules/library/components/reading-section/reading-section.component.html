@@ -2,10 +2,15 @@
   class='reading-section'
   fxLayout="row"
   fxLayoutAlign="start none">
-  <div class='reading-content'>
-    <div class='content' [innerHTML]="content"></div>
+  <div [ngClass]="['reading-content', colorModeClass, fontFamilyClass]">
+    <div [ngClass]="[readerWidthClass]" [innerHTML]="content"></div>
   </div>
   <div class='settings'>
-    <app-reading-options-tab></app-reading-options-tab>
+    <app-reading-options-tab
+      (colorModeEvent)="changeColorMode($event)"
+      (fontFamilyEvent)="changeFontFamily($event)"
+      (fontSizeEvent)="changeFontSize($event)"
+      (readerWidthEvent)="changeReaderWidth($event)"
+    ></app-reading-options-tab>
   </div>
 </div>

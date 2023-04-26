@@ -1,14 +1,46 @@
+@import "styles.scss";
+
 .reading-section {
   min-height: 100vh;
   height: auto;
 
   .reading-content {
     width: 92%;
-    border: 2px solid blue;
 
-    .content {
+    .reader-width-small {
+      padding: 0 30%;
+    }
+
+    .reader-width-medium {
+      padding: 0 20%;
+    }
+
+    .reader-width-large {
       padding: 0 5%;
     }
+  }
+
+  .color-mode-white {
+    background: #FFF !important;
+    color: #000 !important;
+  }
+
+  .color-mode-sepia {
+    background: $sepia !important;
+    color: #000 !important;
+  }
+
+  .color-mode-black {
+    background: $iron !important;
+    color: #FFF !important;
+  }
+
+  .font-family-serif {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  .font-family-dyslexic {
+    font-family: 'OpenDyslexic', sans-serif;
   }
 
   .settings {
