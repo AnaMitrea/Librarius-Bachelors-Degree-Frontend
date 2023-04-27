@@ -1,5 +1,21 @@
 @import 'styles.scss';
 
+::ng-deep {
+  .highlight-date {
+    background-color: $light2 !important;
+    color: white !important;
+    border-radius: 999px;
+  }
+  .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: white !important;
+    border-color: $light-orange !important;
+  }
+
+  .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: transparent;
+  }
+}
+
 .dashboard-header {
   margin: 1rem 1rem 1rem 0;
   padding-bottom: 10px;

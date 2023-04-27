@@ -49,6 +49,7 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // --- USER ---
+  // TODO CHANGE /api/user into /api/account
   // http://localhost:5164/api/user
   getUserInformation(): Observable<any> {
     return this.http.get(`${API_URL}${USER_ROUTE}`).pipe(

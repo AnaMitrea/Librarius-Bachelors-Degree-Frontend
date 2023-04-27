@@ -4,11 +4,9 @@
 <div class='reading-log'
      fxLayout="row"
      fxLayoutAlign="center center">
-  <div class='calendar' fxLayoutAlign="center none">
+  <div *ngIf="userActivityDates" class='calendar' fxLayoutAlign="center none">
     <mat-card class="calendar-card">
-      <mat-calendar
-        [(selected)]="selected"
-      ></mat-calendar>
+      <mat-calendar [dateClass]="setStreakDateClass()"></mat-calendar>
     </mat-card>
   </div>
   <div class='streaks'

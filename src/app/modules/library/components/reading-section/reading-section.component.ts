@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {BookService} from "@app-modules/library/services/book/book.service";
+import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 
 @Component({
   selector: 'app-reading-section',
@@ -23,7 +24,7 @@ export class ReadingSectionComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id') ?? '';
-      this.bookService.getBookContent(id).subscribe(data => {
+      this.bookService.getBookContent(id).subscribe((data: ApiResponseModel) => {
         this.content = data.result.content;
       })
     })
