@@ -18,7 +18,6 @@ export class HttpServiceBaseService {
         console.error('Body was: ', `${error.error}`);
       }
     }
-
     return error;
   }
 }

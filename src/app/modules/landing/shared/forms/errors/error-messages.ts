@@ -1,5 +1,7 @@
 import {FormControl} from "@angular/forms";
 
+export const invalidCredentialsMessage = 'Username or password incorrect.';
+
 export const getErrorMsgRequiredValue = (control: FormControl) => {
   return control.hasError('required') ? 'You must enter a value' : '';
 }

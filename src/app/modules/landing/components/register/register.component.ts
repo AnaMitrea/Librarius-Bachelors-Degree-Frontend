@@ -8,7 +8,7 @@ import {
   getErrorMessageEmail,
   getErrorMessagePassword,
   getErrorMsgRequiredValue
-} from "../../shared/forms/error-messages";
+} from "@app-modules/landing/shared/forms/errors/error-messages";
 import { LANDING_ROUTE } from '@app-utils/constants';
 
 @Component({

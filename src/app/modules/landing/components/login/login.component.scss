@@ -1,4 +1,4 @@
-@import '../../../../../styles';
+@import 'styles';
 
 .login-container {
   border-radius: 20px;
@@ -20,5 +20,9 @@
     mat-error {
       font-size: 0.8em;
     }
+  }
+
+  .invalid-credentials {
+    height: 20px;
   }
 }

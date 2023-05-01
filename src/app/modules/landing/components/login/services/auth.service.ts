@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { API_URL, TOKEN_NAME_LOCAL_STORAGE } from "@app-core/constants";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {TOKEN_NAME_LOCAL_STORAGE} from "@app-core/constants";
 import {BehaviorSubject, tap} from "rxjs";
+import {ApiService} from "@app-core/domain/api.service";
+import jwt_decode from "jwt-decode";
+import {AuthJwtToken} from "@app-modules/landing/shared/models";
 
 @Injectable({
   providedIn: 'root'
@@ -11,26 +14,43 @@ export class AuthService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
-  get token() {
+  get token(): string | null {
     return localStorage.getItem(this.TOKEN_NAME);
   }
 
-  constructor(private http: HttpClient) {
-    // todo check expiration date before
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService
+  ) {
+    if (this.isTokenExpiredOrUndefined()) {
+      localStorage.removeItem(this.TOKEN_NAME);
+      this._isLoggedIn$.next(false);
+    } else {
+      this._isLoggedIn$.next(true);
+    }
+  }
 
-    this._isLoggedIn$.next(!!this.token);
+  private isTokenExpiredOrUndefined(): boolean {
+    if (this.token) {
+      const decodedToken = jwt_decode<AuthJwtToken>(this.token);
+      const expirationDate = new Date(decodedToken.exp * 1000);
+      return expirationDate.getTime() <= new Date().getTime();
+    }
+    else
+      return true;
   }
 
   login(username: string, password: string) {
-    const body = {
+
+    return this.apiService.getUserLoggedIn({
       Username: username,
       Password: password
-    };
-
-    return this.http.post(`${API_URL}/account/login`, body).pipe(
+    }).pipe(
       tap((data: any) => {
-        this._isLoggedIn$.next(true);
-        localStorage.setItem(this.TOKEN_NAME, data.result.jwtToken);
+        if (data) {
+          this._isLoggedIn$.next(true);
+          localStorage.setItem(this.TOKEN_NAME, data.result.jwtToken);
+        }
       })
     );
   }

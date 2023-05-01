@@ -34,6 +34,9 @@ $licenta-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+// regular style toast
+@import 'ngx-toastr/toastr';
+
 
 $light1: #e7e7e7;
 $light2: #E1C7A2;
