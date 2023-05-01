@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { getErrorMessagePassword, getErrorMsgRequiredValue } from "@app-modules/landing/shared/forms/errors/error-messages";
-import {AuthService} from "@app-modules/landing/components/login/services/auth.service";
+import {AuthService} from "@app-modules/landing/shared/services/auth.service";
 import {Router} from "@angular/router";
 import {HOME_ROUTE} from "@app-utils/constants";
 import {Utils as U} from "@app-utils/lodash/utils";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
-import {catchError, of} from "rxjs";
-import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',

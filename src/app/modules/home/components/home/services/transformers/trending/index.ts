@@ -1,6 +1,6 @@
-import { BookTrendingDTO } from '../../../models';
 import { Utils as U } from '@app-utils/index';
-import { API_GUTENBERG_URL } from '../../../../../core';
+import { API_GUTENBERG_URL } from '@app-core/index';
+import {BookTrendingDTO} from "@app-modules/home/shared/models";
 
 export const mapBookDtoToBook = (dto: BookTrendingDTO, idx: number) => {
   return {

@@ -41,7 +41,6 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-
     return this.apiService.getUserLoggedIn({
       Username: username,
       Password: password
@@ -53,5 +52,10 @@ export class AuthService {
         }
       })
     );
+  }
+
+  logout() {
+    localStorage.removeItem(this.TOKEN_NAME);
+    this._isLoggedIn$.next(false);
   }
 }

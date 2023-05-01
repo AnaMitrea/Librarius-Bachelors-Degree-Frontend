@@ -17,10 +17,10 @@ export const FORGOT_PASSW0RD_ROUTE: string = `${LANDING_ROUTE}/forgot-password`;
 export const HOME_ROUTE = '/home';
 
 // --- EXPLORE ---
-export const EXPLORE_ROUTE = '/explore';
+export const EXPLORE_ROUTE = `${HOME_ROUTE}/explore`;
 
 // --- CHALLENGES ---
-export const CHALLENGES_ROUTE = '/challenges';
+export const CHALLENGES_ROUTE = `${HOME_ROUTE}/challenges`;
 
 
 // --- Library ---

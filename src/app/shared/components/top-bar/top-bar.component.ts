@@ -1,6 +1,14 @@
 import {Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Router } from "@angular/router";
-import {CHALLENGES_ROUTE, EXPLORE_ROUTE, HOME_ROUTE, USER_ROUTE, USER_SETTINGS_ROUTE} from "@app-utils/constants";
+import {
+  CHALLENGES_ROUTE,
+  EXPLORE_ROUTE,
+  HOME_ROUTE,
+  LANDING_ROUTE,
+  USER_ROUTE,
+  USER_SETTINGS_ROUTE
+} from "@app-utils/constants";
+import {AuthService} from "@app-modules/landing/shared/services/auth.service";
 
 @Component({
   selector: 'app-top-bar',
@@ -12,9 +20,11 @@ export class TopBarComponent implements OnInit, OnChanges {
   @Input() hasFullscreenMode!: boolean;
 
   protected readonly HOME_ROUTE = HOME_ROUTE;
+  protected readonly EXPLORE_ROUTE = EXPLORE_ROUTE;
+  protected readonly CHALLENGES_ROUTE = CHALLENGES_ROUTE;
   private isFullscreen = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   @HostListener('document:fullscreenchange', ['$event'])
   onFullscreenChange(event: Event) {
@@ -60,13 +70,11 @@ export class TopBarComponent implements OnInit, OnChanges {
   }
 
   onLogoutCLick() {
-    // TODO
+    this.authService.logout();
+    this.router.navigate([LANDING_ROUTE]);
   }
 
   onClickItemNavigate(path: string) {
     this.router.navigateByUrl(path);
   }
-
-  protected readonly EXPLORE_ROUTE = EXPLORE_ROUTE;
-  protected readonly CHALLENGES_ROUTE = CHALLENGES_ROUTE;
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Book } from '../../models';
+import { Book } from '../../../../shared/models';
 import { Router } from '@angular/router';
 
 @Component({
