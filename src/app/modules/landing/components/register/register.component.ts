@@ -18,6 +18,8 @@ import { LANDING_ROUTE } from '@app-utils/constants';
   encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent {
+  hidePwd = true;
+  hideRePwd = true;
   isLastStepCompleted = false;
   lastState: string = '';
   getErrorMsgRequired = getErrorMsgRequiredValue;
@@ -25,8 +27,7 @@ export class RegisterComponent {
   getErrorMsgPwd = getErrorMessagePassword;
 
   firstFormGroup = this._formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
+    username: ['', Validators.required]
   });
   secondFormGroup = this._formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
