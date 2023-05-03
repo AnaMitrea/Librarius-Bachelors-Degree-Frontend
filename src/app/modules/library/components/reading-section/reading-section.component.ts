@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {BookService} from "@app-modules/library/services/book/book.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-reading-section',
   templateUrl: './reading-section.component.html',
   styleUrls: ['./reading-section.component.scss']
 })
-export class ReadingSectionComponent implements OnInit {
+export class ReadingSectionComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
   content: string = '';
 
   colorModeClass: string = 'color-mode-white';
@@ -22,11 +24,12 @@ export class ReadingSectionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id') ?? '';
-      this.bookService.getBookContent(id).subscribe((data: ApiResponseModel) => {
-        this.content = data.result.content;
-      })
+    this.route.paramMap.pipe(takeUntil(this.destroy$))
+      .subscribe(params => {
+        const id = params.get('id') ?? '';
+        this.bookService.getBookContent(id).subscribe((data: ApiResponseModel) => {
+          this.content = data.result.content;
+        })
     })
   }
 
@@ -44,5 +47,10 @@ export class ReadingSectionComponent implements OnInit {
 
   changeReaderWidth(readerWidth: string) {
     this.readerWidthClass = readerWidth;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

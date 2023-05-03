@@ -1,17 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { USER_DASHBOARD_CLUBS_ROUTE, USER_DASHBOARD_ROUTE, USER_DASHBOARD_TROPHY_ROUTE } from "@app-utils/constants";
 import { IsActiveMatchOptions, Router } from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {UserDashboardService} from "@app-modules/user/services/dashboard/user-dashboard.service";
 import {Utils as U} from "@app-utils/lodash/utils";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
+import {DashboardUserInformationDto} from "@app-modules/user/components/dashboard/models";
+import {Subject, Subscription, takeUntil} from "rxjs";
 
 @Component({
   selector: 'user-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit, OnDestroy{
   protected readonly USER_DASHBOARD_ROUTE = USER_DASHBOARD_ROUTE;
   protected readonly USER_DASHBOARD_CLUBS_ROUTE = USER_DASHBOARD_CLUBS_ROUTE;
   protected readonly USER_DASHBOARD_TROPHY_ROUTE = USER_DASHBOARD_TROPHY_ROUTE;
@@ -21,8 +23,13 @@ export class DashboardComponent implements OnInit{
     queryParams: 'subset',
     fragment: 'ignored'
   };
+  private destroy$ = new Subject<void>();
+
+  userInformation!: DashboardUserInformationDto;
   userActivityDates!: any[];
-  datesToHighlight = ["2023-04-01T18:30:00.000Z", "2023-04-24T18:30:00.000Z","2023-04-25T18:30:00.000Z", "2023-04-26T18:30:00.000Z", "2023-04-27T18:30:00.000Z", "2023-04-29T18:30:00.000Z"];
+
+  // todo remove this
+  datesToHighlight = ["2023-05-01T18:30:00.000Z", "2023-05-24T18:30:00.000Z","2023-05-25T18:30:00.000Z", "2023-05-26T18:30:00.000Z", "2023-05-27T18:30:00.000Z", "2023-05-29T18:30:00.000Z"];
 
   constructor(
     public router: Router,
@@ -30,7 +37,15 @@ export class DashboardComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    // this.dashboardService.getUserActivity().subscribe((data: ApiResponseModel) => {
+    this.dashboardService.getUserInformation()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: ApiResponseModel) => {
+      this.userInformation = (U.path(['result'], data)) as DashboardUserInformationDto;
+    })
+
+    // this.dashboardService.getUserActivity()
+    // .pipe(takeUntil(this.destroy$))
+    // .subscribe((data: ApiResponseModel) => {
     //   this.userActivityDates = U.path(['result', ''], data);
     // });
     this.userActivityDates = this.datesToHighlight;
@@ -54,5 +69,8 @@ export class DashboardComponent implements OnInit{
     this.router.navigateByUrl(path);
   }
 
-
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

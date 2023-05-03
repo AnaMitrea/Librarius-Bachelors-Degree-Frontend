@@ -1,0 +1,75 @@
+@import "styles";
+
+.content-header {
+  padding: 10px 20px;
+  border-bottom: 2px solid black;
+
+  .header-title {
+    padding: 20px 0;
+
+    span {
+      font-size: 2em;
+      font-weight: 600;
+      color: $dark-green;
+    }
+  }
+}
+
+.categories {
+  margin-top: 20px;
+
+  .category {
+    width: 75%;
+
+    .category-title {
+      margin-bottom: 20px;
+
+      span {
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+    }
+
+    .challenges {
+
+      .challenge {
+        border-radius: 7px;
+        margin: 10px;
+        padding: 10px 0;
+        border: 1px solid grey;
+
+        img {
+          padding: 5px;
+          border-radius: 50%;
+          width: 60%;
+          height: 60%;
+        }
+
+        .information {
+
+          .challenge-title {
+            font-weight: 500;
+          }
+
+          .challenge-instructions {
+            height: 40px;
+            text-align: center;
+            font-weight: 300;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.grey-border {
+  border-radius: 50%;
+  border: 5px solid grey;
+}
+
+.green-border {
+  border-radius: 50%;
+  border: 5px solid green;
+}

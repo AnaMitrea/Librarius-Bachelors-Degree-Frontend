@@ -12,11 +12,12 @@
   <div class='streaks'
        fxLayout="column"
        fxLayoutAlign="center none"
-       fxLayoutGap="30px">
+       fxLayoutGap="30px"
+       *ngIf="userInformation">
     <mat-card class='streak-card'>
       <mat-card-header>
         <mat-icon mat-card-avatar class='streak-icon'>whatshot</mat-icon>
-        <mat-card-title>0 days</mat-card-title>
+        <mat-card-title>{{userInformation.currentStreak}} days</mat-card-title>
         <mat-card-subtitle>
           Current Streak
         </mat-card-subtitle>
@@ -26,7 +27,7 @@
     <mat-card class='streak-card'>
       <mat-card-header>
         <mat-icon mat-card-avatar class='streak-icon longest'>whatshot</mat-icon>
-        <mat-card-title>0 days</mat-card-title>
+        <mat-card-title>{{userInformation.longestStreak || 0}} days</mat-card-title>
         <mat-card-subtitle>
           Longest Streak
         </mat-card-subtitle>

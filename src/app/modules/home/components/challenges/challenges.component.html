@@ -1,1 +1,70 @@
-<p>challenges works!</p>
+<div class="content-header">
+  <div class="header-title"
+       fxLayout="column"
+       fxLayoutAlign="center center"
+  >
+    <span>Join challenges in order to earn super badges!</span>
+  </div>
+
+  <div class="header-categories">
+    <mat-chip-listbox aria-label="Badge selection">
+      <mat-chip-option (click)="onChipClickScroll('div1')">Reading Books</mat-chip-option>
+      <mat-chip-option (click)="onChipClickScroll('div2')">Reading Time</mat-chip-option>
+      <mat-chip-option (click)="onChipClickScroll('div3')">Category reader</mat-chip-option>
+      <mat-chip-option (click)="onChipClickScroll('div4')">Activities</mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+</div>
+
+<!--<div class="scroll-to-top">-->
+
+<!--</div>-->
+
+<div class="categories"
+     fxLayout="column"
+     fxLayoutAlign="space-between center"
+     fxLayoutGap="3%"
+>
+  <div class="category"
+       *ngFor="let category of categories"
+       [id]="category.id"
+  >
+    <div class="category-title">
+      <span> {{category.title}} </span>
+    </div>
+
+    <div class="challenges"
+         fxLayout="row wrap"
+         fxLayout.xs="column"
+         fxLayoutAlign="start center"
+    >
+      <div class="challenge"
+           fxFlex="23%"
+           fxFlex.xs="100%"
+           fxLayout="column"
+           fxLayoutAlign="space-between center"
+           fxLayoutGap="10px"
+           *ngFor="let challenge of challenges"
+      >
+
+        <img [ngClass]="true ? 'grey-border' : 'green-border'" [src]=challenge.imageSrcPath alt="badge">
+
+        <div class="information"
+             fxLayout="column"
+             fxLayoutAlign="space-between center"
+             fxLayoutGap="10px"
+        >
+          <span class="challenge-title">{{challenge.title}}</span>
+          <span class="challenge-instructions">{{challenge.instructions}}</span>
+        </div>
+
+        <button mat-stroked-button
+                color="primary"
+                [disabled]="!true"
+                (click)="onJoinChallengeClick(challenge.id)"
+        >Join Challenge</button>
+      </div>
+
+    </div>
+  </div>
+</div>

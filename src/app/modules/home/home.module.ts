@@ -13,6 +13,8 @@ import { ReadingFeedComponent } from '@app-modules/home/components/home/componen
 import { HomeComponent } from './components/home/home.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ChallengesComponent } from './components/challenges/challenges.componen
     SharedModule,
     CarouselModule,
     FlexModule,
-    MatCardModule
+    MatCardModule,
+    MatChipsModule,
+    MatButtonModule
   ]
 })
 export class HomeModule { }
