@@ -28,10 +28,20 @@
         font-size: 1.3em;
         font-weight: 600;
       }
+
+      .category-see-more {
+        margin-left: 10px;
+        font-size: 0.8em;
+        font-weight: 500;
+        color: $light-orange;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
 
     .challenges {
-
       .challenge {
         border-radius: 7px;
         margin: 10px;

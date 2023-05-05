@@ -8,17 +8,13 @@
 
   <div class="header-categories">
     <mat-chip-listbox aria-label="Badge selection">
-      <mat-chip-option (click)="onChipClickScroll('div1')">Reading Books</mat-chip-option>
-      <mat-chip-option (click)="onChipClickScroll('div2')">Reading Time</mat-chip-option>
-      <mat-chip-option (click)="onChipClickScroll('div3')">Category reader</mat-chip-option>
-      <mat-chip-option (click)="onChipClickScroll('div4')">Activities</mat-chip-option>
+      <mat-chip-option (click)="onChipClickScroll('reading-books-div')">Reading Books</mat-chip-option>
+      <mat-chip-option (click)="onChipClickScroll('reading-time-div')">Reading Time</mat-chip-option>
+      <mat-chip-option (click)="onChipClickScroll('category-reader-div')">Category reader</mat-chip-option>
+      <mat-chip-option (click)="onChipClickScroll('activities-div')">Activities</mat-chip-option>
     </mat-chip-listbox>
   </div>
 </div>
-
-<!--<div class="scroll-to-top">-->
-
-<!--</div>-->
 
 <div class="categories"
      fxLayout="column"
@@ -26,11 +22,12 @@
      fxLayoutGap="3%"
 >
   <div class="category"
-       *ngFor="let category of categories"
-       [id]="category.id"
+       *ngFor="let categoryTitle of Object.keys(challenges)"
+       [id]=challenges[categoryTitle].htmlId
   >
     <div class="category-title">
-      <span> {{category.title}} </span>
+      <span> {{categoryTitle}} </span>
+      <span class="category-see-more" (click)="onClickSeeMore(categoryTitle)"> See more...</span>
     </div>
 
     <div class="challenges"
@@ -44,27 +41,25 @@
            fxLayout="column"
            fxLayoutAlign="space-between center"
            fxLayoutGap="10px"
-           *ngFor="let challenge of challenges"
+           *ngFor="let trophy of (challenges[categoryTitle].trophies)"
       >
-
-        <img [ngClass]="true ? 'grey-border' : 'green-border'" [src]=challenge.imageSrcPath alt="badge">
+        <img [ngClass]="true ? 'grey-border' : 'green-border'" [src]=trophy.imageSrcPath alt="badge">
 
         <div class="information"
              fxLayout="column"
              fxLayoutAlign="space-between center"
              fxLayoutGap="10px"
         >
-          <span class="challenge-title">{{challenge.title}}</span>
-          <span class="challenge-instructions">{{challenge.instructions}}</span>
+          <span class="challenge-title">{{trophy.title}}</span>
+          <span class="challenge-instructions">{{trophy.instructions}}</span>
         </div>
 
         <button mat-stroked-button
                 color="primary"
                 [disabled]="!true"
-                (click)="onJoinChallengeClick(challenge.id)"
+                (click)="onJoinChallengeClick(trophy.id)"
         >Join Challenge</button>
       </div>
-
     </div>
   </div>
 </div>

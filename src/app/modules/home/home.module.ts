@@ -12,9 +12,12 @@ import { TrendingSectionComponent } from '@app-modules/home/components/home/comp
 import { ReadingFeedComponent } from '@app-modules/home/components/home/components/reading-feed/reading-feed.component';
 import { HomeComponent } from './components/home/home.component';
 import { ExploreComponent } from './components/explore/explore.component';
-import { ChallengesComponent } from './components/challenges/challenges.component';
+import { ChallengesComponent } from '@app-modules/home/components/challenges-container/components/challenges/challenges.component';
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import { TrophiesComponent } from '@app-modules/home/components/challenges-container/components/trophies/trophies.component';
+import { ChallengesContainerComponent } from './components/challenges-container/challenges-container.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +27,20 @@ import {MatButtonModule} from "@angular/material/button";
     ReadingFeedComponent,
     HomeComponent,
     ExploreComponent,
-    ChallengesComponent
+    ChallengesComponent,
+    TrophiesComponent,
+    ChallengesContainerComponent
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    SharedModule,
-    CarouselModule,
-    FlexModule,
-    MatCardModule,
-    MatChipsModule,
-    MatButtonModule
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        SharedModule,
+        CarouselModule,
+        FlexModule,
+        MatCardModule,
+        MatChipsModule,
+        MatButtonModule,
+        MatIconModule
+    ]
 })
 export class HomeModule { }

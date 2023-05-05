@@ -1,0 +1,55 @@
+<div class="content-header">
+  <div class="header-title"
+       fxLayout="column"
+       fxLayoutAlign="start start"
+  >
+    <span>{{categoryTitle}} Challenges</span>
+  </div>
+  <button mat-stroked-button (click)="onBackButton()">Back</button>
+</div>
+
+<div class="challenges-container"
+     fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="start center"
+>
+  <div class="challenge"
+       fxFlex="23%"
+       fxFlex.xs="100%"
+       fxLayout="column"
+       fxLayoutAlign="space-between center"
+       fxLayoutGap="10px"
+       *ngFor="let trophy of trophies"
+  >
+    <img [ngClass]="isChallengeCompleted(trophy.id) ? 'green-border' : 'grey-border'" [src]=trophy.imageSrcPath alt="badge">
+    <span *ngIf="isChallengeCompleted(trophy.id)" class="green-text">Completed</span>
+    <div class="information"
+         fxLayout="column"
+         fxLayoutAlign="space-between center"
+         fxLayoutGap="10px"
+    >
+      <span class="challenge-title">{{trophy.title}}</span>
+      <span class="challenge-instructions">{{trophy.instructions}}</span>
+    </div>
+
+    <button mat-stroked-button
+            color="primary"
+            *ngIf="!isChallengeJoined(trophy.id)"
+            [ngClass]="{'joined': isChallengeJoined(trophy.id)}"
+            [title]="buttonText(trophy.id)"
+            (click)="toggleJoinChallenge(trophy.id)"
+    >
+      {{ buttonText(trophy.id) }}
+    </button>
+
+    <button mat-stroked-button
+            color="warn"
+            *ngIf="isChallengeJoined(trophy.id)"
+            [ngClass]="{'joined': isChallengeJoined(trophy.id)}"
+            title="Leave Challenge"
+            (click)="toggleJoinChallenge(trophy.id)"
+    >
+      Leave Challenge
+    </button>
+  </div>
+</div>

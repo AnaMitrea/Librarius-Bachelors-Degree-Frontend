@@ -56,6 +56,16 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  // --- HOME ---
+  // -> CHALLENGES
+
+  // http://localhost:5164/api/trophy/challenges?category=...&limit=...
+  getTrophiesByCategory(category: string, limit = false): Observable<any> {
+    return this.http.get(`${API_URL}/trophy/challenges?category=${category}&limit=${limit}`).pipe(
+      this.handleHttpError()
+    );
+  }
+
   // --- LIBRARY ---
   getBookContent(id: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BASE_URL}/${id}/read`).pipe(
