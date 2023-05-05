@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+  }
 
   login() {
     if (this.loginForm.invalid) return;

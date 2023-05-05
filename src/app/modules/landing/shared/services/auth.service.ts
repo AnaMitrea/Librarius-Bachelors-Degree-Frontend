@@ -5,6 +5,7 @@ import {BehaviorSubject, tap} from "rxjs";
 import {ApiService} from "@app-core/domain/api.service";
 import jwt_decode from "jwt-decode";
 import {AuthJwtToken} from "@app-modules/landing/shared/models";
+import {UserStoreService} from "@app-shared/services/store/user-store.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private userStoreDataService: UserStoreService
   ) {
     if (this.isTokenExpiredOrUndefined()) {
       localStorage.removeItem(this.TOKEN_NAME);
@@ -49,6 +51,7 @@ export class AuthService {
         if (data) {
           this._isLoggedIn$.next(true);
           localStorage.setItem(this.TOKEN_NAME, data.result.jwtToken);
+          this.userStoreDataService.addData(['ana', 'banana']);
         }
       })
     );

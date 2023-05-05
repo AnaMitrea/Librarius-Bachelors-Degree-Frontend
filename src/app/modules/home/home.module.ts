@@ -32,15 +32,15 @@ import { ChallengesContainerComponent } from './components/challenges-container/
     ChallengesContainerComponent
   ],
     imports: [
-        CommonModule,
-        HomeRoutingModule,
-        SharedModule,
-        CarouselModule,
-        FlexModule,
-        MatCardModule,
-        MatChipsModule,
-        MatButtonModule,
-        MatIconModule
+      CommonModule,
+      HomeRoutingModule,
+      SharedModule,
+      CarouselModule,
+      FlexModule,
+      MatCardModule,
+      MatChipsModule,
+      MatButtonModule,
+      MatIconModule
     ]
 })
 export class HomeModule { }

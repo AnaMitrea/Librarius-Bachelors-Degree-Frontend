@@ -12,4 +12,12 @@ export class TrophyService {
   getTrophiesByCategory(category: string, limit = false): Observable<any> {
     return this.apiService.getTrophiesByCategory(category, limit);
   }
+
+  getUserCompletedTrophiesByCategory(category: string): Observable<any> {
+    return this.apiService.getUserCompletedTrophiesByCategory(category);
+  }
+
+  getUserCompletedTrophies(): Observable<any> {
+    return this.apiService.getUserCompletedTrophies();
+  }
 }
