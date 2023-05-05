@@ -7,7 +7,9 @@ import {Observable} from "rxjs";
 })
 export class TrophyService {
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService
+  ) {}
 
   getTrophiesByCategory(category: string, limit = false): Observable<any> {
     return this.apiService.getTrophiesByCategory(category, limit);

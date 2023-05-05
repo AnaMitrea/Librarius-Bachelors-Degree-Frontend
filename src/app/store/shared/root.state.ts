@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
-import { RootAction } from './root.actions';
+import { SetEarnedTrophiesAction } from './root.actions';
+import { Trophies, UserActivity, UserStats } from "@app-store/models/shared-user.model";
 
-export interface RootStateModel {
-  items: string[];
+export interface SharedUserStateModel {
+  username: string;
+  stats: UserStats;
+  activity: UserActivity;
+  earnedTrophies: Trophies;
 }
 
-const defaults = {
-  items: []
+const defaults: SharedUserStateModel = {
+  username: 'User',
+  stats: {
+    points: 0,
+    level: 'Beginner'
+  },
+  activity: {
+    currentStreak: 0,
+    longestStreak: 0
+  },
+  earnedTrophies: {}
 };
 
-@State<RootStateModel>({
-  name: 'rootState',
+@State<SharedUserStateModel>({
+  name: 'sharedUserState',
   defaults
 })
 @Injectable()
 export class RootState implements NgxsOnInit{
   ngxsOnInit(ctx: StateContext<any>): void {}
 
-  @Action(RootAction)
-  add({ getState, setState }: StateContext<RootStateModel>, { payload }: RootAction) {
-    const state = getState();
-    setState({ items: [ ...state.items, payload ] });
+  @Action(SetEarnedTrophiesAction)
+  setEarnedTrophies({ patchState }: StateContext<SharedUserStateModel>, { payload }: SetEarnedTrophiesAction) {
+    patchState({ earnedTrophies: payload });
   }
-  // @Action(RootAction)
-  // add({ patchState }: StateContext<RootStateModel>, { payload }: RootAction) {
-  //   patchState({ items: [ payload ] });
-  // }
 }

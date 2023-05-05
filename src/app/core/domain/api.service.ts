@@ -68,7 +68,7 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   getUserCompletedTrophies(): Observable<any> {
-    return this.http.get(`${this.API_TROPHY_BASE_URL}/user}`).pipe(
+    return this.http.get(`${this.API_TROPHY_BASE_URL}/user`).pipe(
       this.handleHttpError()
     );
   }

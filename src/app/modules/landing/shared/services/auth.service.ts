@@ -51,7 +51,6 @@ export class AuthService {
         if (data) {
           this._isLoggedIn$.next(true);
           localStorage.setItem(this.TOKEN_NAME, data.result.jwtToken);
-          this.userStoreDataService.addData(['ana', 'banana']);
         }
       })
     );
