@@ -6,6 +6,6 @@ export class SetEarnedTrophiesAction {
 }
 
 export class SetReadingTimeForBook {
-  static readonly type = '[Shared] Set Reading Time for Book id';
+  static readonly type = '[Shared] Reading time tracker';
   constructor(public payload: any) { }
 }

@@ -60,5 +60,7 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
     this.timeTrackerService.stopTimer();
+
+    // TODO make call to save time spent on reading book
   }
 }
