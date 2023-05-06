@@ -29,7 +29,6 @@ export class ChallengesContainerComponent implements OnInit, OnDestroy{
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: ApiResponseModel)=> {
         const earnedTrophies = data.result ?? [];
-        // TODO
         const transformedEarnedTrophies = transformEarnedTrophiesData(earnedTrophies);
         this.sharedUserStoreService.setEarnedTrophies(transformedEarnedTrophies);
       });

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
-import { SetEarnedTrophiesAction } from './root.actions';
+import {SetEarnedTrophiesAction, SetReadingTimeForBook} from './root.actions';
 import { Trophies, UserActivity, UserStats } from "@app-store/models/shared-user.model";
+import {updateReadingTimeForBook} from "@app-store/utils";
 
 export interface SharedUserStateModel {
   username: string;
@@ -17,6 +18,7 @@ const defaults: SharedUserStateModel = {
     level: 'Beginner'
   },
   activity: {
+    bookTimeTracker: {},
     currentStreak: 0,
     longestStreak: 0
   },
@@ -34,5 +36,10 @@ export class RootState implements NgxsOnInit{
   @Action(SetEarnedTrophiesAction)
   setEarnedTrophies({ patchState }: StateContext<SharedUserStateModel>, { payload }: SetEarnedTrophiesAction) {
     patchState({ earnedTrophies: payload });
+  }
+
+  @Action(SetReadingTimeForBook)
+  updateReadingTimeForBookId(ctx : StateContext<SharedUserStateModel>, { payload }: SetReadingTimeForBook) {
+    ctx.setState(updateReadingTimeForBook(payload));
   }
 }

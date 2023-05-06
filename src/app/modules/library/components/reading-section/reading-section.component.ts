@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {BookService} from "@app-modules/library/services/book/book.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {Subject, takeUntil} from "rxjs";
+import {TimeTrackerService} from "@app-modules/library/services/time-tracker/time-tracker.service";
 
 @Component({
   selector: 'app-reading-section',
@@ -12,6 +13,7 @@ import {Subject, takeUntil} from "rxjs";
 export class ReadingSectionComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   content: string = '';
+  bookId!: string;
 
   colorModeClass: string = 'color-mode-white';
   fontFamilyClass: string = 'font-family-serif';
@@ -20,17 +22,22 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService
+    private bookService: BookService,
+    private timeTrackerService: TimeTrackerService
   ) {}
 
   ngOnInit() {
     this.route.paramMap.pipe(takeUntil(this.destroy$))
       .subscribe(params => {
-        const id = params.get('id') ?? '';
-        this.bookService.getBookContent(id).subscribe((data: ApiResponseModel) => {
+        this.bookId = params.get('id') ?? '';
+
+        this.bookService.getBookContent(this.bookId)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((data: ApiResponseModel) => {
           this.content = data.result.content;
-        })
-    })
+          this.timeTrackerService.startTimer(this.bookId);
+        });
+    });
   }
 
   changeColorMode(colorMode: string) {
@@ -52,5 +59,6 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+    this.timeTrackerService.stopTimer();
   }
 }

@@ -6,6 +6,7 @@ export interface UserStats {
 }
 
 export interface UserActivity {
+  bookTimeTracker: ReadingTimeTracker;
   currentStreak: number;
   longestStreak: number;
 }
@@ -14,4 +15,11 @@ export interface Trophies {
   [category: string]: {
     trophies: TrophyChallengeModel[];
   };
+}
+
+export interface ReadingTimeTracker {
+  [bookId: string]: {
+    hasFinishedReading: boolean;
+    timeSpentReading: number;
+  }
 }

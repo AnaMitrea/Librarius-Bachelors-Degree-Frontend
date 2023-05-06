@@ -4,3 +4,8 @@ export class SetEarnedTrophiesAction {
   static readonly type = '[Shared] Set Earned Trophies';
   constructor(public payload: Trophies) { }
 }
+
+export class SetReadingTimeForBook {
+  static readonly type = '[Shared] Set Reading Time for Book id';
+  constructor(public payload: any) { }
+}

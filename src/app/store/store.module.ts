@@ -17,7 +17,7 @@ import {LOGGER_CONFIG, STATES_MODULES} from "@app-store/store.config";
     NgxsModule.forRoot(STATES_MODULES),
     NgxsLoggerPluginModule.forRoot(LOGGER_CONFIG),
     NgxsStoragePluginModule.forRoot({
-      key: ['rootState']
+      key: ['sharedUserState']
     }),
     NgxsSelectSnapshotModule.forRoot(),
     NgxsDispatchPluginModule.forRoot(),
