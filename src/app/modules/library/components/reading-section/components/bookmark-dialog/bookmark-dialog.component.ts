@@ -2,8 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  bookmarkName: string
 }
 
 @Component({
@@ -17,7 +16,15 @@ export class BookmarkDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {}
 
-  onNoClick(): void {
+  onCloseClick(): void {
     this.dialogRef.close();
+  }
+
+  onSaveClick(): void {
+    // console.log(this.data.bookmarkName);
+  }
+
+  onInputClick(event: any): void {
+    event.preventDefault();
   }
 }

@@ -39,9 +39,10 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
   selectedElement: HTMLElement | null = null;
   isElementSelected: boolean = false;
 
-  animal!: string;
-  name!: string;
+  isBookmarkPlaced = false;
+  bookmarkName: string = '';
   mouseUpListener;
+  selectionChangeListener;
 
   constructor(
     public dialog: MatDialog,
@@ -58,12 +59,26 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
         if (node && node.nodeType === Node.ELEMENT_NODE) {
           this.selectedElement = node as HTMLElement;
           this.isElementSelected = true;
+
           console.log(this.selectedElement);
         }
 
         this.openDialog();
       } else {
         this.isElementSelected = false;
+      }
+    };
+
+    this.selectionChangeListener = () => {
+      const selection = window.getSelection()!.toString();
+
+      if (selection && selection.trim().length > 0) {
+        this.selectedText = selection;
+        this.isTextSelected = true;
+        document.addEventListener('mouseup', this.mouseUpListener);
+      } else {
+        this.isTextSelected = false;
+        document.removeEventListener('mouseup', this.mouseUpListener);
       }
     };
   }
@@ -100,44 +115,66 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
   }
 
   addBookmarkEventListeners() {
-    document.addEventListener('selectionchange', () => {
-      const selection = window.getSelection()!.toString();
-      if (selection && selection.trim().length > 0) {
-        this.selectedText = selection;
-        this.isTextSelected = true;
-        document.addEventListener('mouseup', this.mouseUpListener);
-      } else {
-        this.isTextSelected = false;
-      }
+    document.addEventListener('selectionchange', this.selectionChangeListener);
+  }
+
+  removeAllEventListeners() {
+    document.removeEventListener('selectionchange', this.selectionChangeListener);
+    document.removeEventListener('mouseup', this.mouseUpListener);
+  }
+
+  openDialog(): void {
+    this.removeAllEventListeners();
+
+    const dialogRef = this.dialog.open(BookmarkDialogComponent, {
+      data: {bookmarkName: this.bookmarkName},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.bookmarkName = result;
+      this.addBookmarkEventListeners();
     });
   }
 
   insertButton() {
+    if (this.isBookmarkPlaced) return;
     const selection = window.getSelection()!;
     const range = selection.getRangeAt(0);
-    const button = document.createElement('button');
-    button.innerText = 'Click me';
+    const button =  this.createBookmarkButton();
 
+    const parent = range.commonAncestorContainer;
+    const startNode = range.startContainer;
+    const startOffset = range.startOffset;
+
+    // create a new range that starts at the beginning of the parent node
+    const newRange = document.createRange();
+    newRange.setStart(parent, 0);
+
+    // create a new range that ends at the start of the selection
+    const beforeRange = document.createRange();
+    beforeRange.setStart(startNode, startOffset);
+    beforeRange.setEnd(startNode, startOffset);
+
+    // insert the button before the selection
+    newRange.setEnd(beforeRange.startContainer, beforeRange.startOffset);
+    newRange.insertNode(button);
+
+    // re-select the original selection
+    selection.removeAllRanges();
+    selection.addRange(range);
+    // this.isBookmarkPlaced = true;
+  }
+
+  createBookmarkButton(): HTMLButtonElement {
+    let button = document.createElement('button');
+    button.innerText = 'Remove Bookmark';
+    button.style.color = 'red';
     button.addEventListener('click', () => {
       console.log('Button clicked');
     });
 
-    range.deleteContents();
-    range.insertNode(button);
-    selection.removeAllRanges();
-  }
-
-  openDialog(): void {
-    document.removeEventListener('mouseup', this.mouseUpListener);
-
-    const dialogRef = this.dialog.open(BookmarkDialogComponent, {
-      data: {name: this.name, animal: this.animal},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
+    return button;
   }
 
   changeColorMode(colorMode: string) {
