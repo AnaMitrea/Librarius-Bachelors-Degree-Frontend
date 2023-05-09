@@ -1,3 +1,10 @@
+<div *ngIf="isTextSelected">
+  Selected text: {{ selectedText }}
+  <button (click)="insertButton()">Insert Button</button>
+</div>
+<div *ngIf="isElementSelected">
+  Selected element: {{ selectedElement?.tagName }}
+</div>
 <div
   class='reading-section'
   fxLayout="row"

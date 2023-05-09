@@ -27,8 +27,8 @@ import { AuthInterceptorProvider, CacheRequestProvider } from "@app-core/interce
     StoreModule
   ],
   providers: [
-    AuthInterceptorProvider,
     { provide: LocationStrategy, useClass: HashLocationStrategy},
+    AuthInterceptorProvider,
     CacheRequestProvider
   ],
   bootstrap: [AppComponent]

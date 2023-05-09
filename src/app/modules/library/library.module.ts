@@ -13,13 +13,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ReadingOptionsTabComponent } from './components/reading-options-tab/reading-options-tab.component';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { BookmarkDialogComponent } from './components/reading-section/components/bookmark-dialog/bookmark-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
     ContainerComponent,
     ReadingSectionComponent,
     BookViewerComponent,
-    ReadingOptionsTabComponent
+    ReadingOptionsTabComponent,
+    BookmarkDialogComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +36,10 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     FormsModule,
     MatMenuModule,
     MatButtonToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class LibraryModule { }

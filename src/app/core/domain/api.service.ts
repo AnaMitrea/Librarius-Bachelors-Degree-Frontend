@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpContext} from "@angular/common/http";
+import {HttpClient, HttpContext, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, throwError} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {CACHE_REQUEST} from "@app-core/interceptor/cache-request-interceptor/tokens";
@@ -16,6 +16,7 @@ import {
   USER_STATISTICS_ROUTE,
   USER_WISHLIST_ROUTE
 } from "@app-utils/constants";
+import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ import {
 export class ApiService extends HttpServiceBaseService {
   readonly API_LIBRARY_BASE_URL = `${API_URL}${LIBRARY_BOOK_ROUTE}`;
   readonly API_TROPHY_BASE_URL = `${API_URL}/trophy`;
+
+  readonly cacheOptions = {
+    context: new HttpContext().set(CACHE_REQUEST, true)
+  };
 
   constructor(
     private http: HttpClient,
@@ -42,7 +47,7 @@ export class ApiService extends HttpServiceBaseService {
   {
     return catchError((httpErr) => {
       const httpError = U.path(['error', 'errors'], httpErr);
-      message = httpError.length ? httpError[0].message : message;
+      message = httpError && httpError.length ? httpError[0].message : message;
 
       this.toasterService.error(message, title, override);
       return of(null);
@@ -53,7 +58,7 @@ export class ApiService extends HttpServiceBaseService {
   getUserLoggedIn(body: any): Observable<any> {
     return this.http.put(`${API_URL}/account/login`, body).pipe(
       this.handleHttpError(),
-       this.handleErrorForToaster('Username or password invalid.')
+      this.handleErrorForToaster(USERNAME_OR_PASSWORD_INVALID)
     );
   }
 
@@ -63,42 +68,46 @@ export class ApiService extends HttpServiceBaseService {
   // http://localhost:5164/api/trophy/challenges?category=...&limit=...
   getTrophiesByCategory(category: string, limit = false): Observable<any> {
     return this.http.get(`${this.API_TROPHY_BASE_URL}/challenges?category=${category}&limit=${limit}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   getUserCompletedTrophies(): Observable<any> {
     return this.http.get(`${this.API_TROPHY_BASE_URL}/user`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   getUserCompletedTrophiesByCategory(category: string): Observable<any> {
     return this.http.get(`${this.API_TROPHY_BASE_URL}/user?category=${category}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // --- LIBRARY ---
   getBookContent(id: string): Observable<any> {
-    return this.http.get(`${this.API_LIBRARY_BASE_URL}/${id}/read`).pipe(
-      this.handleHttpError()
+    // TODO add this.cacheOptions for cached data response
+
+    return this.http.get(`${this.API_LIBRARY_BASE_URL}/read?id=${id}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   getBookData(id: string): Observable<any> {
-    const options = {
-      context: new HttpContext().set(CACHE_REQUEST, true)
-    };
-
-    return this.http.get(`${this.API_LIBRARY_BASE_URL}/${id}`, options).pipe(
-      this.handleHttpError()
+    return this.http.get(`${this.API_LIBRARY_BASE_URL}/${id}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   getTrendingBooksForDuration(duration: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BASE_URL}/trending?duration=${duration}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
@@ -106,70 +115,80 @@ export class ApiService extends HttpServiceBaseService {
   // http://localhost:5164/api/user
   getUserInformation(): Observable<any> {
     return this.http.get(`${API_URL}${USER_ROUTE}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/dashboard/streaks
   getUserStreaks(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/streaks`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/dashboard/activity
   getUserActivity(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/activity`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/dashboard/overview/trophies
   getUserOverviewTrophies(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/overview/trophies`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/dashboard/overview/books
   getUserOverviewBooks(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/overview/books`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/dashboard/trophy-case
   getUserTrophyCase(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_TROPHY_ROUTE}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/dashboard/clubs
   getUserClubs(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_CLUBS_ROUTE}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/wishlist
   getUserWishlist(): Observable<any> {
     return this.http.get(`${API_URL}${USER_WISHLIST_ROUTE}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/authors
   getUserAuthors(): Observable<any> {
     return this.http.get(`${API_URL}${USER_AUTHORS_ROUTE}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 
   // http://localhost:5164/api/user/statistics
   getUserStatistics(): Observable<any> {
     return this.http.get(`${API_URL}${USER_STATISTICS_ROUTE}`).pipe(
-      this.handleHttpError()
+      this.handleHttpError(),
+      this.handleErrorForToaster()
     );
   }
 }

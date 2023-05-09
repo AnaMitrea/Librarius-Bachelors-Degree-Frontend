@@ -13,12 +13,11 @@ export class TimeTrackerService {
   // TODO make api call to save into db the time when component is in ngOnDestroy
 
   startTimer(bookId: string) {
-    // TODO Change 10 seconds to 60 seconds!
     this.setInitialTimeValue(bookId);
     this.timer = setInterval(() => {
       this.totalTime += 1;
       this.updateReadingTimeForBook(bookId);
-    }, 30000);
+    }, 60000);
   }
 
   stopTimer() {

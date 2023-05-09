@@ -17,7 +17,13 @@
          fxLayoutAlign="start none">
       <span class='title'>{{ this.bookData.title }}</span>
       <span class='author'>by {{ this.bookData.author }}</span>
-      <div class='rating'>
+      <div class='rating'
+           fxLayout="row"
+           fxLayoutAlign="start none">
+        <button mat-fab extended (click)='this.onAddToFavorite(this.bookData.id)'>
+          <mat-icon>favorite</mat-icon>
+          Add to favorite
+        </button>
         <app-rating
           color='accent'
           [readonly]=true

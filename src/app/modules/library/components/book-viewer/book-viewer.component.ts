@@ -28,7 +28,7 @@ export class BookViewerComponent implements OnInit {
       this.bookService.getBookData(id).pipe(take(1)).subscribe(data => {
         this.bookData = data.result;
       })
-    })
+    });
   }
 
   getCoverImageUrl() {
@@ -37,5 +37,9 @@ export class BookViewerComponent implements OnInit {
 
   onReadClick(id: string) {
     this.router.navigate([LIBRARY_BOOK_ROUTE, id, READ]);
+  }
+
+  onAddToFavorite(id: string) {
+    console.log(id);
   }
 }

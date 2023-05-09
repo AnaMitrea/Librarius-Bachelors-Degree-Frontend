@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
+  HTTP_INTERCEPTORS,
   HttpEvent,
-  HttpInterceptor, HTTP_INTERCEPTORS
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
 } from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
 import {INTERCEPT_PATHS} from "@app-core/interceptor/cache-request-interceptor/const";
@@ -14,8 +15,6 @@ export class CacheRequestInterceptor implements HttpInterceptor {
   private requestCache: Map<string, Observable<HttpEvent<any>>> = new Map();
   private cache: Map<string, HttpEvent<any>> = new Map();
 
-  constructor() {}
-
   private cacheRequestSubject(req: HttpRequest<any>, next: HttpHandler) {
     const subject = new Subject<HttpEvent<any>>();
     next.handle(req).subscribe((event) => {
@@ -23,6 +22,7 @@ export class CacheRequestInterceptor implements HttpInterceptor {
       this.cache.set(req.url, event);
       subject.complete();
     });
+
     return subject;
   }
 
