@@ -18,6 +18,7 @@
   text-decoration: none;
   color: black;
   border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s ease-in-out;
 
   &:hover {
     font-weight: 500;

@@ -5,7 +5,7 @@
       <ng-template carouselSlide>
         <div class='slider-item'>
           <div class="item-content">
-            <img class='top-position' [src]="slide.position" [alt]="slide.alt">
+            <img class='top-position' *ngIf="showTopNumbers" [src]="slide.position" [alt]="slide.alt">
             <mat-card class="book-card" (click)="redirectToBookUrl(slide.id)">
               <mat-card-content>
                 <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">

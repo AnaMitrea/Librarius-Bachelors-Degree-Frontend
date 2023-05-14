@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Book } from '../../../../shared/models';
 import { Router } from '@angular/router';
+import {Book} from "@app-modules/home/shared/models";
 
 @Component({
   selector: 'app-books-carousel',
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class BooksCarouselComponent {
   @Input() booksSlides: Book[] = [];
   @Input() headerTitle: string = '';
+  @Input() showTopNumbers = true;
 
   customOptions: OwlOptions = {
     loop: false,

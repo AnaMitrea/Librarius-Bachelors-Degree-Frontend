@@ -7,11 +7,22 @@
     <mat-card-subtitle>See what others have read</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <div class="activity-row">
-<!--      <div class="avatar">U</div>-->
-<!--      <div>-->
-<!--        <span>User has read X.</span>-->
-<!--      </div>-->
+    <div class="scrollable-content">
+      <div class="activity-row"
+           *ngFor="let user of users"
+           fxLayout="row"
+           fxLayoutAlign="start center"
+           fxLayoutGap="10px">
+        <div class="avatar-holder">
+          <div [ngClass]="['avatar', getBackgroundColor()]">
+            <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{getFirstLetter(user.username)}}</div>
+          </div>
+        </div>
+        <div class="description" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="3px">
+          <span class="user-text"><b>{{user.username}}</b> has read</span>
+          <span class="book-title" (click)="onBookTitleClick(user.book.url)">{{user.book.title}}</span>
+        </div>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

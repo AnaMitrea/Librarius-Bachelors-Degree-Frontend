@@ -18,6 +18,8 @@ export const HOME_ROUTE = '/home';
 
 // --- EXPLORE ---
 export const EXPLORE_ROUTE = `${HOME_ROUTE}/explore`;
+export const EXPLORE_BOOKSHELVES_ROUTE = `${EXPLORE_ROUTE}/bookshelves`;
+export const EXPLORE_CATEGORIES_ROUTE = `${EXPLORE_ROUTE}/categories`;
 
 // --- CHALLENGES ---
 export const CHALLENGES_ROUTE = `${HOME_ROUTE}/challenges`;

@@ -1,5 +1,14 @@
-<div class='trending' fxLayout="row" fxLayoutAlign="space-around none">
-  <div class='books-carousel' fxLayout="column" fxLayoutAlign="space-between none">
+<div class='trending'
+     fxLayout="row"
+     fxLayoutAlign="start none"
+     fxLayoutGap="20px">
+  <div class='reading-feed'>
+    <app-reading-feed></app-reading-feed>
+  </div>
+
+  <div class='books-carousel'
+       fxLayout="column"
+       fxLayoutAlign="space-between none">
     <!-- Top 10 Trending right now  -->
     <app-books-carousel
       [booksSlides]='trendingNowData'
@@ -11,9 +20,5 @@
       [booksSlides]='trendingWeekData'
       headerTitle='Trending this week'
     ></app-books-carousel>
-  </div>
-
-  <div class='reading-feed'>
-    <app-reading-feed></app-reading-feed>
   </div>
 </div>

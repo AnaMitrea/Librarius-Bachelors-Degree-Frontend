@@ -63,8 +63,24 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // --- HOME ---
-  // -> CHALLENGES
+  // -> EXPLORE
+  // http://localhost:5164/api/library/bookshelf
+  getBookshelves(): Observable<any> {
+    return this.http.get(`${API_URL}/library/bookshelf`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
 
+  // http://localhost:5164/api/library/bookshelf/categories
+  getCategoriesByBookshelf(): Observable<any> {
+    return this.http.get(`${API_URL}/library/categories`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  // -> CHALLENGES
   // http://localhost:5164/api/trophy/challenges?category=...&limit=...
   getTrophiesByCategory(category: string, limit = false): Observable<any> {
     return this.http.get(`${this.API_TROPHY_BASE_URL}/challenges?category=${category}&limit=${limit}`).pipe(

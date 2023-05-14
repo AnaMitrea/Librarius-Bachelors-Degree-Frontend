@@ -1,0 +1,43 @@
+<div class="wrapper"
+     fxLayout="row"
+     fxLayoutAlign="space-between none">
+  <div class="menu">
+    <div class="header-tab"
+         fxLayout="row"
+         fxLayoutAlign="center none">
+      <div class="tab-title active"
+           (click)="onTabRedirect('bookshelves')">
+        <span>Bookshelves</span>
+      </div>
+      <div class="tab-title"
+           (click)="onTabRedirect('categories')">
+        <span>Categories</span>
+      </div>
+    </div>
+
+      <mat-tab-group class="invisible-tabs">
+        <mat-tab>
+          <div class="menu-list">
+            <mat-list>
+              <mat-list-item
+                *ngFor="let bookshelf of bookshelves"
+                [title]="bookshelf.title">
+                <mat-icon matListItemIcon>collections_bookmark</mat-icon>
+                <div matListItemTitle>{{bookshelf.title}}</div>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-tab>
+        </mat-tab-group>
+  </div>
+  <div class="books">
+    <div class="books-container" *ngFor="let bookshelf of bookshelves" >
+      <app-books-carousel
+        [booksSlides]='bookshelf.books'
+        [headerTitle]='bookshelf.title'
+        [showTopNumbers]=false
+      ></app-books-carousel>
+    </div>
+  </div>
+</div>
+
