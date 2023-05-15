@@ -6,6 +6,8 @@ import { ContainerComponent } from './components/container/container.component';
 import { SharedModule } from '@app-shared/shared.module';
 import { ReadingSectionComponent } from './components/reading-section/reading-section.component';
 import { FlexModule } from 'ngx-flexible-layout';
+import {QRCodeModule} from "angularx-qrcode";
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BookViewerComponent } from './components/book-viewer/book-viewer.component';
@@ -17,6 +19,10 @@ import { BookmarkDialogComponent } from './components/reading-section/components
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { ReviewsSectionComponent } from './components/book-viewer/components/reviews-section/reviews-section.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatRadioModule} from "@angular/material/radio";
+
 
 @NgModule({
   declarations: [
@@ -24,9 +30,11 @@ import {MatInputModule} from "@angular/material/input";
     ReadingSectionComponent,
     BookViewerComponent,
     ReadingOptionsTabComponent,
-    BookmarkDialogComponent
+    BookmarkDialogComponent,
+    ReviewsSectionComponent
   ],
   imports: [
+    QRCodeModule,
     CommonModule,
     LibraryRoutingModule,
     SharedModule,
@@ -39,7 +47,9 @@ import {MatInputModule} from "@angular/material/input";
     ReactiveFormsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule,
+    MatRadioModule
   ]
 })
 export class LibraryModule { }

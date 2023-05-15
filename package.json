@@ -25,6 +25,7 @@
     "@ngxs/logger-plugin": "^3.8.0",
     "@ngxs/storage-plugin": "^3.8.0",
     "@ngxs/store": "^3.8.0",
+    "angularx-qrcode": "^15.0.1",
     "jwt-decode": "^3.1.2",
     "ngx-flexible-layout": "^15.0.1",
     "ngx-owl-carousel-o": "^15.0.0",

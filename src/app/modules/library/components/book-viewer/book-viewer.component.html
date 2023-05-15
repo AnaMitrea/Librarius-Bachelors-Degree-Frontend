@@ -1,5 +1,4 @@
-<div
-  class='container'
+<div class='container'
   fxLayout="row"
   fxLayoutAlign="start none">
 
@@ -19,10 +18,12 @@
       <span class='author'>by {{ this.bookData.author }}</span>
       <div class='rating'
            fxLayout="row"
+           fxLayout.sm="column"
+           fxLayout.xs="column"
            fxLayoutAlign="start none">
         <button mat-fab extended (click)='this.onAddToFavorite(this.bookData.id)'>
           <mat-icon>favorite</mat-icon>
-          Add to favorite
+          Wishlist
         </button>
         <app-rating
           color='accent'
@@ -34,10 +35,14 @@
     </div>
 
     <div class='details'
-         fxLayout="column"
-         fxLayoutAlign="start none">
+         fxLayout="row"
+         fxLayout.sm="column"
+         fxLayout.xs="column"
+         fxLayoutAlign="space-between none">
       <div class='description'
            fxLayout="row"
+           fxLayout.sm="column"
+           fxLayout.xs="column"
            fxLayoutAlign="start none"
            fxLayoutGap="3%">
         <div fxLayout="column"
@@ -78,6 +83,13 @@
           </div>
         </div>
       </div>
+      <div class='qr-code-container'
+           title="Scan with your phone"
+           fxLayout="column"
+           fxLayoutAlign="center center">
+        <qrcode [qrdata]="currentPath"></qrcode>
+        <span>Scan to read on your phone</span>
+      </div>
     </div>
   </div>
 
@@ -85,3 +97,5 @@
     <app-reading-options-tab></app-reading-options-tab>
   </div>
 </div>
+
+<app-reviews-section></app-reviews-section>

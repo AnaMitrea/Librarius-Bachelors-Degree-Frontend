@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
 import { BookDto } from '@app-shared/models/transfer/book-dto';
@@ -12,6 +13,7 @@ import {take} from "rxjs";
   styleUrls: ['./book-viewer.component.scss']
 })
 export class BookViewerComponent implements OnInit {
+  currentPath: string;
   bookData!: BookDto;
   ratingValue = 4;
   maxStars = 5;
@@ -19,8 +21,12 @@ export class BookViewerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private bookService: BookService
-  ) {}
+    private bookService: BookService,
+    private location: Location
+  ) {
+    // todo do the correct link
+    this.currentPath = this.location.path();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

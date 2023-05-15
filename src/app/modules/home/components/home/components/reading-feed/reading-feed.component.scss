@@ -1,5 +1,16 @@
 @import "styles";
 
+::ng-deep {
+  .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-title {
+    font-size: 14px !important;
+    font-weight: 500;
+  }
+  .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-title, .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-subtitle {
+    font-size: 12px;
+    color: black;
+  }
+}
+
 .reading-feed-card {
   border-radius: 0 20px 20px 0 !important;
   background-color: #F2EBE3;
@@ -82,49 +93,3 @@
   }
 }
 
-.bg_color_1 {
-  background-color: #72a5da;
-}
-
-.bg_color_2 {
-  background-color: #a7746f;
-}
-
-.bg_color_3 {
-  background-color: #ea8a5f;
-}
-
-.bg_color_4 {
-  background-color: #dfba69;
-}
-
-.bg_color_5 {
-  background-color: #9089a3;
-}
-
-.bg_color_6 {
-  background-color: #608f5c;
-}
-
-.bg_color_7 {
-  background-color: #F1C6B3FF;
-}
-
-.bg_color_8 {
-  background-color: #72a5da;
-}
-
-.bg_color_9 {
-  background-color: #b95454;
-}
-
-::ng-deep {
-  .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-title {
-    font-size: 14px !important;
-    font-weight: 500;
-  }
-  .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-title, .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-subtitle {
-    font-size: 12px;
-    color: black;
-  }
-}

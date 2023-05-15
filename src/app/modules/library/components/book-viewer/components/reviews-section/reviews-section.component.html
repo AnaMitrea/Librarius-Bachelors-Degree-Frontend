@@ -1,0 +1,162 @@
+<div class="review-section"
+     fxLayout="column"
+     fxLayoutAlign="start none"
+>
+  <span class="review-title">REVIEWS</span>
+  <div class="personal-review"
+       fxLayout="row"
+       fxLayoutAlign="start none"
+       fxLayoutGap="20px"
+  >
+    <div class="avatar-holder">
+      <div [ngClass]="['avatar', 'bg_color_1']">
+        <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{getFirstLetter('Ana')}}</div>
+      </div>
+    </div>
+
+    <div class="review-comment-box"
+         fxLayout="column"
+         fxLayoutAlign="center none"
+    >
+      <textarea cdkTextareaAutosize
+                [formControl]="commentControl"
+                (input)="onInputChange()"
+                placeholder="Share your review here"
+      ></textarea>
+
+      <div  fxLayout="row"
+            fxLayoutAlign="space-between center">
+        <div class="character-count" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <span><b>{{ charactersLeft }}</b> characters left</span>
+          <mat-icon matTooltip="Your review must have at least 50 characters" matTooltipPosition="above">info</mat-icon>
+        </div>
+        <button [disabled]="isButtonDisabled" (click)="submitComment()" mat-raised-button>Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="user-reviews"
+       fxLayout="column"
+       fxLayoutAlign="start none"
+       fxLayoutGap="20px"
+  >
+    <div class="order-by-box"
+         fxLayout="row"
+         fxLayoutAlign="start center">
+      <label>Order reviews by:</label>
+      <mat-radio-group
+        [(ngModel)]="orderByRecent">
+        <mat-radio-button class="example-radio-button" value="Most Recent" (change)="radioChange($event)">Most recent</mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="Most Voted" (change)="radioChange($event)">Most voted</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="review-row"
+        fxLayout="row"
+        fxLayoutAlign="start none"
+        fxLayoutGap="20px"
+    >
+      <div class="avatar-holder">
+        <div [ngClass]="['avatar', 'bg_color_2']">
+          <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{getFirstLetter('Ana')}}</div>
+        </div>
+      </div>
+
+      <div class="review-details">
+        <div>
+          <div class="user-information">
+            <span class="username">Username,  </span>
+            <span class="days">x days ago</span>
+          </div>
+          <div class="review-text">
+            Nu recomand cartea. Am citit prima carte a autoarei, Traieste autentic, si este foarte corecta, dar si foarte mecanica. Aici, nimic pozitiv, pare o descatusare de frustrari pe modelul celor care merg pe calea auto-descoperiri. La finalul cartii raman cu sentimentul ca am preluat eu acea energie joasa (transferul psihologic).
+          </div>
+        </div>
+
+        <div class="review-buttons">
+          <div fxLayout="row"
+              fxLayoutAlign="start center"
+          >
+            <button mat-icon-button>
+              <mat-icon [ngClass]="{'is-liked': true, 'is-not-liked' : false, 'has-likes' : false }"
+              >thumb_up_alt</mat-icon>
+            </button>
+            <span [hidden]="false" [ngClass]="{'is-liked': true, 'is-not-liked' : false, 'has-likes' : false }">1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-row"
+         fxLayout="row"
+         fxLayoutAlign="start none"
+         fxLayoutGap="20px"
+    >
+      <div class="avatar-holder">
+        <div [ngClass]="['avatar', 'bg_color_2']">
+          <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{getFirstLetter('Ana')}}</div>
+        </div>
+      </div>
+
+      <div class="review-details">
+        <div>
+          <div class="user-information">
+            <span class="username">Username,  </span>
+            <span class="days">x days ago</span>
+          </div>
+          <div class="review-text">
+            Nu recomand cartea. Am citit prima carte a autoarei, Traieste autentic, si este foarte corecta, dar si foarte mecanica. Aici, nimic pozitiv, pare o descatusare de frustrari pe modelul celor care merg pe calea auto-descoperiri. La finalul cartii raman cu sentimentul ca am preluat eu acea energie joasa (transferul psihologic).
+          </div>
+        </div>
+
+        <div class="review-buttons">
+          <div fxLayout="row"
+               fxLayoutAlign="start center"
+          >
+            <button mat-icon-button>
+              <mat-icon [ngClass]="{'is-liked': true, 'is-not-liked' : false, 'has-likes' : false }"
+              >thumb_up_alt</mat-icon>
+            </button>
+            <span [hidden]="false" [ngClass]="{'is-liked': true, 'is-not-liked' : false, 'has-likes' : false }">1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-row"
+         fxLayout="row"
+         fxLayoutAlign="start none"
+         fxLayoutGap="20px"
+    >
+      <div class="avatar-holder">
+        <div [ngClass]="['avatar', 'bg_color_2']">
+          <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{getFirstLetter('Ana')}}</div>
+        </div>
+      </div>
+
+      <div class="review-details">
+        <div>
+          <div class="user-information">
+            <span class="username">Username,  </span>
+            <span class="days">x days ago</span>
+          </div>
+          <div class="review-text">
+            Nu recomand cartea. Am citit prima carte a autoarei, Traieste autentic, si este foarte corecta, dar si foarte mecanica. Aici, nimic pozitiv, pare o descatusare de frustrari pe modelul celor care merg pe calea auto-descoperiri. La finalul cartii raman cu sentimentul ca am preluat eu acea energie joasa (transferul psihologic).
+          </div>
+        </div>
+
+        <div class="review-buttons">
+          <div fxLayout="row"
+               fxLayoutAlign="start center"
+          >
+            <button mat-icon-button>
+              <mat-icon [ngClass]="{'is-liked': true, 'is-not-liked' : false, 'has-likes' : false }"
+              >thumb_up_alt</mat-icon>
+            </button>
+            <span [hidden]="false" [ngClass]="{'is-liked': true, 'is-not-liked' : false, 'has-likes' : false }">1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
