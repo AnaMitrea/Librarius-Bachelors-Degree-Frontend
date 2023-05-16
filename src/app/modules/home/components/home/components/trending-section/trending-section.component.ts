@@ -17,17 +17,21 @@ export class TrendingSectionComponent implements OnInit, OnDestroy {
   constructor(private trendingService: TrendingService) {}
 
   ngOnInit(): void {
+    this.initSubscription();
+  }
+
+  initSubscription() {
     this.trendingService.getTrendingBooks(NOW)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.trendingNowData = response;
-    });
+      });
 
     this.trendingService.getTrendingBooks(WEEK)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.trendingWeekData = response;
-    });
+      });
   }
 
   ngOnDestroy() {

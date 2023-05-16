@@ -13,6 +13,7 @@ import {take} from "rxjs";
   styleUrls: ['./book-viewer.component.scss']
 })
 export class BookViewerComponent implements OnInit {
+  bookId!: string;
   currentPath: string;
   bookData!: BookDto;
   ratingValue = 4;
@@ -29,9 +30,13 @@ export class BookViewerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initSubscription();
+  }
+
+  initSubscription() {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id') ?? '';
-      this.bookService.getBookData(id).pipe(take(1)).subscribe(data => {
+      this.bookId = params.get('id') ?? '';
+      this.bookService.getBookData(this.bookId).pipe(take(1)).subscribe(data => {
         this.bookData = data.result;
       })
     });

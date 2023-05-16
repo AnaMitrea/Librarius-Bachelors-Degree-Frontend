@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {ApiService} from "@app-core/domain/api.service";
+import {ReviewRequestModel} from "@app-shared/models/transfer/book-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class BookService {
 
   getBookContent(id: string): Observable<any> {
     return this.apiService.getBookContent(id);
+  }
+
+  getBookReviews(body: ReviewRequestModel): Observable<any> {
+    return this.apiService.getBookReviews(body);
   }
 }

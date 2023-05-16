@@ -50,8 +50,6 @@
     }
 
     .review-row {
-      border: 1px solid black;
-
       .review-details {
         padding: 10px 0;
         width: 100%;
@@ -85,7 +83,7 @@
           }
 
           .is-not-liked {
-            color: $light1;
+            color: $light2;
           }
 
           .has-likes {

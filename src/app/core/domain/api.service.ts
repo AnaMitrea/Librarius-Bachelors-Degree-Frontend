@@ -17,6 +17,7 @@ import {
   USER_WISHLIST_ROUTE
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
+import {ReviewRequestModel} from "@app-shared/models/transfer/book-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -115,6 +116,13 @@ export class ApiService extends HttpServiceBaseService {
 
   getBookData(id: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BASE_URL}/${id}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getBookReviews(body: ReviewRequestModel): Observable<any> {
+    return this.http.post(`${this.API_LIBRARY_BASE_URL}/reviews`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

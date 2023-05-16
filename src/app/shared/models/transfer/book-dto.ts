@@ -21,3 +21,25 @@ export interface BookContentDto {
   id: string;
   content: string;
 }
+
+export interface ReviewRequestModel {
+  BookId: string;
+  MaxResults: number;
+  SortBy: string;
+  StartIndex: number;
+}
+
+export interface UserReviewer {
+  id: number;
+  username: string;
+  nameInitial: string;
+}
+
+export interface ReviewResponseModel {
+  id: number;
+  content: string;
+  likes: number;
+  timeValue: string;
+  timeUnit: string;
+  user: UserReviewer;
+}
