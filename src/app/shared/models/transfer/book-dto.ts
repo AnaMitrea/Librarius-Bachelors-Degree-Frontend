@@ -10,10 +10,7 @@ export interface BookDto {
   language: string;
   bookCategories: any;
   coverImageUrl: string;
-  htmlAsSubmittedContentUrl: string;
   htmlContentUrl: string;
-  htmlNoImagesContentUrl: string;
-  plainTextContentUrl: string;
   link: string;
 }
 

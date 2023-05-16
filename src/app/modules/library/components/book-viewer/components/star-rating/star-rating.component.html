@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{data.bookInformation.title}}</h1>
+<div mat-dialog-content>
+  <p>by {{data.bookInformation.author}}</p>
+  <h3>Your review comment:</h3>
+  <p class="review-comment">{{data.reviewContent}}</p>
+
+  <div  fxLayout="column"
+        fxLayoutAlign="center center">
+    <h4>Rate your reading!</h4>
+    <div fxLayout="row"
+         fxLayoutAlign="start center">
+      <app-rating
+        color='accent'
+        [readonly]=false
+        [(ngModel)]='ratingValue'
+        [max]='maxStars'
+      ></app-rating>
+      <span>{{ratingValue}}</span>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCloseClick()">Close</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Submit Review</button>
+</div>

@@ -40,6 +40,8 @@ export class BookViewerComponent implements OnInit {
         this.bookData = data.result;
       })
     });
+
+    // todo get rating value
   }
 
   getCoverImageUrl() {
