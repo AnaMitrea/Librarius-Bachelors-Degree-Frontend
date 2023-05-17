@@ -16,8 +16,8 @@ export class BookViewerComponent implements OnInit {
   bookId!: string;
   currentPath: string;
   bookData!: BookDto;
-  ratingValue = 4;
-  maxStars = 5;
+  ratingValue = 0;
+  maxStars = 10;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +42,11 @@ export class BookViewerComponent implements OnInit {
     });
 
     // todo get rating value
+  }
+
+  receiveOverallRating(data: number) {
+    this.ratingValue = data ? data : 0;
+    console.log(data);
   }
 
   getCoverImageUrl() {

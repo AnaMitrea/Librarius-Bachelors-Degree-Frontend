@@ -20,17 +20,18 @@
            fxLayout="row"
            fxLayout.sm="column"
            fxLayout.xs="column"
-           fxLayoutAlign="start none">
-        <button mat-fab extended (click)='this.onAddToFavorite(this.bookData.id)'>
+           fxLayoutAlign="start center">
+        <button class="wishlist-button" matTooltip="Add to wishlist" mat-fab (click)='this.onAddToFavorite(this.bookData.id)'>
           <mat-icon>favorite</mat-icon>
-          Wishlist
         </button>
-        <app-rating
-          color='accent'
-          [readonly]=true
-          [(ngModel)]='ratingValue'
-          [max]='maxStars'
-        ></app-rating>
+        <div class="rating-stars">
+          <app-rating
+            color='accent'
+            [readonly]=true
+            [(ngModel)]='ratingValue'
+            [max]='maxStars'
+          ></app-rating>
+        </div>
       </div>
     </div>
 
@@ -84,10 +85,9 @@
         </div>
       </div>
       <div class='qr-code-container'
-           title="Scan with your phone"
            fxLayout="column"
            fxLayoutAlign="center center">
-        <qrcode [qrdata]="currentPath"></qrcode>
+        <qrcode [qrdata]="currentPath" matTooltip="Read on your phone"></qrcode>
         <span>Scan to read on your phone</span>
       </div>
     </div>
@@ -99,5 +99,6 @@
 </div>
 
 <app-reviews-section
+  (ratingValueEvent)="receiveOverallRating($event)"
   [bookInformation]="bookData"
 ></app-reviews-section>

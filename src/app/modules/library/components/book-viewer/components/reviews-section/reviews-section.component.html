@@ -79,10 +79,10 @@
               fxLayoutAlign="start center"
           >
             <button mat-icon-button (click)="onReviewLikeClick(review.id)">
-              <mat-icon [ngClass]="{'is-liked': false, 'is-not-liked' : true, 'has-likes' : review.likes > 0 }"
+              <mat-icon [ngClass]="{'is-liked': review.liked, 'is-not-liked' : !review.liked, 'has-likes' : review.likes > 0 }"
               >thumb_up_alt</mat-icon>
             </button>
-            <span [hidden]="!review.likes" [ngClass]="{'is-liked': false, 'is-not-liked' : true, 'has-likes' : review.likes > 0 }">{{review.likes}}</span>
+            <span [hidden]="review.likes === 0" [ngClass]="{'is-liked': review.liked, 'is-not-liked' : !review.liked, 'has-likes' : review.likes > 0 }">{{review.likes}}</span>
           </div>
         </div>
       </div>

@@ -26,6 +26,12 @@ export interface ReviewRequestModel {
   StartIndex: number;
 }
 
+export interface LikeReviewRequestModel {
+  ReviewID: number;
+  isLiked: boolean;
+}
+
+
 export interface UserReviewer {
   id: number;
   username: string;
@@ -36,6 +42,7 @@ export interface ReviewResponseModel {
   id: number;
   content: string;
   likes: number;
+  liked: boolean;
   timeValue: string;
   timeUnit: string;
   rating: number;

@@ -1,9 +1,14 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MatRadioChange} from "@angular/material/radio";
 import {BookService} from "@app-modules/library/services/book/book.service";
 import {Subject, take} from "rxjs";
-import {BookDto, ReviewRequestModel, ReviewResponseModel} from "@app-shared/models/transfer/book-dto";
+import {
+  BookDto,
+  LikeReviewRequestModel,
+  ReviewRequestModel,
+  ReviewResponseModel
+} from "@app-shared/models/transfer/book-dto";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {MatDialog} from "@angular/material/dialog";
 import {Utils as U} from "@app-utils/lodash/utils";
@@ -18,6 +23,7 @@ import {
 })
 export class ReviewsSectionComponent implements OnInit, OnDestroy {
   @Input() bookInformation!: BookDto;
+  @Output() ratingValueEvent = new EventEmitter<number>();
 
   private destroy$ = new Subject<void>();
   charactersLeft: number = 2000;
@@ -51,19 +57,41 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
       .subscribe((data: ApiResponseModel) => {
         this.reviews = U.path(['reviews'], data.result);
         this.overallRating = U.path(['overallRating'], data.result);
+        this.sendDataToParent(this.overallRating);
       });
+  }
+
+  sendDataToParent(data: number) {
+    this.ratingValueEvent.emit(data);
   }
 
   onInputChange() {
     const inputLength = this.commentControl.value.length;
+
     this.isButtonDisabled = inputLength < 50;
     this.charactersLeft = 2000 - inputLength;
   }
 
   onReviewLikeClick(id: number) {
-    // TODO POST reguest with reviewId and isLiked=true/false
+    const likedReviewIdx = this.reviews.findIndex(item => item.id === id);
 
-    console.log(`liked review with id ${id}`);
+    const body: LikeReviewRequestModel = {
+      ReviewID: id,
+      isLiked: this.reviews[likedReviewIdx].liked
+    };
+
+    this.bookService.updateReviewLike(body)
+      .pipe(take(1))
+      .subscribe((data: ApiResponseModel) => {
+        console.log(data);
+        this.setLikedFlag(id, data.result);
+      });
+  }
+
+  setLikedFlag(likedReviewIdx: number, result: boolean) {
+    if (likedReviewIdx !== -1) {
+      this.reviews[likedReviewIdx].liked = result;
+    }
   }
 
   getFirstLetter(text: string): string {
@@ -74,7 +102,8 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(StarRatingComponent, {
       data: {
         reviewContent: this.commentControl.value,
-        bookInformation: this.bookInformation
+        bookInformation: this.bookInformation,
+        overallRating: this.overallRating
       },
     });
 

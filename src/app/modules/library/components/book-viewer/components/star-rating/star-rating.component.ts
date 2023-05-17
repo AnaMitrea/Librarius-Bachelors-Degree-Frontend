@@ -4,7 +4,8 @@ import {BookDto} from "@app-shared/models/transfer/book-dto";
 
 export interface DialogData {
   reviewContent: string;
-  bookInformation: BookDto
+  bookInformation: BookDto;
+  overallRating: number;
 }
 
 @Component({
@@ -13,8 +14,8 @@ export interface DialogData {
   styleUrls: ['./star-rating.component.scss']
 })
 export class StarRatingComponent implements OnInit{
-  ratingValue = 4;
-  maxStars = 5;
+  overallRating = 4;
+  maxStars = 10;
 
   constructor(
     public dialogRef: MatDialogRef<StarRatingComponent>,
@@ -22,6 +23,7 @@ export class StarRatingComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    this.overallRating = this.data.overallRating;
   }
 
   onCloseClick(): void {

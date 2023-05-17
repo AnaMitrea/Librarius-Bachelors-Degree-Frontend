@@ -2,7 +2,9 @@
 <div mat-dialog-content>
   <p>by {{data.bookInformation.author}}</p>
   <h3>Your review comment:</h3>
-  <p class="review-comment">{{data.reviewContent}}</p>
+  <div class="review-comment-container">
+    <p class="review-comment">{{data.reviewContent}}</p>
+  </div>
 
   <div  fxLayout="column"
         fxLayoutAlign="center center">
@@ -12,10 +14,10 @@
       <app-rating
         color='accent'
         [readonly]=false
-        [(ngModel)]='ratingValue'
+        [(ngModel)]='overallRating'
         [max]='maxStars'
       ></app-rating>
-      <span>{{ratingValue}}</span>
+      <span>{{overallRating}}</span>
     </div>
   </div>
 </div>

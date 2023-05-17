@@ -1,9 +1,27 @@
 .dense.mat-icon-button {
-  height: 1.5rem;
-  line-height: 1.5rem;
-  width: 1.5rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  width: 0.8rem;
 }
 
-.readonly.mat-icon-button {
-  cursor: default;
+.readonly {
+  &.mat-mdc-icon-button.mat-mdc-button-base {
+    height: 35px !important;
+    width: 30px !important;
+  }
+
+  &.mat-mdc-icon-button .mat-mdc-button-touch-target {
+    top: 50%;
+    height: 35px !important;
+    left: 40%;
+    width: 30px !important;
+  }
+
+  &.mat-icon-button {
+    font-size: 10px;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    width: 0.5rem;
+    cursor: default;
+  }
 }
