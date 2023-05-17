@@ -38,5 +38,6 @@ export interface ReviewResponseModel {
   likes: number;
   timeValue: string;
   timeUnit: string;
+  rating: number;
   user: UserReviewer;
 }

@@ -82,7 +82,7 @@
               <mat-icon [ngClass]="{'is-liked': false, 'is-not-liked' : true, 'has-likes' : review.likes > 0 }"
               >thumb_up_alt</mat-icon>
             </button>
-            <span [hidden]="false" [ngClass]="{'is-liked': false, 'is-not-liked' : true, 'has-likes' : review.likes > 0 }">{{review.likes}}</span>
+            <span [hidden]="!review.likes" [ngClass]="{'is-liked': false, 'is-not-liked' : true, 'has-likes' : review.likes > 0 }">{{review.likes}}</span>
           </div>
         </div>
       </div>

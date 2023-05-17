@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MatRadioChange} from "@angular/material/radio";
 import {BookService} from "@app-modules/library/services/book/book.service";
@@ -6,6 +6,7 @@ import {Subject, take} from "rxjs";
 import {BookDto, ReviewRequestModel, ReviewResponseModel} from "@app-shared/models/transfer/book-dto";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {MatDialog} from "@angular/material/dialog";
+import {Utils as U} from "@app-utils/lodash/utils";
 import {
   StarRatingComponent
 } from "@app-modules/library/components/book-viewer/components/star-rating/star-rating.component";
@@ -23,7 +24,8 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
   isButtonDisabled: boolean = true;
   commentControl: FormControl = new FormControl('');
 
-  reviews!: ReviewResponseModel[];
+  reviews: ReviewResponseModel[] = [];
+  overallRating: number = 0;
 
   orderByRecent = 'Most Recent';
 
@@ -40,14 +42,15 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     const body: ReviewRequestModel = {
       BookId: this.bookInformation.id,
       MaxResults: 30,
-      SortBy: this.orderByRecent,
+      SortBy: this.orderByRecent.replace(/\s/g, ""),
       StartIndex: 0
     }
 
     this.bookService.getBookReviews(body)
       .pipe(take(1))
       .subscribe((data: ApiResponseModel) => {
-        this.reviews = data.result;
+        this.reviews = U.path(['reviews'], data.result);
+        this.overallRating = U.path(['overallRating'], data.result);
       });
   }
 
@@ -91,7 +94,8 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     this.bookService.getBookReviews(body)
       .pipe(take(1))
       .subscribe((data: ApiResponseModel) => {
-        this.reviews = data.result;
+        this.reviews = U.path(['reviews'], data.result);
+        this.overallRating = U.path(['overallRating'], data.result);
       });
   }
 
