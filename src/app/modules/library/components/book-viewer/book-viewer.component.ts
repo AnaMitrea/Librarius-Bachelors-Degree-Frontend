@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
 import {BookDto, ReadingTimeDto} from '@app-shared/models/transfer/book-dto';
 import {API_GUTENBERG_URL} from "@app-core/constants";
-import { LIBRARY_BOOK_ROUTE, READ } from '@app-utils/constants';
+import {LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE, LIBRARY_ROUTE, READ} from '@app-utils/constants';
 import {Subject, take, takeUntil} from "rxjs";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 
@@ -66,8 +66,8 @@ export class BookViewerComponent implements OnInit, OnDestroy  {
     return `${API_GUTENBERG_URL}${this.bookData.coverImageUrl}`;
   }
 
-  onAuthorClick(author: string) {
-    console.log(author);
+  onAuthorClick(id: number) {
+    this.router.navigate([LIBRARY_AUTHOR_ROUTE, id]);
   }
 
   onReadClick(id: string) {

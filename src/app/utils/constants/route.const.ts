@@ -28,6 +28,8 @@ export const CHALLENGES_ROUTE = `${HOME_ROUTE}/challenges`;
 // --- Library ---
 export const LIBRARY_ROUTE = '/library';
 export const LIBRARY_BOOK_ROUTE = `${LIBRARY_ROUTE}/book`;
+
+export const LIBRARY_AUTHOR_ROUTE = `${LIBRARY_ROUTE}/author`;
 export const READ= 'read';
 
 

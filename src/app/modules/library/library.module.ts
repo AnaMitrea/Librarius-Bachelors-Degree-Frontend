@@ -23,6 +23,7 @@ import { ReviewsSectionComponent } from './components/book-viewer/components/rev
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatRadioModule} from "@angular/material/radio";
 import { StarRatingComponent } from './components/book-viewer/components/star-rating/star-rating.component';
+import { AuthorComponent } from './components/author/author.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { StarRatingComponent } from './components/book-viewer/components/star-ra
     ReadingOptionsTabComponent,
     BookmarkDialogComponent,
     ReviewsSectionComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    AuthorComponent
   ],
   imports: [
     QRCodeModule,
