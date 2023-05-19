@@ -4,7 +4,7 @@ type Nullable<T> = {
 
 export interface BookDto {
   id: string;
-  author: string;
+  author: AuthorDto;
   title: string;
   releaseDate: string;
   language: string;
@@ -14,31 +14,42 @@ export interface BookDto {
   link: string;
 }
 
+export interface AuthorDto {
+  id: number;
+  name: string;
+}
+
 export interface BookContentDto {
   id: string;
   content: string;
 }
 
-export interface ReviewRequestModel {
+export interface ReadingTimeDto {
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+export interface ReviewRequestDto {
   BookId: string;
   MaxResults: number;
   SortBy: string;
   StartIndex: number;
 }
 
-export interface LikeReviewRequestModel {
+export interface LikeReviewRequestDto {
   ReviewID: number;
   isLiked: boolean;
 }
 
 
-export interface UserReviewer {
+export interface UserReviewerDto {
   id: number;
   username: string;
   nameInitial: string;
 }
 
-export interface ReviewResponseModel {
+export interface ReviewResponseDto {
   id: number;
   content: string;
   likes: number;
@@ -46,5 +57,5 @@ export interface ReviewResponseModel {
   timeValue: string;
   timeUnit: string;
   rating: number;
-  user: UserReviewer;
+  user: UserReviewerDto;
 }

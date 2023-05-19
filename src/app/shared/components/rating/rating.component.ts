@@ -135,7 +135,6 @@ export class RatingComponent implements ControlValueAccessor {
     const newValue = index + 1;
     this.value = this.value === newValue ? index : newValue;
     this._emitChangeEvent();
-    console.log("clicked on star - rated: ", this.value)
   }
 
   getStar(index: number): Stars {

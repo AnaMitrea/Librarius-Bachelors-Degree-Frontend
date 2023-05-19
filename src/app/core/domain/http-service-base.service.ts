@@ -9,7 +9,7 @@ export class HttpServiceBaseService {
 
   constructor() { }
 
-  protected handleError(error: HttpErrorResponse): HttpErrorResponse {
+  protected handleCodesError(error: HttpErrorResponse): HttpErrorResponse {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {

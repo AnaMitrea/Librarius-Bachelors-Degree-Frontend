@@ -38,12 +38,20 @@
         padding: 5px 0 0 0;
         font-weight: 400;
         font-size: 0.9em;
+
+        &.author-name {
+          padding: 5px 0 0 0;
+          font-weight: 400;
+          font-size: 0.9em;
+        }
       }
 
       .rating {
+        margin-top: 10px;
         padding-top: 10px;
 
         .wishlist-button {
+          background-color: $light-orange;
           height: 40px;
           line-height: 40px;
           width: 40px;
@@ -59,6 +67,11 @@
       margin-top: 2%;
 
       .description {
+        .book-cover {
+          border: 1px solid darkgrey;
+          box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
+        }
+
         .description-item {
           .description-title {
             font-weight: 500;

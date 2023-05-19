@@ -1,13 +1,8 @@
 import {
-  AfterViewChecked,
-  AfterViewInit,
   Component,
-  ElementRef,
   HostListener,
   OnDestroy,
   OnInit,
-  Renderer2,
-  ViewChild
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {BookService} from "@app-modules/library/services/book/book.service";
@@ -85,12 +80,17 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
 
   @HostListener('window:popstate')
   onWindowPopState() {
+    this.removeAllEventListeners();
     // alert("on back button");
+
+    // TODO send to backend timespent on reading book with id
     return false;
   }
 
   @HostListener('document:visibilitychange', ['$event'])
   onVisibilityChange(event: Event) {
+    // TODO send to backend timespent on reading book with id
+
     if (document.hidden) {
       // alert("on tab change");
       return false;
@@ -194,10 +194,10 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    document.removeEventListener('mouseup', this.mouseUpListener);
     this.destroy$.next();
     this.destroy$.complete();
     this.timeTrackerService.stopTimer();
+    this.removeAllEventListeners();
 
     // TODO make call to save time spent on reading book
   }

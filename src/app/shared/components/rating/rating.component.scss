@@ -1,3 +1,5 @@
+@import "styles";
+
 .dense.mat-icon-button {
   height: 0.8rem;
   line-height: 0.8rem;
@@ -24,4 +26,8 @@
     width: 0.5rem;
     cursor: default;
   }
+}
+
+.rating-star {
+  color: $light-orange;
 }

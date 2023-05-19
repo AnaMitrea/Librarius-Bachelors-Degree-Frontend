@@ -1,21 +1,24 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
-import { BookDto } from '@app-shared/models/transfer/book-dto';
+import {BookDto, ReadingTimeDto} from '@app-shared/models/transfer/book-dto';
 import {API_GUTENBERG_URL} from "@app-core/constants";
 import { LIBRARY_BOOK_ROUTE, READ } from '@app-utils/constants';
-import {take} from "rxjs";
+import {Subject, take, takeUntil} from "rxjs";
+import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 
 @Component({
   selector: 'app-book-viewer',
   templateUrl: './book-viewer.component.html',
   styleUrls: ['./book-viewer.component.scss']
 })
-export class BookViewerComponent implements OnInit {
+export class BookViewerComponent implements OnInit, OnDestroy  {
+  private destroy$ = new Subject<void>();
   bookId!: string;
   currentPath: string;
   bookData!: BookDto;
+  avgReadingTime!: ReadingTimeDto;
   ratingValue = 0;
   maxStars = 10;
 
@@ -36,21 +39,35 @@ export class BookViewerComponent implements OnInit {
   initSubscription() {
     this.route.paramMap.subscribe(params => {
       this.bookId = params.get('id') ?? '';
-      this.bookService.getBookData(this.bookId).pipe(take(1)).subscribe(data => {
-        this.bookData = data.result;
-      })
-    });
 
-    // todo get rating value
+      this.bookService.getBookData(this.bookId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((data: ApiResponseModel) => {
+          this.bookData = data.result;
+      });
+
+      this.bookService.getBookAverageReadingTime(this.bookId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((data: ApiResponseModel) => {
+          this.avgReadingTime = data.result;
+      });
+    });
+  }
+
+  processAuthorName(author: string): string {
+    return author.replace(/,/, '');
   }
 
   receiveOverallRating(data: number) {
     this.ratingValue = data ? data : 0;
-    console.log(data);
   }
 
   getCoverImageUrl() {
     return `${API_GUTENBERG_URL}${this.bookData.coverImageUrl}`;
+  }
+
+  onAuthorClick(author: string) {
+    console.log(author);
   }
 
   onReadClick(id: string) {
@@ -59,5 +76,10 @@ export class BookViewerComponent implements OnInit {
 
   onAddToFavorite(id: string) {
     console.log(id);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

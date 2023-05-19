@@ -15,7 +15,11 @@
          fxLayout="column"
          fxLayoutAlign="start none">
       <span class='title'>{{ this.bookData.title }}</span>
-      <span class='author'>by {{ this.bookData.author }}</span>
+      <span>
+        <span class='author'>by </span>
+        <span class='author author-name' (click)='this.onAuthorClick(this.bookData.author.name)'>{{ processAuthorName(this.bookData.author.name) }}</span>
+      </span>
+<!--      <span class='author' (click)='this.onAuthorClick(this.bookData.author)'>by {{ processAuthorName(this.bookData.author) }}</span>-->
       <div class='rating'
            fxLayout="row"
            fxLayout.sm="column"
@@ -49,7 +53,7 @@
         <div fxLayout="column"
              fxLayoutAlign="start none"
              fxLayoutGap="30px">
-          <img [src]="getCoverImageUrl()" alt="book cover">
+          <img class="book-cover" [src]="getCoverImageUrl()" alt="book cover">
           <button mat-raised-button (click)='this.onReadClick(this.bookData.id)'>Read me</button>
         </div>
 
@@ -60,8 +64,10 @@
             <div class='description-title'>
               <span>Time to complete:</span>
             </div>
-            <div class='description-text'>
-              <span>0h 0m</span>
+            <div class='description-text'
+                 *ngIf="avgReadingTime"
+            >
+              <span>{{this.avgReadingTime.hours}}h {{this.avgReadingTime.minutes}}m</span>
             </div>
           </div>
 

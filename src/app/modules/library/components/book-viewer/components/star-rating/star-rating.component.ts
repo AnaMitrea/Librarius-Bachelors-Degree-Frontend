@@ -14,19 +14,24 @@ export interface DialogData {
   styleUrls: ['./star-rating.component.scss']
 })
 export class StarRatingComponent implements OnInit{
-  overallRating = 4;
+  successfulSubmit = false;
+  chosenUserRating: number = 0;
   maxStars = 10;
 
   constructor(
     public dialogRef: MatDialogRef<StarRatingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.overallRating = this.data.overallRating;
   }
 
   onCloseClick(): void {
     this.dialogRef.close();
+  }
+
+  onSubmitClick(): void {
+    // TODO api call
   }
 }

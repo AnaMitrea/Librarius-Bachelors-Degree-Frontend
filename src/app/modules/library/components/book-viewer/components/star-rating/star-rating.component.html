@@ -1,27 +1,32 @@
-<h1 mat-dialog-title>{{data.bookInformation.title}}</h1>
-<div mat-dialog-content>
-  <p>by {{data.bookInformation.author}}</p>
-  <h3>Your review comment:</h3>
-  <div class="review-comment-container">
-    <p class="review-comment">{{data.reviewContent}}</p>
-  </div>
+<div class="wrapper">
+  <h1 mat-dialog-title>{{data.bookInformation.title}}</h1>
+  <div mat-dialog-content>
+    <p>by {{data.bookInformation.author.name}}</p>
+    <h3>Your review comment:</h3>
+    <div class="review-comment-container">
+      <p class="review-comment">{{data.reviewContent}}</p>
+    </div>
 
-  <div  fxLayout="column"
-        fxLayoutAlign="center center">
-    <h4>Rate your reading!</h4>
-    <div fxLayout="row"
-         fxLayoutAlign="start center">
-      <app-rating
-        color='accent'
-        [readonly]=false
-        [(ngModel)]='overallRating'
-        [max]='maxStars'
-      ></app-rating>
-      <span>{{overallRating}}</span>
+    <div  fxLayout="column"
+          fxLayoutAlign="center center">
+      <h4>Rate your reading!</h4>
+      <div fxLayout="row"
+           fxLayout.sm="column"
+           fxLayout.xs="column"
+           fxLayoutAlign="start center">
+        <app-rating
+          color='accent'
+          [readonly]=false
+          [(ngModel)]='chosenUserRating'
+          [max]='maxStars'
+        ></app-rating>
+        <span>{{chosenUserRating}}</span>
+      </div>
     </div>
   </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCloseClick()">Close</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Submit Review</button>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCloseClick()">Close</button>
+    <button mat-button [mat-dialog-close]="successfulSubmit" cdkFocusInitial (click)="onSubmitClick()">Submit Review</button>
+  </div>
 </div>

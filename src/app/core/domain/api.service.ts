@@ -17,7 +17,7 @@ import {
   USER_WISHLIST_ROUTE
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
-import {LikeReviewRequestModel, ReviewRequestModel} from "@app-shared/models/transfer/book-dto";
+import {LikeReviewRequestDto, ReviewRequestDto} from "@app-shared/models/transfer/book-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   private handleHttpError() {
-    return catchError((error) => throwError(() => this.handleError(error)));
+    return catchError((error) => throwError(() => this.handleCodesError(error)));
   }
 
   private handleErrorForToaster(
@@ -114,6 +114,28 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  getBookWordCount(id: string): Observable<any> {
+    const body = {
+      bookId: id
+    };
+
+    return this.http.post(`${this.API_LIBRARY_BASE_URL}/word-count`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getBookAverageReadingTime(id: string): Observable<any> {
+    const body = {
+      bookId: id
+    };
+
+    return this.http.post(`${this.API_LIBRARY_BASE_URL}/reading-time`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   getBookData(id: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BASE_URL}/${id}`).pipe(
       this.handleHttpError(),
@@ -121,14 +143,14 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  getBookReviews(body: ReviewRequestModel): Observable<any> {
+  getBookReviews(body: ReviewRequestDto): Observable<any> {
     return this.http.post(`${this.API_LIBRARY_BASE_URL}/reviews`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
-  updateReviewLike(body: LikeReviewRequestModel): Observable<any> {
+  updateReviewLike(body: LikeReviewRequestDto): Observable<any> {
     return this.http.put(`${this.API_LIBRARY_BASE_URL}/reviews/like`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
