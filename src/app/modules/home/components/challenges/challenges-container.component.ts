@@ -27,7 +27,7 @@ export class ChallengesContainerComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.trophyService.getUserCompletedTrophies()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data: ApiResponseModel)=> {
+      .subscribe((data: ApiResponseModel<any>)=> {
         const earnedTrophies = data.result ?? [];
         const transformedEarnedTrophies = transformEarnedTrophiesData(earnedTrophies);
         this.sharedUserStoreService.setEarnedTrophies(transformedEarnedTrophies);

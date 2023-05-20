@@ -9,3 +9,8 @@ export const transformEarnedTrophiesData = (data: any): Trophies => {
     return acc;
   }, []);
 }
+
+
+export const processAuthorName = (author: string): string => {
+  return author.replace(/,/, '');
+}

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
@@ -7,6 +7,7 @@ import {API_GUTENBERG_URL} from "@app-core/constants";
 import {LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE, LIBRARY_ROUTE, READ} from '@app-utils/constants';
 import {Subject, take, takeUntil} from "rxjs";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
+import {processAuthorName} from "@app-utils/data-transformers";
 
 @Component({
   selector: 'app-book-viewer',
@@ -42,20 +43,20 @@ export class BookViewerComponent implements OnInit, OnDestroy  {
 
       this.bookService.getBookData(this.bookId)
         .pipe(takeUntil(this.destroy$))
-        .subscribe((data: ApiResponseModel) => {
+        .subscribe((data: ApiResponseModel<BookDto>) => {
           this.bookData = data.result;
       });
 
       this.bookService.getBookAverageReadingTime(this.bookId)
         .pipe(takeUntil(this.destroy$))
-        .subscribe((data: ApiResponseModel) => {
+        .subscribe((data: ApiResponseModel<ReadingTimeDto>) => {
           this.avgReadingTime = data.result;
       });
     });
   }
 
-  processAuthorName(author: string): string {
-    return author.replace(/,/, '');
+  processName(author: string): string {
+    return processAuthorName(author);
   }
 
   receiveOverallRating(data: number) {

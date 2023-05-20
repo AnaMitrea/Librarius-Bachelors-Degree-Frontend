@@ -7,7 +7,7 @@ import {HttpServiceBaseService} from "@app-core/domain/http-service-base.service
 import {Utils as U} from "@app-utils/lodash/utils";
 import {API_URL} from "@app-core/constants";
 import {
-  LIBRARY_BOOK_ROUTE,
+  LIBRARY_BOOK_ROUTE, LIBRARY_ROUTE,
   USER_AUTHORS_ROUTE,
   USER_DASHBOARD_CLUBS_ROUTE,
   USER_DASHBOARD_ROUTE,
@@ -23,7 +23,8 @@ import {LikeReviewRequestDto, ReviewRequestDto} from "@app-shared/models/transfe
   providedIn: 'root'
 })
 export class ApiService extends HttpServiceBaseService {
-  readonly API_LIBRARY_BASE_URL = `${API_URL}${LIBRARY_BOOK_ROUTE}`;
+  readonly API_LIBRARY_BASE_URL = `${API_URL}${LIBRARY_ROUTE}`;
+  readonly API_LIBRARY_BOOK_BASE_URL = `${API_URL}${LIBRARY_BOOK_ROUTE}`;
   readonly API_TROPHY_BASE_URL = `${API_URL}/trophy`;
 
   readonly cacheOptions = {
@@ -128,7 +129,7 @@ export class ApiService extends HttpServiceBaseService {
   getBookContent(id: string): Observable<any> {
     // TODO add this.cacheOptions for cached data response
 
-    return this.http.get(`${this.API_LIBRARY_BASE_URL}/read?id=${id}`).pipe(
+    return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/read?id=${id}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
@@ -139,7 +140,7 @@ export class ApiService extends HttpServiceBaseService {
       bookId: id
     };
 
-    return this.http.post(`${this.API_LIBRARY_BASE_URL}/word-count`, body).pipe(
+    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/word-count`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
@@ -150,35 +151,35 @@ export class ApiService extends HttpServiceBaseService {
       bookId: id
     };
 
-    return this.http.post(`${this.API_LIBRARY_BASE_URL}/reading-time`, body).pipe(
+    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/reading-time`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
   getBookData(id: string): Observable<any> {
-    return this.http.get(`${this.API_LIBRARY_BASE_URL}/${id}`).pipe(
+    return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/${id}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
   getBookReviews(body: ReviewRequestDto): Observable<any> {
-    return this.http.post(`${this.API_LIBRARY_BASE_URL}/reviews`, body).pipe(
+    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/reviews`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
   updateReviewLike(body: LikeReviewRequestDto): Observable<any> {
-    return this.http.put(`${this.API_LIBRARY_BASE_URL}/reviews/like`, body).pipe(
+    return this.http.put(`${this.API_LIBRARY_BOOK_BASE_URL}/reviews/like`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
   getTrendingBooksForDuration(duration: string): Observable<any> {
-    return this.http.get(`${this.API_LIBRARY_BASE_URL}/trending?duration=${duration}`).pipe(
+    return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/trending?duration=${duration}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

@@ -1,5 +1,5 @@
-export interface ApiResponseModel {
+export interface ApiResponseModel<T> {
   succeeded: boolean;
-  result: any;
+  result: T;
   errors: any[]
 }

@@ -26,7 +26,7 @@ export class BookshelvesExploreComponent implements OnInit, OnDestroy {
 
   initSubscription() {
     this.exploreService.getBookshelves().pipe(takeUntil(this.destroy$))
-      .subscribe((data: ApiResponseModel) => {
+      .subscribe((data: ApiResponseModel<any>) => {
         console.log(data);
         this.bookshelves = data.result;
         console.log(this.bookshelves)

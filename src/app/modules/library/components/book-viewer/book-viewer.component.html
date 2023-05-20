@@ -17,7 +17,7 @@
       <span class='title'>{{ this.bookData.title }}</span>
       <span>
         <span class='author'>by </span>
-        <span class='author author-name' (click)='this.onAuthorClick(this.bookData.author.id)'>{{ processAuthorName(this.bookData.author.name) }}</span>
+        <span class='author author-name' (click)='this.onAuthorClick(this.bookData.author.id)'>{{ processName(this.bookData.author.name) }}</span>
       </span>
       <div class='rating'
            fxLayout="row"

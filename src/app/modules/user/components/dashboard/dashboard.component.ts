@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.dashboardService.getUserInformation()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data: ApiResponseModel) => {
+      .subscribe((data: ApiResponseModel<any>) => {
       this.userInformation = (U.path(['result'], data)) as DashboardUserInformationDto;
     })
 

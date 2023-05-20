@@ -31,7 +31,7 @@ export class TrophiesComponent implements OnInit{
   ngOnInit(): void {
     this.trophyService.getTrophiesByCategory(this.categoryTitle, false).pipe(
       take(1)
-    ).subscribe((data: ApiResponseModel)=> {
+    ).subscribe((data: ApiResponseModel<any>)=> {
       this.trophies = data.result ?? [];
     });
   }

@@ -24,7 +24,11 @@ export interface AuthorDto {
   name: string;
 }
 
-
+export interface Material {
+  title: string;
+  books: BookDto[],
+  count: number
+}
 
 export interface ReadingTimeDto {
   hours: number;

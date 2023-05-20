@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.authService.login(username!, password!)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data: ApiResponseModel) => {
+      .subscribe((data: ApiResponseModel<any>) => {
         if(!!data && !!U.path(['result', 'jwtToken'], data))
           this.router.navigateByUrl(`${HOME_ROUTE}`);
     });

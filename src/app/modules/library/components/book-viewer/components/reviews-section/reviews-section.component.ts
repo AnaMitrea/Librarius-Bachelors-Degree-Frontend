@@ -54,7 +54,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
 
     this.bookService.getBookReviews(body)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data: ApiResponseModel) => {
+      .subscribe((data: ApiResponseModel<any>) => {
         this.reviews = U.path(['reviews'], data.result);
         this.overallRating = U.path(['overallRating'], data.result);
         this.sendDataToParent(this.overallRating);
@@ -82,7 +82,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
 
     this.bookService.updateReviewLike(body)
       .pipe(take(1))
-      .subscribe((data: ApiResponseModel) => {
+      .subscribe((data: ApiResponseModel<any>) => {
         this.setLikedFlag(id, data.result);
       });
   }
@@ -122,7 +122,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
 
     this.bookService.getBookReviews(body)
       .pipe(take(1))
-      .subscribe((data: ApiResponseModel) => {
+      .subscribe((data: ApiResponseModel<any>) => {
         this.reviews = U.path(['reviews'], data.result);
         this.overallRating = U.path(['overallRating'], data.result);
       });

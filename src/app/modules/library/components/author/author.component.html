@@ -6,7 +6,7 @@
     <img class="bordered-image" src="assets/author/author-profile.svg" alt="profile picture">
   </div>
   <div class="author-description">
-    <span>Ana banana</span>
+    <span *ngIf="authorData">{{authorData.name}}</span>
   </div>
   <div class="author-subscription">
     <button mat-stroked-button><mat-icon>notifications_none</mat-icon>Subscribe</button>
@@ -19,27 +19,11 @@
          fxLayoutGap="20px">
       <div class="category-chip"
            fxLayout="row"
-           fxLayoutAlign="start center">
-        <img class="chip-image" matChipAvatar src="assets/author/pink-background-pen.gif" alt="book category"/>
-        <span>Category 1</span>
-      </div>
-      <div class="category-chip"
-           fxLayout="row"
-           fxLayoutAlign="start center">
-        <img class="chip-image" matChipAvatar src="assets/author/green-background-pen.gif" alt="book category"/>
-        <span>Category 2</span>
-      </div>
-      <div class="category-chip"
-           fxLayout="row"
-           fxLayoutAlign="start center">
-        <img class="chip-image" matChipAvatar src="assets/author/yellow-background-pen.gif" alt="book category"/>
-        <span>Category 2</span>
-      </div>
-      <div class="category-chip"
-           fxLayout="row"
-           fxLayoutAlign="start center">
-        <img class="chip-image" matChipAvatar src="assets/author/orange-background-pen.gif" alt="book category"/>
-        <span>Category 2</span>
+           fxLayoutAlign="start center"
+           *ngFor="let category of this.categories; let categoryIdx=index;"
+      >
+        <img class="chip-image" matChipAvatar [src]="getPenGifSrc(categoryIdx)" alt="book category"/>
+        <span>{{category}}</span>
       </div>
     </div>
   </div>
@@ -58,16 +42,16 @@
   </div>
 
   <div class="books-list"
-       *ngFor="let _ of [1,2,3]"
+       *ngFor="let material of this.materials"
   >
     <div class="category">
-      <span>Category Title <span class="book-counter">(0 books)</span></span>
+      <span>{{material.title}} <span class="book-counter">({{material.count}} books)</span></span>
     </div>
 
     <div class="books"
          fxLayout="row wrap"
          fxLayout.lt-md="column"
-         fxLayoutAlign="start center">
+         fxLayoutAlign="start none">
 
       <!--  *ngFor    -->
       <div class='book-item'
@@ -75,25 +59,18 @@
            fxFlex.lt-md="100%"
            fxLayout="column"
            fxLayoutAlign="center center"
-           *ngFor="let _ of [1,2,3,4,5]"
+           *ngFor="let book of material.books"
       >
         <div class="item-content">
-          <mat-card class="book-card">
+          <mat-card class="book-card" (click)="redirectToBookUrl(book.id)">
             <mat-card-content>
-              <img src="https://www.gutenberg.org//cache/epub/5001/pg5001.cover.medium.jpg"
-                   matTooltip="title"
-                   alt="">
+              <img [src]=getCoverImageUrl(book.coverImageUrl) [matTooltip]=book.title alt="cover image">
             </mat-card-content>
           </mat-card>
         </div>
         <mat-card-footer>
           <div class='description' fxLayout="column" fxLayoutAlign="center center">
-            <div class='description-title'>
-              <span>title</span>
-            </div>
-            <div class='description-author'>
-              <span>author</span>
-            </div>
+            <span class='description-title'>{{book.title}}</span>
           </div>
         </mat-card-footer>
       </div>

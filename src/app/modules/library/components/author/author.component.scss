@@ -3,10 +3,8 @@
 .header {
   padding-top: 40px;
   width: 100%;
-  //border: 1px solid black;
 
   .profile-picture {
-    //border: 1px solid red;
     height: 100%;
 
     img {
@@ -18,7 +16,6 @@
   }
 
   .author-description {
-    //border: 1px solid blue;
     margin-top: 15px;
     font-size: 2em;
     font-weight: 500;
@@ -76,9 +73,9 @@
 
     .books {
       .book-item {
-        padding: 20px 0;
+        height: 100%;
+        //padding: 20px 0;
         .item-content {
-
 
           .book-card {
             cursor: pointer;
@@ -106,14 +103,11 @@
         }
 
         .description {
-          padding-top: 5px;
+          padding: 5px 0 3px 3px;
 
           .description-title {
-            font-size: 0.9em;
-          }
-
-          .description-author {
-            font-size: 0.75em;
+            text-align: center;
+            font-size: 14px;
           }
         }
       }
@@ -130,6 +124,10 @@
 
 
 @media screen and (max-width: 959px) {
+  .books {
+    gap: 50px !important;
+  }
+
   .item-content {
     .book-card {
       width: 188px !important;

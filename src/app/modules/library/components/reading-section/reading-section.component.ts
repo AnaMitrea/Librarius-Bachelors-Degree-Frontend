@@ -13,6 +13,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   BookmarkDialogComponent
 } from "@app-modules/library/components/reading-section/components/bookmark-dialog/bookmark-dialog.component";
+import {BookContentDto} from "@app-shared/models/transfer/book-dto";
 
 @Component({
   selector: 'app-reading-section',
@@ -105,7 +106,7 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
 
         this.bookService.getBookContent(this.bookId)
           .pipe(takeUntil(this.destroy$))
-          .subscribe((data: ApiResponseModel) => {
+          .subscribe((data: ApiResponseModel<BookContentDto>) => {
             this.content = data.result.content;
             this.timeTrackerService.startTimer(this.bookId);
           });

@@ -42,7 +42,7 @@ export class ChallengesComponent implements OnInit {
     Object.keys(this.challenges).forEach((category: string) => {
       this.trophyService.getTrophiesByCategory(category, true).pipe(
         take(1)
-      ).subscribe((data: ApiResponseModel)=> {
+      ).subscribe((data: ApiResponseModel<any>)=> {
         this.challenges[category].trophies = data.result ?? [];
       });
     });
