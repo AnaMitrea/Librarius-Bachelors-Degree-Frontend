@@ -18,7 +18,7 @@
                 <span>{{slide.title}}</span>
               </div>
               <div class='description-author'>
-                <span>{{slide.author.name}}</span>
+                <span (click)='this.onAuthorClick(slide.author.id)'>{{processName(slide.author.name)}}</span>
               </div>
             </div>
           </mat-card-footer>
