@@ -14,15 +14,17 @@ export interface BookDto {
   link: string;
 }
 
+export interface BookContentDto {
+  id: string;
+  content: string;
+}
+
 export interface AuthorDto {
   id: number;
   name: string;
 }
 
-export interface BookContentDto {
-  id: string;
-  content: string;
-}
+
 
 export interface ReadingTimeDto {
   hours: number;
@@ -37,18 +39,6 @@ export interface ReviewRequestDto {
   StartIndex: number;
 }
 
-export interface LikeReviewRequestDto {
-  ReviewID: number;
-  isLiked: boolean;
-}
-
-
-export interface UserReviewerDto {
-  id: number;
-  username: string;
-  nameInitial: string;
-}
-
 export interface ReviewResponseDto {
   id: number;
   content: string;
@@ -58,4 +48,15 @@ export interface ReviewResponseDto {
   timeUnit: string;
   rating: number;
   user: UserReviewerDto;
+}
+
+export interface LikeReviewRequestDto {
+  ReviewID: number;
+  isLiked: boolean;
+}
+
+export interface UserReviewerDto {
+  id: number;
+  username: string;
+  nameInitial: string;
 }

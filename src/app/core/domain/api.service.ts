@@ -105,6 +105,26 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // --- LIBRARY ---
+  // Author
+  getAuthorInformation(authorId: number): Observable<any> {
+    return this.http.get(`${this.API_LIBRARY_BASE_URL}/author/${authorId}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+  getAuthorBooks(authorId: number, sortingOption: number): Observable<any> {
+    const body = {
+      authorId,
+      sortingOption
+    };
+
+    return this.http.post(`${this.API_LIBRARY_BASE_URL}/author/materials`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+
   getBookContent(id: string): Observable<any> {
     // TODO add this.cacheOptions for cached data response
 

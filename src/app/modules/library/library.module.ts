@@ -24,6 +24,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatRadioModule} from "@angular/material/radio";
 import { StarRatingComponent } from './components/book-viewer/components/star-rating/star-rating.component';
 import { AuthorComponent } from './components/author/author.component';
+import {MatChipsModule} from "@angular/material/chips";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { AuthorComponent } from './components/author/author.component';
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
-    MatRadioModule
+    MatRadioModule,
+    MatChipsModule,
+    MatCardModule
   ]
 })
 export class LibraryModule { }
