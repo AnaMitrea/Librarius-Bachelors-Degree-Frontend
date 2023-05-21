@@ -26,6 +26,7 @@ import { StarRatingComponent } from './components/book-viewer/components/star-ra
 import { AuthorComponent } from './components/author/author.component';
 import {MatChipsModule} from "@angular/material/chips";
 import {MatCardModule} from "@angular/material/card";
+import { ReadingProgressComponent } from './components/reading-section/components/reading-progress/reading-progress.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatCardModule} from "@angular/material/card";
     BookmarkDialogComponent,
     ReviewsSectionComponent,
     StarRatingComponent,
-    AuthorComponent
+    AuthorComponent,
+    ReadingProgressComponent
   ],
   imports: [
     QRCodeModule,

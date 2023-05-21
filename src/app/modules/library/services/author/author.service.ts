@@ -12,7 +12,15 @@ export class AuthorService {
     return this.apiService.getAuthorInformation(id);
   }
 
-  getAuthorBooks(id: number, sortingOptions: number) {
-    return this.apiService.getAuthorBooks(id, sortingOptions);
+  getAuthorBooks(authorId: number, sortingOptions: number) {
+    return this.apiService.getAuthorBooks(authorId, sortingOptions);
+  }
+
+  setUserSubscribedToAuthor(authorId: number) {
+    return this.apiService.setAuthorSubscription(authorId);
+  }
+
+  getUserSubscriptionStatus(authorId: number) {
+    return this.apiService.getAuthorSubscriptionStatus(authorId);
   }
 }

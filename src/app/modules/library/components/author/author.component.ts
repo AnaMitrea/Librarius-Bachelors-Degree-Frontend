@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthorService} from "@app-modules/library/services/author/author.service";
 import {AuthorDto, Material} from "@app-shared/models/transfer/book-dto";
-import {Subject, take, takeUntil} from "rxjs";
+import {catchError, of, Subject, take, takeUntil} from "rxjs";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {processAuthorName} from "@app-utils/data-transformers";
 import {API_GUTENBERG_URL} from "@app-core/constants";
+import {HOME_ROUTE} from "@app-utils/constants";
 
 @Component({
   selector: 'app-author',
@@ -14,10 +15,13 @@ import {API_GUTENBERG_URL} from "@app-core/constants";
 })
 export class AuthorComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
+  isUserSubscribed!: boolean;
+
   authorId!: number;
   authorData!: AuthorDto;
   materials!: Material[];
   categories!: string[];
+
   sortingOptions = 1;
 
   constructor(
@@ -46,6 +50,12 @@ export class AuthorComponent implements OnInit, OnDestroy {
         .subscribe((data : ApiResponseModel<Material[]>) => {
           this.materials = data.result;
           this.categories = data.result.map((item: Material) => item.title);
+        });
+
+      this.authorService.getUserSubscriptionStatus(this.authorId)
+        .pipe(take(1))
+        .subscribe((data : ApiResponseModel<boolean>) => {
+          this.isUserSubscribed = data.result;
         });
     });
   }
@@ -85,5 +95,9 @@ export class AuthorComponent implements OnInit, OnDestroy {
       default:
         return 'assets/author/orange-background-pen.gif';
     }
+  }
+
+  onClickSubscribe() {
+
   }
 }

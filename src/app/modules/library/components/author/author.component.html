@@ -9,7 +9,7 @@
     <span *ngIf="authorData">{{authorData.name}}</span>
   </div>
   <div class="author-subscription">
-    <button mat-stroked-button><mat-icon>notifications_none</mat-icon>Subscribe</button>
+    <button mat-stroked-button (click)="onClickSubscribe()"><mat-icon>notifications_none</mat-icon>Subscribe</button>
   </div>
   <div class="book-categories-wrapper">
     <div class="book-categories"
@@ -53,7 +53,6 @@
          fxLayout.lt-md="column"
          fxLayoutAlign="start none">
 
-      <!--  *ngFor    -->
       <div class='book-item'
            fxFlex="20%"
            fxFlex.lt-md="100%"

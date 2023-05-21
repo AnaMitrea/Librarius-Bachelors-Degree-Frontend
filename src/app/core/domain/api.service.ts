@@ -56,6 +56,20 @@ export class ApiService extends HttpServiceBaseService {
     });
   }
 
+  private handleAndRethrowErrorForToaster(
+    message = 'Oops, something went wrong.',
+    title = 'Error',
+    override = { positionClass: 'toast-bottom-left' })
+  {
+    return catchError((httpErr) => {
+      const httpError = U.path(['error', 'errors'], httpErr);
+      message = httpError && httpError.length ? httpError[0].message : message;
+
+      this.toasterService.error(message, title, override);
+      return throwError(httpError);
+    });
+  }
+
   // --- LANDING ---
   getUserLoggedIn(body: any): Observable<any> {
     return this.http.put(`${API_URL}/account/login`, body).pipe(
@@ -125,6 +139,19 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  setAuthorSubscription(authorId: number): Observable<any> {
+    return this.http.post(`${this.API_LIBRARY_BASE_URL}/author/${authorId}/subscription`, {}).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getAuthorSubscriptionStatus(authorId: number): Observable<any> {
+    return this.http.get(`${this.API_LIBRARY_BASE_URL}/author/${authorId}/subscription/status`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
 
   getBookContent(id: string): Observable<any> {
     // TODO add this.cacheOptions for cached data response
