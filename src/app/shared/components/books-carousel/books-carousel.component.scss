@@ -1,3 +1,5 @@
+@import "styles";
+
 .header {
   font-size: 1.3em;
   font-weight: 500;
@@ -59,6 +61,7 @@
       }
 
       .description-author {
+        color: $dark-green;
         font-size: 0.75em;
 
         &:hover {

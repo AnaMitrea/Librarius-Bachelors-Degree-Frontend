@@ -6,7 +6,6 @@ import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {processAuthorName} from "@app-utils/data-transformers";
 import {API_GUTENBERG_URL} from "@app-core/constants";
-import {HOME_ROUTE} from "@app-utils/constants";
 
 @Component({
   selector: 'app-author',
@@ -98,6 +97,10 @@ export class AuthorComponent implements OnInit, OnDestroy {
   }
 
   onClickSubscribe() {
-
+    this.authorService.setUserSubscriptionToAuthor(this.authorId)
+      .pipe(take(1))
+      .subscribe((data : ApiResponseModel<any>) => {
+        this.isUserSubscribed = data.result;
+      });
   }
 }

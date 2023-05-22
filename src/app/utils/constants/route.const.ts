@@ -1,4 +1,5 @@
 // AUTH
+export const ACCOUNT_ROUTE: string = '/account';
 
 
 // --- HOME ---
@@ -8,37 +9,37 @@ export const NOW: string = 'now';
 
 // --- Landing ---
 export const LANDING_ROUTE: string = '/landing';
-export const LOGIN_ROUTE: string = `${LANDING_ROUTE}/login`;
-export const REGISTER_ROUTE: string = `${LANDING_ROUTE}/register`;
-export const FORGOT_PASSW0RD_ROUTE: string = `${LANDING_ROUTE}/forgot-password`;
+export const LOGIN_ROUTE: string = '/landing/login';
+export const REGISTER_ROUTE: string = '/landing/register';
+export const FORGOT_PASSW0RD_ROUTE: string = '/landing/forgot-password';
 
 
 // --- HOME ---
 export const HOME_ROUTE = '/home';
 
 // --- EXPLORE ---
-export const EXPLORE_ROUTE = `${HOME_ROUTE}/explore`;
-export const EXPLORE_BOOKSHELVES_ROUTE = `${EXPLORE_ROUTE}/bookshelves`;
-export const EXPLORE_CATEGORIES_ROUTE = `${EXPLORE_ROUTE}/categories`;
+export const EXPLORE_ROUTE = '/home/explore';
+export const EXPLORE_BOOKSHELVES_ROUTE = '/home/bookshelves';
+export const EXPLORE_CATEGORIES_ROUTE = '/home/categories';
 
 // --- CHALLENGES ---
-export const CHALLENGES_ROUTE = `${HOME_ROUTE}/challenges`;
+export const CHALLENGES_ROUTE = '/home/challenges';
 
 
 // --- Library ---
 export const LIBRARY_ROUTE = '/library';
-export const LIBRARY_BOOK_ROUTE = `${LIBRARY_ROUTE}/book`;
+export const LIBRARY_BOOK_ROUTE = '/library/book';
 
-export const LIBRARY_AUTHOR_ROUTE = `${LIBRARY_ROUTE}/author`;
+export const LIBRARY_AUTHOR_ROUTE = '/library/author';
 export const READ= 'read';
 
 
 // --- USER ---
 export const USER_ROUTE= '/user';
-export const USER_DASHBOARD_ROUTE = `${USER_ROUTE}/dashboard`;
-export const USER_DASHBOARD_TROPHY_ROUTE = `${USER_ROUTE}/dashboard/trophy-case`;
-export const USER_DASHBOARD_CLUBS_ROUTE = `${USER_ROUTE}/dashboard/clubs`;
-export const USER_WISHLIST_ROUTE= `${USER_ROUTE}/wishlist`;
-export const USER_AUTHORS_ROUTE= `${USER_ROUTE}/authors`;
-export const USER_STATISTICS_ROUTE= `${USER_ROUTE}/statistics`;
-export const USER_SETTINGS_ROUTE= `${USER_ROUTE}/settings`;
+export const USER_DASHBOARD_ROUTE = '/user/dashboard';
+export const USER_DASHBOARD_TROPHY_ROUTE = '/user/dashboard/trophy-case';
+export const USER_DASHBOARD_CLUBS_ROUTE = '/user/dashboard/clubs';
+export const USER_WISHLIST_ROUTE= '/user/wishlist';
+export const USER_AUTHORS_ROUTE= '/user/authors';
+export const USER_STATISTICS_ROUTE= '/user/statistics';
+export const USER_SETTINGS_ROUTE= '/user/settings';

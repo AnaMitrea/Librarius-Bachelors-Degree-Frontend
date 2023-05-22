@@ -16,7 +16,7 @@ export class AuthorService {
     return this.apiService.getAuthorBooks(authorId, sortingOptions);
   }
 
-  setUserSubscribedToAuthor(authorId: number) {
+  setUserSubscriptionToAuthor(authorId: number) {
     return this.apiService.setAuthorSubscription(authorId);
   }
 
