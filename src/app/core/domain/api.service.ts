@@ -17,7 +17,7 @@ import {
   USER_WISHLIST_ROUTE
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
-import {LikeReviewRequestDto, ReviewRequestDto} from "@app-shared/models/transfer/book-dto";
+import {LikeReviewRequestDto, ReviewRequestDto, SendReviewRequestDto} from "@app-shared/models/transfer/book-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -200,6 +200,13 @@ export class ApiService extends HttpServiceBaseService {
 
   updateReviewLike(body: LikeReviewRequestDto): Observable<any> {
     return this.http.put(`${this.API_LIBRARY_BOOK_BASE_URL}/reviews/like`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  setUserReview(body: SendReviewRequestDto): Observable<any> {
+    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/reviews/submit`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

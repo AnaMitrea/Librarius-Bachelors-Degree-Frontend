@@ -15,7 +15,6 @@ export interface DialogData {
 })
 export class StarRatingComponent implements OnInit{
   successfulSubmit = false;
-  chosenUserRating: number = 0;
   maxStars = 10;
 
   constructor(
@@ -32,6 +31,6 @@ export class StarRatingComponent implements OnInit{
   }
 
   onSubmitClick(): void {
-    // TODO api call
+    this.dialogRef.close({...this.data});
   }
 }

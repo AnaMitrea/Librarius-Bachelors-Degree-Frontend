@@ -59,6 +59,12 @@ export interface LikeReviewRequestDto {
   isLiked: boolean;
 }
 
+export interface SendReviewRequestDto {
+  reviewContent: string;
+  bookId: number;
+  rating: number;
+}
+
 export interface UserReviewerDto {
   id: number;
   username: string;

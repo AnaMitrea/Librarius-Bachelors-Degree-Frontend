@@ -26,6 +26,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
   @Output() ratingValueEvent = new EventEmitter<number>();
 
   private destroy$ = new Subject<void>();
+
   charactersLeft: number = 2000;
   isButtonDisabled: boolean = true;
   commentControl: FormControl = new FormControl('');
@@ -102,14 +103,23 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
       width: '50%',
       data: {
         reviewContent: this.commentControl.value,
-        bookInformation: this.bookInformation
+        bookInformation: this.bookInformation,
+        overallRating: 0
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.disableStatesAfterSubmit();
+
+      // call la backend pt submit review
       console.log(result);
     });
+  }
+
+  disableStatesAfterSubmit() {
+    this.isButtonDisabled = true;
+    this.commentControl.reset();
+    this.commentControl.disable();
   }
 
   radioChange(event: MatRadioChange) {

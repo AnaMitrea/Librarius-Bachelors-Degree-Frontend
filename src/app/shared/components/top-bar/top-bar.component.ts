@@ -70,6 +70,8 @@ export class TopBarComponent implements OnInit, OnChanges {
   }
 
   onLogoutCLick() {
+    // todo clear state
+
     this.authService.logout();
     this.router.navigate([LANDING_ROUTE]);
   }

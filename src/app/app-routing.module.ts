@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {IsAuthenticatedGuard} from "@app-core/guard/is-authenticated.guard";
-
+import {IsAuthenticatedGuard} from "@app-core/guard/is-authenticated/is-authenticated.guard";
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   {

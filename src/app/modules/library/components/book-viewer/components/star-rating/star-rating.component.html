@@ -17,10 +17,10 @@
         <app-rating
           color='accent'
           [readonly]=false
-          [(ngModel)]='chosenUserRating'
+          [(ngModel)]='data.overallRating'
           [max]='maxStars'
         ></app-rating>
-        <span>{{chosenUserRating}}</span>
+        <span>{{data.overallRating}}</span>
       </div>
     </div>
   </div>
