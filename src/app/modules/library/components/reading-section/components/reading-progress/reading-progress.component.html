@@ -1,1 +1,15 @@
-<p>reading-progress works!</p>
+<div class="progress-bar-container"
+     fxLayout="column"
+     fxLayoutAlign="start none">
+  <div class="progress-bar"
+       fxLayout="column"
+       fxLayoutAlign="center center">
+    <span class="progress-title">Your reading progress</span>
+    <mat-progress-bar
+      color="accent"
+      mode="determinate"
+      [value]="readingProgress"
+    ></mat-progress-bar>
+  </div>
+  <span class="remaining-time-text">{{ remainingTime }} remaining</span>
+</div>

@@ -43,8 +43,7 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private bookService: BookService,
-    private timeTrackerService: TimeTrackerService
+    private bookService: BookService
   ) {
     this.mouseUpListener = () => {
       const selection = window.getSelection();
@@ -84,13 +83,11 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
     this.removeAllEventListeners();
     // alert("on back button");
 
-    // TODO send to backend timespent on reading book with id
     return false;
   }
 
   @HostListener('document:visibilitychange', ['$event'])
   onVisibilityChange(event: Event) {
-    // TODO send to backend timespent on reading book with id
 
     if (document.hidden) {
       // alert("on tab change");
@@ -100,6 +97,12 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.initSubscription();
+
+    this.addBookmarkEventListeners();
+  }
+
+  initSubscription() {
     this.route.paramMap.pipe(takeUntil(this.destroy$))
       .subscribe(params => {
         this.bookId = params.get('id') ?? '';
@@ -108,13 +111,9 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
           .pipe(takeUntil(this.destroy$))
           .subscribe((data: ApiResponseModel<BookContentDto>) => {
             this.content = data.result.content;
-            this.timeTrackerService.startTimer(this.bookId);
           });
-    });
-
-    this.addBookmarkEventListeners();
+      });
   }
-
 
   onFinishReadingBook() {
 
@@ -202,9 +201,6 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
-    this.timeTrackerService.stopTimer();
     this.removeAllEventListeners();
-
-    // TODO make call to save time spent on reading book
   }
 }

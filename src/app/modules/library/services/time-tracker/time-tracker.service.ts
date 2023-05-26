@@ -1,12 +1,13 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {UserStoreService} from "@app-shared/services/store/user-store.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeTrackerService {
-  totalTime: number = 0;
+  timeSpentBook: number = 0;
   timer: any;
+  minutePassed = new EventEmitter<void>();
 
   constructor(private userStoreService: UserStoreService) {  }
 
@@ -15,8 +16,9 @@ export class TimeTrackerService {
   startTimer(bookId: string) {
     this.setInitialTimeValue(bookId);
     this.timer = setInterval(() => {
-      this.totalTime += 1;
+      this.timeSpentBook += 1;
       this.updateReadingTimeForBook(bookId);
+      this.minutePassed.emit();
     }, 60000);
   }
 
@@ -27,9 +29,9 @@ export class TimeTrackerService {
   setInitialTimeValue(bookId: string) {
     const bookTrack = this.userStoreService.bookTimeTracker[bookId];
     if (bookTrack) {
-      this.totalTime = bookTrack.timeSpentReading;
+      this.timeSpentBook = bookTrack.timeSpentReading;
     } else {
-      this.totalTime = 0;
+      this.timeSpentBook = 0;
       this.updateReadingTimeForBook(bookId);
     }
   }
@@ -37,12 +39,12 @@ export class TimeTrackerService {
   updateReadingTimeForBook(bookId: string) {
     this.userStoreService.updateReadingTimeForBookId({
       [bookId]: {
-        timeSpentReading: this.totalTime
+        timeSpentReading: this.timeSpentBook
       }
     })
   }
 
-  getTotalTime() {
-    return this.totalTime;
+  getTimeSpentOnBook() {
+    return this.timeSpentBook;
   }
 }

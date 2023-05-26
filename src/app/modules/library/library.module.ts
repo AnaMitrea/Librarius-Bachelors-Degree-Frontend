@@ -27,6 +27,7 @@ import { AuthorComponent } from './components/author/author.component';
 import {MatChipsModule} from "@angular/material/chips";
 import {MatCardModule} from "@angular/material/card";
 import { ReadingProgressComponent } from './components/reading-section/components/reading-progress/reading-progress.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -40,25 +41,26 @@ import { ReadingProgressComponent } from './components/reading-section/component
     AuthorComponent,
     ReadingProgressComponent
   ],
-  imports: [
-    QRCodeModule,
-    CommonModule,
-    LibraryRoutingModule,
-    SharedModule,
-    FlexModule,
-    MatIconModule,
-    MatButtonModule,
-    FormsModule,
-    MatMenuModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatRadioModule,
-    MatChipsModule,
-    MatCardModule
-  ]
+    imports: [
+        QRCodeModule,
+        CommonModule,
+        LibraryRoutingModule,
+        SharedModule,
+        FlexModule,
+        MatIconModule,
+        MatButtonModule,
+        FormsModule,
+        MatMenuModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatTooltipModule,
+        MatRadioModule,
+        MatChipsModule,
+        MatCardModule,
+        MatProgressBarModule
+    ]
 })
 export class LibraryModule { }

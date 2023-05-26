@@ -5,10 +5,10 @@
 <!--<div *ngIf="isElementSelected">-->
 <!--  Selected element: {{ selectedElement?.tagName }}-->
 <!--</div>-->
-<button mat-fab extended>
-  Remove bookmark
-  <mat-icon>remove_circle_outline</mat-icon>
-</button>
+<!--<button mat-fab extended>-->
+<!--  Remove bookmark-->
+<!--  <mat-icon>remove_circle_outline</mat-icon>-->
+<!--</button>-->
 <div
   class='reading-section'
   fxLayout="row"
@@ -26,9 +26,16 @@
   </div>
 </div>
 
-<div class="finish-reading">
+<div class="finish-reading"
+     fxLayout="row"
+     fxLayoutAlign="center center"
+>
   <button mat-raised-button
           color="accent"
           (click)="onFinishReadingBook()"
   >Finish Reading Book</button>
+</div>
+
+<div class="reading-progress-bar">
+  <app-reading-progress></app-reading-progress>
 </div>
