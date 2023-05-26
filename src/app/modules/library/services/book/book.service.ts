@@ -22,6 +22,10 @@ export class BookService {
     return this.apiService.getBookContent(id);
   }
 
+  checkIsBookFinished(id: string): Observable<any> {
+    return this.apiService.checkUserFinishedBook(id);
+  }
+
   getBookAverageReadingTime(id: string): Observable<any> {
     return this.apiService.getBookAverageReadingTime(id);
   }

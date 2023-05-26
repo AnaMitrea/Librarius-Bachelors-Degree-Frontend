@@ -173,6 +173,13 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  checkUserFinishedBook(id: string): Observable<any> {
+    return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/${id}/check-reading-completed`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   markBookAsFinished(body: BookReadingTimeRequestDto): Observable<any> {
     return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/complete-reading`, body).pipe(
       this.handleHttpError(),
@@ -202,8 +209,15 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  getUserAllReadingTimeSpentForBooks(): Observable<any> {
+    return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   updateUserReadingTimeSpent(body: BookReadingTimeRequestDto): Observable<any> {
-    return this.http.put(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent`, body).pipe(
+    return this.http.put(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent/update`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

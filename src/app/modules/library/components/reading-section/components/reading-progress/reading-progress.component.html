@@ -8,7 +8,9 @@
           [disabled]="isButtonDisabled"
           (click)="onFinishReadingBook()"
   >Finish Reading Book</button>
-  <span class="disabled-button-details" *ngIf="isButtonDisabled">Please continue reading to finish the book.</span>
+  <span class="disabled-button-details" *ngIf="isButtonDisabled">
+    {{ this.isAlreadyFinished ? ALREADY_FINISHED_MESSAGE : CONTINUE_READING_MESSAGE }}
+  </span>
 </div>
 
 <div class="progress-bar-container"

@@ -13,6 +13,7 @@ import {BookReadingTimeRequestDto} from "@app-shared/models/transfer/book-dto";
 })
 export class ReadingProgressComponent implements OnInit, OnDestroy {
   bookId!: string;
+  isAlreadyFinished!: boolean;
 
   hasDataLoaded = false;
   isButtonDisabled = false;
@@ -20,6 +21,9 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
   avgReadingTime: any;
   readingProgress: number = 0;
   remainingTime: string = '0h 0m';
+
+  ALREADY_FINISHED_MESSAGE = 'You already finished reading this book.';
+  CONTINUE_READING_MESSAGE = 'Please continue reading to finish the book.';
 
   constructor(
     private route: ActivatedRoute,
@@ -55,8 +59,14 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
     this.route.paramMap.pipe(take(1)).subscribe(params => {
       this.bookId = params.get('id')!;
 
-      this.bookService
-        .getBookAverageReadingTime(this.bookId)
+      this.bookService.checkIsBookFinished(this.bookId)
+        .pipe(take(1))
+        .subscribe((data: ApiResponseModel<boolean>) => {
+         this.isAlreadyFinished = data.result;
+         this.isButtonDisabled = this.isAlreadyFinished;
+        });
+
+      this.bookService.getBookAverageReadingTime(this.bookId)
         .pipe(take(1))
         .subscribe((data: ApiResponseModel<any>) => {
           this.avgReadingTime = data.result;
@@ -108,7 +118,7 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
       this.remainingTime = `${remainingHours}h ${remainingMinutesDisplay}m`;
     }
 
-    this.isButtonDisabled = totalReadingTime < totalMinutes;
+    this.isButtonDisabled = this.isAlreadyFinished || (totalReadingTime < totalMinutes);
   }
 
   onFinishReadingBook() {
