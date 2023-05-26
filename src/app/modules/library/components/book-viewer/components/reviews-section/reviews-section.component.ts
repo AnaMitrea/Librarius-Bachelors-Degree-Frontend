@@ -2,12 +2,13 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormControl} from "@angular/forms";
 import {MatRadioChange} from "@angular/material/radio";
 import {BookService} from "@app-modules/library/services/book/book.service";
-import {Subject, take, takeUntil} from "rxjs";
+import {Subject, take} from "rxjs";
 import {
   BookDto,
   LikeReviewRequestDto,
   ReviewRequestDto,
-  ReviewResponseDto
+  ReviewResponseDto,
+  SendReviewRequestDto
 } from "@app-shared/models/transfer/book-dto";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {MatDialog} from "@angular/material/dialog";
@@ -29,6 +30,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
 
   charactersLeft: number = 2000;
   isButtonDisabled: boolean = true;
+  hasMyReview: boolean = false;
   commentControl: FormControl = new FormControl('');
 
   reviews: ReviewResponseDto[] = [];
@@ -42,10 +44,10 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.initSubscription();
+    this.initAllReviewsSubscription();
   }
 
-  initSubscription() {
+  initAllReviewsSubscription() {
     const body: ReviewRequestDto = {
       BookId: this.bookInformation.id,
       MaxResults: 30,
@@ -54,11 +56,14 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     }
 
     this.bookService.getBookReviews(body)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(take(1))
       .subscribe((data: ApiResponseModel<any>) => {
         this.reviews = U.path(['reviews'], data.result);
         this.overallRating = U.path(['overallRating'], data.result);
         this.sendDataToParent(this.overallRating);
+
+        this.hasMyReview = this.reviews.some(review => review.isMyReview);
+        this.isButtonDisabled = this.hasMyReview;
       });
   }
 
@@ -67,6 +72,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
   }
 
   onInputChange() {
+    if (this.hasMyReview) return;
     const inputLength = this.commentControl.value.length;
 
     this.isButtonDisabled = inputLength < 50;
@@ -111,8 +117,17 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.disableStatesAfterSubmit();
 
-      // call la backend pt submit review
-      console.log(result);
+      const body: SendReviewRequestDto = {
+        reviewContent: result.reviewContent,
+        bookId: result.bookInformation.id,
+        rating: result.overallRating
+      };
+
+      this.bookService.setReview(body)
+        .pipe(take(1))
+        .subscribe((data: ApiResponseModel<any>) => {
+          this.initAllReviewsSubscription();
+        });
     });
   }
 
@@ -141,5 +156,13 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  onReviewDelete(reviewId: number) {
+    this.bookService.removeReview(reviewId)
+      .pipe(take(1))
+      .subscribe((data: ApiResponseModel<boolean>) => {
+        this.initAllReviewsSubscription();
+      });
   }
 }

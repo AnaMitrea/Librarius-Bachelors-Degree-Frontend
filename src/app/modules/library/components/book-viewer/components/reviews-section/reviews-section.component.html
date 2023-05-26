@@ -21,6 +21,7 @@
       <textarea cdkTextareaAutosize
                 [formControl]="commentControl"
                 (input)="onInputChange()"
+                [readOnly]="this.hasMyReview"
                 placeholder="Share your review here"
       ></textarea>
 
@@ -65,9 +66,29 @@
 
       <div class="review-details">
         <div>
-          <div class="user-information">
-            <span class="username">{{review.user.username}},  </span>
+          <div class="user-information"
+               fxLayout="row"
+               fxLayoutAlign="space-between center"
+          >
+            <span>
+               <span class="username">{{review.user.username}},  </span>
             <span class="days">{{review.timeValue}} {{review.timeUnit}} ago</span>
+            </span>
+            <span *ngIf="review.isMyReview"
+                  class="review-editor"
+            >
+              <button mat-icon-button
+                      [matMenuTriggerFor]="userReviewMenu"
+                      aria-label="review menu"
+              >
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #userReviewMenu="matMenu">
+                <button mat-menu-item (click)="onReviewDelete(review.id)">
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </span>
           </div>
           <div class="review-text">
             {{review.content}}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {ApiService} from "@app-core/domain/api.service";
-import {LikeReviewRequestDto, ReviewRequestDto} from "@app-shared/models/transfer/book-dto";
+import {LikeReviewRequestDto, ReviewRequestDto, SendReviewRequestDto} from "@app-shared/models/transfer/book-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,13 @@ export class BookService {
 
   updateReviewLike(body: LikeReviewRequestDto): Observable<any> {
     return this.apiService.updateReviewLike(body);
+  }
+
+  setReview(body: SendReviewRequestDto): Observable<any> {
+    return this.apiService.setUserReview(body);
+  }
+
+  removeReview(reviewId: number): Observable<any> {
+    return this.apiService.removeUserReview(reviewId);
   }
 }

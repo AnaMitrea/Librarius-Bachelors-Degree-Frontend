@@ -17,7 +17,11 @@ import {
   USER_WISHLIST_ROUTE
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
-import {LikeReviewRequestDto, ReviewRequestDto, SendReviewRequestDto} from "@app-shared/models/transfer/book-dto";
+import {
+  LikeReviewRequestDto,
+  ReviewRequestDto,
+  SendReviewRequestDto
+} from "@app-shared/models/transfer/book-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +53,13 @@ export class ApiService extends HttpServiceBaseService {
   {
     return catchError((httpErr) => {
       const httpError = U.path(['error', 'errors'], httpErr);
-      message = httpError && httpError.length ? httpError[0].message : message;
+      if (httpErr.status === 500) {
+        message = "Internal Server Error. Please try again later!";
+      } if (httpErr.status === 0) {
+        message = "Server connection error. Please try again later!";
+      } else {
+        message = httpError && httpError.length ? httpError[0].message : message;
+      }
 
       this.toasterService.error(message, title, override);
       return of(null);
@@ -207,6 +217,13 @@ export class ApiService extends HttpServiceBaseService {
 
   setUserReview(body: SendReviewRequestDto): Observable<any> {
     return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/reviews/submit`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  removeUserReview(reviewId: number): Observable<any> {
+    return this.http.delete(`${this.API_LIBRARY_BOOK_BASE_URL}/reviews/${reviewId}/remove`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

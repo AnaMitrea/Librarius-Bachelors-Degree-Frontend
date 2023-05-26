@@ -14,6 +14,9 @@ export class HttpServiceBaseService {
       console.error('An error occurred:', error.error.message);
     } else {
       console.error('Backend returned code: ', `${error.status}`);
+      if (error.status === 0) {
+        console.error('Connection error: ', `${error.error}`);
+      } else
       if (error.status !== HttpStatusCodes.INTERNAL_SERVER_ERROR) {
         console.error('Body was: ', `${error.error}`);
       }

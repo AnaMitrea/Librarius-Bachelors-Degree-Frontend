@@ -115,6 +115,11 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
     this.addBookmarkEventListeners();
   }
 
+
+  onFinishReadingBook() {
+
+  }
+
   addBookmarkEventListeners() {
     document.addEventListener('selectionchange', this.selectionChangeListener);
   }

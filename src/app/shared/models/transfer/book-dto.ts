@@ -51,6 +51,7 @@ export interface ReviewResponseDto {
   timeValue: string;
   timeUnit: string;
   rating: number;
+  isMyReview: boolean;
   user: UserReviewerDto;
 }
 
