@@ -11,8 +11,6 @@ export class TimeTrackerService {
 
   constructor(private userStoreService: UserStoreService) {  }
 
-  // TODO make api call to save into db the time when component is in ngOnDestroy
-
   startTimer(bookId: string) {
     this.setInitialTimeValue(bookId);
     this.timer = setInterval(() => {

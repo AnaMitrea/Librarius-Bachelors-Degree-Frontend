@@ -14,6 +14,11 @@ export interface BookDto {
   link: string;
 }
 
+export interface CompletedBookRequestDto {
+  bookId: string;
+  timeSpent: number;
+}
+
 export interface BookContentDto {
   id: string;
   content: string;
@@ -34,6 +39,11 @@ export interface ReadingTimeDto {
   hours: number;
   minutes: number;
   seconds: number;
+}
+
+export interface BookReadingTimeRequestDto {
+  bookId: number;
+  timeSpent: number;
 }
 
 export interface ReviewRequestDto {

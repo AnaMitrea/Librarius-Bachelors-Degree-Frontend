@@ -4,6 +4,7 @@ import { take } from 'rxjs';
 import { ApiResponseModel } from '@app-core/domain/model/api-response-model';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
+import {BookReadingTimeRequestDto} from "@app-shared/models/transfer/book-dto";
 
 @Component({
   selector: 'app-reading-progress',
@@ -12,6 +13,9 @@ import { BookService } from '@app-modules/library/services/book/book.service';
 })
 export class ReadingProgressComponent implements OnInit, OnDestroy {
   bookId!: string;
+
+  hasDataLoaded = false;
+  isButtonDisabled = false;
 
   avgReadingTime: any;
   readingProgress: number = 0;
@@ -30,7 +34,8 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
   @HostListener('window:popstate')
   onWindowPopState() {
     // alert("on back button");
-    this.saveReadingTime();
+    this.saveStoreReadingTime();
+    this.saveReadingTimeForBook();
 
     return false;
   }
@@ -39,7 +44,8 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
   onVisibilityChange(event: Event) {
     if (document.hidden) {
       // alert("on tab change");
-      this.saveReadingTime();
+      this.saveStoreReadingTime();
+      this.saveReadingTimeForBook();
       return false;
     }
     return true;
@@ -55,6 +61,7 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
         .subscribe((data: ApiResponseModel<any>) => {
           this.avgReadingTime = data.result;
           this.updateReadingProgress();
+          this.hasDataLoaded = true;
         });
 
       this.timeTrackerService.startTimer(this.bookId);
@@ -65,8 +72,22 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
     });
   }
 
-  saveReadingTime() {
+  saveStoreReadingTime() {
     this.timeTrackerService.updateReadingTimeForBook(this.bookId);
+  }
+
+  saveReadingTimeForBook() {
+    const body: BookReadingTimeRequestDto = {
+      bookId: parseInt(this.bookId, 10),
+      timeSpent: this.timeTrackerService.getTimeSpentOnBook()
+    };
+
+    this.bookService.saveReadingTimeForBook(body)
+      .pipe(take(1))
+      .subscribe((data: ApiResponseModel<any>) => {
+        console.log("saveReadingTimeForBook")
+        console.log(data);
+      });
   }
 
   updateReadingProgress() {
@@ -75,15 +96,47 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
     const totalMinutes =
       (this.avgReadingTime.hours || 0) * 60 + (this.avgReadingTime.minutes || 0);
     const remainingMinutes = totalMinutes - totalReadingTime;
-    const hours = Math.floor(remainingMinutes / 60);
-    const minutes = remainingMinutes % 60;
+
+    const remainingHours = Math.floor(Math.abs(remainingMinutes) / 60);
+    const remainingMinutesDisplay = Math.abs(remainingMinutes) % 60;
 
     this.readingProgress = (totalReadingTime / totalMinutes) * 100;
-    this.remainingTime = `${hours}h ${minutes}m`;
+
+    if (remainingMinutes < 0) {
+      this.remainingTime = `-${remainingHours}h ${remainingMinutesDisplay}m`;
+    } else {
+      this.remainingTime = `${remainingHours}h ${remainingMinutesDisplay}m`;
+    }
+
+    this.isButtonDisabled = totalReadingTime < totalMinutes;
   }
 
+  onFinishReadingBook() {
+    const totalReadingTime = this.timeTrackerService.getTimeSpentOnBook();
+    const totalMinutes =
+      (this.avgReadingTime?.hours || 0) * 60 + (this.avgReadingTime?.minutes || 0);
+
+    if (totalReadingTime >= totalMinutes) {
+      const body: BookReadingTimeRequestDto = {
+        bookId: parseInt(this.bookId, 10),
+        timeSpent: totalReadingTime
+      };
+
+      this.bookService.markBookAsFinished(body)
+        .pipe(take(1))
+        .subscribe((data: ApiResponseModel<any>) => {
+          console.log("onFinishReadingBook");
+          console.log(data);
+        });
+
+      this.saveStoreReadingTime();
+      this.timeTrackerService.stopTimer();
+    }
+  }
+
+
   ngOnDestroy(): void {
-    this.saveReadingTime();
+    this.saveStoreReadingTime();
     this.timeTrackerService.stopTimer();
   }
 }

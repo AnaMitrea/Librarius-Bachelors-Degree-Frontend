@@ -1,3 +1,16 @@
+<div class="finish-reading"
+     fxLayout="column"
+     fxLayoutAlign="center center"
+     *ngIf="hasDataLoaded"
+>
+  <button mat-raised-button
+          color="accent"
+          [disabled]="isButtonDisabled"
+          (click)="onFinishReadingBook()"
+  >Finish Reading Book</button>
+  <span class="disabled-button-details" *ngIf="isButtonDisabled">Please continue reading to finish the book.</span>
+</div>
+
 <div class="progress-bar-container"
      fxLayout="column"
      fxLayoutAlign="start none">
@@ -11,5 +24,10 @@
       [value]="readingProgress"
     ></mat-progress-bar>
   </div>
-  <span class="remaining-time-text">{{ remainingTime }} remaining</span>
+  <div fxLayout="row"
+       fxLayoutAlign="space-between none">
+    <span class="remaining-time-text" *ngIf="remainingTime">{{ remainingTime }} remaining</span>
+
+    <span class="total-time-text" *ngIf="avgReadingTime">{{avgReadingTime.hours}}h {{avgReadingTime.minutes}}m total</span>
+  </div>
 </div>

@@ -18,6 +18,7 @@ import {
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
 import {
+  BookReadingTimeRequestDto,
   LikeReviewRequestDto,
   ReviewRequestDto,
   SendReviewRequestDto
@@ -172,6 +173,13 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  markBookAsFinished(body: BookReadingTimeRequestDto): Observable<any> {
+    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/complete-reading`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   getBookWordCount(id: string): Observable<any> {
     const body = {
       bookId: id
@@ -189,6 +197,13 @@ export class ApiService extends HttpServiceBaseService {
     };
 
     return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/reading-time`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  updateUserReadingTimeSpent(body: BookReadingTimeRequestDto): Observable<any> {
+    return this.http.put(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
