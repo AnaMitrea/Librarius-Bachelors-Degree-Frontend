@@ -22,8 +22,8 @@ export class CategoriesExploreComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.exploreService.getCategoriesByBookshelf().pipe(takeUntil(this.destroy$))
       .subscribe((data: ApiResponseModel<any>) => {
-        console.log(data);
         this.categories = data.result;
+        console.log(this.categories);
       });
   }
 

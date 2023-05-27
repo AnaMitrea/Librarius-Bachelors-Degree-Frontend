@@ -9,8 +9,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
           <input matInput formControlName="username" required>
-          <mat-error *ngIf="this.firstFormGroup.controls.username.invalid">
-            {{getErrorMsgRequired(this.firstFormGroup.controls.username)}}
+          <mat-error *ngIf="this.firstFormGroup.controls['username'].invalid">
+            {{getErrorMsgRequired(this.firstFormGroup.controls['username'])}}
           </mat-error>
         </mat-form-field>
         <div>
@@ -24,8 +24,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" placeholder="john@email.com" required>
-          <mat-error *ngIf="this.secondFormGroup.controls.email.invalid">
-            {{getErrorMsgEmail(this.secondFormGroup.controls.email)}}
+          <mat-error *ngIf="this.secondFormGroup.controls['email'].invalid">
+            {{getErrorMsgEmail(this.secondFormGroup.controls['email'])}}
           </mat-error>
         </mat-form-field>
         <div>
@@ -35,15 +35,15 @@
       </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup" label="Fill out your password">
-      <form [formGroup]="thirdFormGroup" fxLayout="column" fxLayoutAlign="space-between start">
+      <form [formGroup]="thirdFormGroup" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="15px">
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
           <input matInput [type]="hidePwd ? 'password' : 'text'" formControlName="password" required>
           <button mat-icon-button matSuffix (click)="hidePwd = !hidePwd" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePwd">
             <mat-icon>{{hidePwd ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="this.thirdFormGroup.controls.password.invalid">
-            {{getErrorMsgPwd(this.thirdFormGroup.controls.password)}}
+          <mat-error *ngIf="this.thirdFormGroup.controls['password'].invalid">
+            {{getErrorMsgPwd(this.thirdFormGroup.controls['password'])}}
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
@@ -52,8 +52,8 @@
           <button mat-icon-button matSuffix (click)="hideRePwd = !hideRePwd" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRePwd">
             <mat-icon>{{hideRePwd ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="this.thirdFormGroup.controls.rePassword.invalid"> <!-- TODO de verificat pentru confirm -->
-            {{getErrorMsgPwd(this.thirdFormGroup.controls.rePassword)}}
+          <mat-error *ngIf="this.thirdFormGroup.controls['rePassword'].invalid">
+            {{getErrorMsgConfirm(this.thirdFormGroup.controls['rePassword'])}}
           </mat-error>
         </mat-form-field>
         <div>

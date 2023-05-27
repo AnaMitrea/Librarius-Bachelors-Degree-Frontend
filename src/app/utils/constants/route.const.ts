@@ -19,8 +19,8 @@ export const HOME_ROUTE = '/home';
 
 // --- EXPLORE ---
 export const EXPLORE_ROUTE = '/home/explore';
-export const EXPLORE_BOOKSHELVES_ROUTE = '/home/bookshelves';
-export const EXPLORE_CATEGORIES_ROUTE = '/home/categories';
+export const EXPLORE_BOOKSHELVES_ROUTE = '/home/explore/bookshelves';
+export const EXPLORE_CATEGORIES_ROUTE = '/home/explore/categories';
 
 // --- CHALLENGES ---
 export const CHALLENGES_ROUTE = '/home/challenges';

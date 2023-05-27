@@ -1,15 +1,20 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import { BreakpointObserver } from "@angular/cdk/layout";
-import { FormBuilder, Validators } from "@angular/forms";
-import { map, Observable } from "rxjs";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {map, Observable, Subject, takeUntil} from "rxjs";
 import { StepperOrientation } from '@angular/material/stepper';
 import { Router } from "@angular/router";
 import {
+  getErrorMessageConfirmPassword,
   getErrorMessageEmail,
   getErrorMessagePassword,
   getErrorMsgRequiredValue
 } from "@app-modules/landing/shared/forms/errors/error-messages";
-import { LANDING_ROUTE } from '@app-utils/constants';
+import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE} from '@app-utils/constants';
+import {RegisterRequestDto} from "@app-modules/landing/shared/models";
+import {RegisterService} from "@app-modules/landing/shared/services/register/register.service";
+import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
+import {Utils as U} from "@app-utils/lodash/utils";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +22,9 @@ import { LANDING_ROUTE } from '@app-utils/constants';
   styleUrls: ['./register.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+
   hidePwd = true;
   hideRePwd = true;
   isLastStepCompleted = false;
@@ -25,25 +32,63 @@ export class RegisterComponent {
   getErrorMsgRequired = getErrorMsgRequiredValue;
   getErrorMsgEmail = getErrorMessageEmail;
   getErrorMsgPwd = getErrorMessagePassword;
+  getErrorMsgConfirm = getErrorMessageConfirmPassword;
 
-  firstFormGroup = this._formBuilder.group({
-    username: ['', Validators.required]
-  });
-  secondFormGroup = this._formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-  });
-  thirdFormGroup = this._formBuilder.group({
-    password: ['', Validators.required],
-    rePassword: ['', Validators.required],
-  });
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   stepperOrientation: Observable<StepperOrientation>;
 
-  constructor(private _formBuilder: FormBuilder,
-              private router: Router,
-              breakpointObserver: BreakpointObserver) {
+  constructor(
+    private registerService: RegisterService,
+    private _formBuilder: FormBuilder,
+    private router: Router,
+    breakpointObserver: BreakpointObserver
+  ) {
+    this.firstFormGroup = this._formBuilder.group({
+      username: ['', Validators.required]
+    });
+
+    this.secondFormGroup = this._formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
+
+    this.thirdFormGroup = this._formBuilder.group({
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+        ]
+      ],
+      rePassword: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/),
+          this.validateAreEqual.bind(this)
+        ]
+      ],
+    });
+
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
-      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical'))
+      );
+  }
+
+  ngOnInit(): void { }
+
+  private validateAreEqual(fieldControl: any) {
+    if (!this.thirdFormGroup) {
+      return null;
+    }
+
+    return fieldControl.value === this.thirdFormGroup.get('password')?.value
+      ? null
+      : { mismatch: true };
   }
 
   onBackRegister() {
@@ -52,8 +97,24 @@ export class RegisterComponent {
 
   onConfirmClick() {
     this.lastState = 'done';
-    console.log(this.firstFormGroup.value);
-    console.log(this.secondFormGroup.value);
-    console.log(this.thirdFormGroup.value);
+
+    const body : RegisterRequestDto = {
+      username: this.firstFormGroup.get('username')?.value,
+      email: this.secondFormGroup.get('email')?.value,
+      password: this.thirdFormGroup.get('password')?.value,
+      rePassword: this.thirdFormGroup.get('rePassword')?.value
+    };
+
+    this.registerService.registerAccount(body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: ApiResponseModel<any>) => {
+        if(data && data.result)
+          this.router.navigateByUrl(`${LOGIN_ROUTE}`);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

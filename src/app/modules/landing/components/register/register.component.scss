@@ -1,4 +1,16 @@
-@import '../../../../../styles';
+@import 'styles';
+
+form {
+  width: 100%;
+
+  mat-form-field {
+    width: 75%;
+  }
+
+  mat-error {
+    font-size: 0.8em;
+  }
+}
 
 
 .register-container {
@@ -18,7 +30,7 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1100px) {
   .register-container {
     height: 90vh;
     p {
@@ -27,6 +39,6 @@
   }
 
   .mat-step-header .mat-step-label .mat-step-text-label {
-    font-size: 1em;
+    font-size: 0.8em;
   }
 }

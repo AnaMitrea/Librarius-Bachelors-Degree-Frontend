@@ -9,11 +9,11 @@
 }
 
 .wrapper {
-  height: 100%;
+  height: auto;
 
   .menu {
     border-right: 1px solid $light1;
-    height: 100%;
+    height: auto;
     min-width: 190px;
     width: 20%;
 
@@ -45,7 +45,15 @@
     }
 
     .menu-list {
-      padding: 15px;
+      padding: 0 15px;
+
+      .title-list-item {
+
+        &:hover {
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -53,7 +61,8 @@
     width: 80%;
 
     .books-container {
-      border: 1px solid black;
+      width: 95%;
+      //border: 1px solid black;
     }
   }
 }

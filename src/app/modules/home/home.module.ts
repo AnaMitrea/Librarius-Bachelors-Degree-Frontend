@@ -22,6 +22,7 @@ import {MatListModule} from "@angular/material/list";
 import { BookshelvesExploreComponent } from './components/explore/components/bookshelves-explore/bookshelves-explore.component';
 import { CategoriesExploreComponent } from './components/explore/components/categories-explore/categories-explore.component';
 import {BooksCarouselComponent} from "@app-shared/components/books-carousel/books-carousel.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -37,18 +38,19 @@ import {BooksCarouselComponent} from "@app-shared/components/books-carousel/book
     BookshelvesExploreComponent,
     CategoriesExploreComponent
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    SharedModule,
-    CarouselModule,
-    FlexModule,
-    MatCardModule,
-    MatChipsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTabsModule,
-    MatListModule
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        SharedModule,
+        CarouselModule,
+        FlexModule,
+        MatCardModule,
+        MatChipsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTabsModule,
+        MatListModule,
+        MatTooltipModule
+    ]
 })
 export class HomeModule { }

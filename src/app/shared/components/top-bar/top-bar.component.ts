@@ -8,7 +8,7 @@ import {
   USER_ROUTE,
   USER_SETTINGS_ROUTE
 } from "@app-utils/constants";
-import {AuthService} from "@app-modules/landing/shared/services/auth.service";
+import {AuthService} from "@app-modules/landing/shared/services/auth/auth.service";
 
 @Component({
   selector: 'app-top-bar',

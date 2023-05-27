@@ -44,27 +44,21 @@
       }
     }
 
-    .item-row {
-      padding: 7% 10%;
+    .menu-list {
+      padding: 0 15px;
 
-      &:hover{
-        cursor: pointer;
-        color: $dark-blue;
-
-        .category .icon {
-          color: var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, 0.6));
-        }
-      }
-
-      .category {
-        .icon {
-          color: var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, 0.38));
-        }
+      .title {
+        //font-size:
       }
     }
   }
 
   .books {
     width: 80%;
+    height: 100%;
+
+    .books-container {
+      border: 1px solid black;
+    }
   }
 }

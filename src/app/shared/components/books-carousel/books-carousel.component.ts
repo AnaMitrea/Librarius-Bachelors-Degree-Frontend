@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
 import {Book} from "@app-modules/home/shared/models";
-import {LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE} from "@app-utils/constants";
+import {EXPLORE_BOOKSHELVES_ROUTE, LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE} from "@app-utils/constants";
 import {processAuthorName} from "@app-utils/data-transformers";
 
 @Component({
@@ -13,6 +13,8 @@ import {processAuthorName} from "@app-utils/data-transformers";
 export class BooksCarouselComponent {
   @Input() booksSlides: Book[] = [];
   @Input() headerTitle: string = '';
+  @Input() headerRoute: string = '';
+  @Input() clickableHeaderTitle = false;
   @Input() showTopNumbers = true;
 
   customOptions: OwlOptions = {
@@ -36,12 +38,24 @@ export class BooksCarouselComponent {
       },
       1000: {
         items: 4
+      },
+      1300: {
+        items: 5
+      },
+      1400: {
+        items: 6
       }
     },
     nav: true
   }
 
   constructor(private router: Router) { }
+
+  onHeaderClick() {
+    if (!this.clickableHeaderTitle) return;
+
+    this.router.navigate([this.headerRoute]).then();
+  }
 
   redirectToBookUrl(id: string) {
     this.router.navigate([LIBRARY_BOOK_ROUTE, id]).then();
@@ -54,4 +68,6 @@ export class BooksCarouselComponent {
   processName(author: string): string {
     return processAuthorName(author);
   }
+
+
 }

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { getErrorMessagePassword, getErrorMsgRequiredValue } from "@app-modules/landing/shared/forms/errors/error-messages";
-import {AuthService} from "@app-modules/landing/shared/services/auth.service";
+import {AuthService} from "@app-modules/landing/shared/services/auth/auth.service";
 import {Router} from "@angular/router";
 import {HOME_ROUTE} from "@app-utils/constants";
 import {Utils as U} from "@app-utils/lodash/utils";
@@ -19,19 +19,27 @@ export class LoginComponent implements OnInit, OnDestroy {
   getErrorMsgPwd = getErrorMessagePassword;
   hide = true;
 
-  loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
+  loginForm: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {}
-
-  ngOnInit(): void {
-
+  ) {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+        ]
+      ]
+    });
   }
+
+  ngOnInit(): void { }
 
   login() {
     if (this.loginForm.invalid) return;

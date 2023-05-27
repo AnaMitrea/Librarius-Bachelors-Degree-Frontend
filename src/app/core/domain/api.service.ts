@@ -23,6 +23,7 @@ import {
   ReviewRequestDto,
   SendReviewRequestDto
 } from "@app-shared/models/transfer/book-dto";
+import {RegisterRequestDto} from "@app-modules/landing/shared/models";
 
 @Injectable({
   providedIn: 'root'
@@ -89,11 +90,25 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  registerUser(body: RegisterRequestDto): Observable<any> {
+    return this.http.post(`${API_URL}/account/register`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // --- HOME ---
   // -> EXPLORE
   // http://localhost:5164/api/library/bookshelf
   getBookshelves(): Observable<any> {
     return this.http.get(`${API_URL}/library/bookshelf`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getBookshelfBooks(maxResults: number): Observable<any> {
+    return this.http.get(`${API_URL}/library/book/bookshelves?maxResults=${maxResults}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

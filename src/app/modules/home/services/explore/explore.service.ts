@@ -15,6 +15,10 @@ export class ExploreService {
     return this.apiService.getBookshelves();
   }
 
+  getBookshelvesBooks(maxResults: number): Observable<any> {
+    return this.apiService.getBookshelfBooks((maxResults > 1) ? maxResults : 10);
+  }
+
   getCategoriesByBookshelf(): Observable<any> {
     return this.apiService.getCategoriesByBookshelf();
   }

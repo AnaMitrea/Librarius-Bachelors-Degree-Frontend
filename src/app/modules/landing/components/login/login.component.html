@@ -4,8 +4,8 @@
     <mat-form-field appearance="fill">
       <mat-label>Username</mat-label>
       <input matInput type='text' formControlName='username'>
-      <mat-error *ngIf="loginForm.controls.username.invalid">
-        {{getErrorMsgRequired(loginForm.controls.username)}}
+      <mat-error *ngIf="loginForm.controls['username'].invalid">
+        {{getErrorMsgRequired(loginForm.controls['username'])}}
       </mat-error>
     </mat-form-field>
     <br>
@@ -15,11 +15,11 @@
       <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-      <mat-error *ngIf="loginForm.controls.password.invalid">
-        {{getErrorMsgPwd(loginForm.controls.password)}}
+      <mat-error *ngIf="loginForm.controls['password'].invalid">
+        {{getErrorMsgPwd(loginForm.controls['password'])}}
       </mat-error>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" type="submit">Login</button>
+    <button mat-raised-button color="accent" type="submit">Login</button>
   </form>
 </div>
