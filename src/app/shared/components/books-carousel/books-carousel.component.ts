@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Location } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
 import {Book} from "@app-modules/home/shared/models";
@@ -49,7 +50,7 @@ export class BooksCarouselComponent {
     nav: true
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private location: Location) { }
 
   onHeaderClick() {
     if (!this.clickableHeaderTitle) return;
@@ -62,7 +63,10 @@ export class BooksCarouselComponent {
   }
 
   onAuthorClick(id: number) {
-    this.router.navigate([LIBRARY_AUTHOR_ROUTE, id]).then();
+    // this.router.navigate([LIBRARY_AUTHOR_ROUTE, id]).then();
+    const url = this.router.createUrlTree([LIBRARY_AUTHOR_ROUTE, id]);
+    const fullUrl = this.location.prepareExternalUrl(url.toString());
+    window.open(fullUrl, '_blank');
   }
 
   processName(author: string): string {
