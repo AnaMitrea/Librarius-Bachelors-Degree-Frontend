@@ -32,29 +32,45 @@ export class CategoriesExploreComponent implements OnInit, OnDestroy{
     this.exploreService.getCategoriesBooks(this.maxResults)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: ApiResponseModel<any>) => {
-        this.bookshelfCategories = data.result;
-        console.log(this.bookshelfCategories);
-
-        this.mapExploreCategoryBooksDto();
+        this.bookshelfCategories = this.mapExploreCategoryBooksDto(data.result);
       });
   }
 
-  mapExploreCategoryBooksDto(): any {
-    return this.bookshelfCategories.map((categoryBooksDto: any )=> ({
+  mapExploreCategoryBooksDto(bookshelfCateg: any): ExploreCategoryBooksDto[] {
+    return bookshelfCateg.map((categoryBooksDto: any )=> ({
       ...categoryBooksDto,
       categories: this.mapCategories(categoryBooksDto.categories)
     }));
   }
 
-  private mapCategories(categories: any): any {
+  mapCategories(categories: any): any {
     return categories.map((category: any) => ({
       ...category,
       books: this.mapBooks(category.books)
     }));
   }
 
-  private mapBooks(booksData: any[]): Book[] {
-    return booksData.map((bookData, idx) => mapBookDtoToBook(bookData, idx));
+  mapBooks(booksData: any[]): Book[] {
+    return booksData.map((book, idx) => mapBookDtoToBook(book, idx));
+  }
+
+  scrollToBookshelf(id: number): void {
+    const element = document.getElementById(String(id));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  getSliderTitle(key: string, counter: number) {
+    return `${key} (${counter})`;
+  }
+
+  getHeaderRouteForCategory(id: number) {
+    return `${EXPLORE_CATEGORIES_ROUTE}/${id}`;
+  }
+
+  getHeaderRouteForBookshelf(id: number) {
+    return `${EXPLORE_BOOKSHELVES_ROUTE}/${id}`;
   }
 
   onTabRedirect(path: string) {
@@ -65,5 +81,13 @@ export class CategoriesExploreComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  onCategoryTitleClick(path: string) {
+    this.router.navigate([path]).then();
+  }
+
+  onBookshelfTitleClick(path: string) {
+    this.router.navigate([path]).then();
   }
 }

@@ -39,18 +39,19 @@ export class BookshelvesExploreComponent implements OnInit, OnDestroy {
     this.exploreService.getBookshelvesBooks(this.maxResults)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: ApiResponseModel<any>) => {
-        this.bookshelves = data.result;
-        this.mapBooks();
+        this.bookshelves = this.mapBooks(data.result);
       });
   }
 
-  mapBooks(): void {
-    for (const key in this.bookshelves) {
-      if (this.bookshelves.hasOwnProperty(key)) {
-        const bookshelf = this.bookshelves[key];
-        this.bookshelves[key].books = bookshelf.books.map((book: Book, idx: number) => mapBookDtoToBook(book, idx));
+  mapBooks(bookshelves: any): ExploreBookshelfBooksDto {
+    for (const key in bookshelves) {
+      if (bookshelves.hasOwnProperty(key)) {
+        const bookshelf = bookshelves[key];
+        bookshelves[key].books = bookshelf.books.map((book: Book, idx: number) => mapBookDtoToBook(book, idx));
       }
     }
+
+    return bookshelves;
   }
 
   scrollToBookshelf(id: number): void {

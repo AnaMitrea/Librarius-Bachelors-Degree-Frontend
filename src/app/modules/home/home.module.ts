@@ -23,6 +23,7 @@ import { BookshelvesExploreComponent } from './components/explore/components/boo
 import { CategoriesExploreComponent } from './components/explore/components/categories-explore/categories-explore.component';
 import {BooksCarouselComponent} from "@app-shared/components/books-carousel/books-carousel.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatLineModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatIconModule,
         MatTabsModule,
         MatListModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatLineModule
     ]
 })
 export class HomeModule { }

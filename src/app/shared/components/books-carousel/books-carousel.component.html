@@ -1,4 +1,5 @@
 <div class='header'
+     *ngIf="headerTitle"
      [ngClass]="clickableHeaderTitle ? 'clickable-header' : 'header'"
      (click)="onHeaderClick()">
   <span>

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
 import {Book} from "@app-modules/home/shared/models";
-import {EXPLORE_BOOKSHELVES_ROUTE, LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE} from "@app-utils/constants";
+import {LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE} from "@app-utils/constants";
 import {processAuthorName} from "@app-utils/data-transformers";
 
 @Component({
@@ -12,7 +12,7 @@ import {processAuthorName} from "@app-utils/data-transformers";
 })
 export class BooksCarouselComponent {
   @Input() booksSlides: Book[] = [];
-  @Input() headerTitle: string = '';
+  @Input() headerTitle: string | undefined;
   @Input() headerRoute: string = '';
   @Input() clickableHeaderTitle = false;
   @Input() showTopNumbers = true;

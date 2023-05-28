@@ -5,50 +5,67 @@
     <div class="header-tab"
          fxLayout="row"
          fxLayoutAlign="center none">
-      <div class="tab-title active"
+      <div class="tab-title"
            (click)="onTabRedirect('bookshelves')">
         <span>Bookshelves</span>
       </div>
-      <div class="tab-title"
+      <div class="tab-title active"
            (click)="onTabRedirect('categories')">
         <span>Categories</span>
       </div>
     </div>
 
-    <mat-tab-group class="invisible-tabs">
-      <mat-tab>
-        <div class="menu-list">
-          <mat-list>
-            <mat-list-item
-              *ngFor="let bookshelf of bookshelfCategories">
-              <mat-icon matListItemIcon>collections_bookmark</mat-icon>
-              <div matListItemTitle class="title">{{bookshelf.bookshelfTitle}}</div>
+    <div class="invisible-tabs" *ngIf="bookshelfCategories">
+      <div class="menu-list">
+        <ul>
+          <li *ngFor="let bookshelf of bookshelfCategories">
+            <div class="list-item">
+              <div class="bookshelf-header"
+                   fxLayout="row"
+                   fxLayoutAlign="start center">
+                 <mat-icon class="icon">collections_bookmark</mat-icon>
+                <span class="title">{{bookshelf.bookshelfTitle}}</span>
+              </div>
 
-              <mat-tab-group class="invisible-tabs">
-                <mat-tab>
-                  <div class="menu-sublist">
-                    <mat-list>
-                      <mat-list-item
-                        *ngFor="let category of bookshelf.categories">
-                        <div matListItemTitle class="subtitle">
-                          <span [matTooltip]="category.title">
-                            {{category.title}}
-                          </span>
-                        </div>
-                      </mat-list-item>
-                    </mat-list>
-                  </div>
-                </mat-tab>
-              </mat-tab-group>
-
-            </mat-list-item>
-          </mat-list>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+              <ul class="menu-sublist">
+                <li class="menu-sublist-item"
+                    *ngFor="let category of bookshelf.categories"
+                    (click)="scrollToBookshelf(category.id)"
+                >
+                  <span class="subtitle" [matTooltip]="category.title">{{ category.title }}</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="books">
+  <div class="books" *ngIf="bookshelfCategories">
+    <ng-container *ngFor="let bookshelf of bookshelfCategories">
+        <div class="books-container"
+             *ngFor="let category of bookshelf.categories"
+             [id]="category.id"
+        >
+          <div class="breadcrumbs">
+            <span class="title" (click)="onBookshelfTitleClick(getHeaderRouteForBookshelf(bookshelf.bookshelfId))">
+              {{bookshelf.bookshelfTitle}}
+            </span>
+            <span> > </span>
+            <span class="subtitle"
+                  (click)="onCategoryTitleClick(getHeaderRouteForCategory(category.id))"
+            >
+              {{getSliderTitle(category.title, category.totalBooks)}}
+            </span>
+          </div>
 
+          <app-books-carousel
+            [booksSlides]="category.books"
+            [clickableHeaderTitle]="false"
+            [showTopNumbers]="false"
+          ></app-books-carousel>
+        </div>
+    </ng-container>
   </div>
 </div>
 
