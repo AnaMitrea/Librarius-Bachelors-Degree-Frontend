@@ -61,8 +61,9 @@
     width: 80%;
 
     .books-container {
+      margin: 20px;
       width: 95%;
-      //border: 1px solid black;
+      border-bottom: 1px solid $light1;
     }
   }
 }

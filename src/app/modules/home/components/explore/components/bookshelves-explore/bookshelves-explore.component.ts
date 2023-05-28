@@ -4,7 +4,7 @@ import {EXPLORE_BOOKSHELVES_ROUTE, EXPLORE_CATEGORIES_ROUTE} from "@app-utils/co
 import {Subject, takeUntil} from "rxjs";
 import {ExploreService} from "@app-modules/home/services/explore/explore.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
-import {BookshelfBooksDto, BookshelfDto} from "@app-modules/home/shared/models/bookshelf.dto";
+import {ExploreBookshelfBooksDto, BookshelfDto} from "@app-modules/home/shared/models/explore.dto";
 import {mapBookDtoToBook} from "@app-modules/home/components/home/services/transformers";
 import {Book} from "@app-modules/home/shared/models";
 
@@ -16,7 +16,9 @@ import {Book} from "@app-modules/home/shared/models";
 export class BookshelvesExploreComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   bookshelfMenu!: BookshelfDto[];
-  bookshelves!: BookshelfBooksDto;
+  bookshelves!: ExploreBookshelfBooksDto;
+
+  maxResults = 10;
 
   constructor(
     private router: Router,
@@ -34,7 +36,7 @@ export class BookshelvesExploreComponent implements OnInit, OnDestroy {
         this.bookshelfMenu = data.result;
       });
 
-    this.exploreService.getBookshelvesBooks(10)
+    this.exploreService.getBookshelvesBooks(this.maxResults)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: ApiResponseModel<any>) => {
         this.bookshelves = data.result;
@@ -42,7 +44,7 @@ export class BookshelvesExploreComponent implements OnInit, OnDestroy {
       });
   }
 
-  private mapBooks(): void {
+  mapBooks(): void {
     for (const key in this.bookshelves) {
       if (this.bookshelves.hasOwnProperty(key)) {
         const bookshelf = this.bookshelves[key];
@@ -63,7 +65,6 @@ export class BookshelvesExploreComponent implements OnInit, OnDestroy {
   }
 
   getHeaderRouteForBookshelf(id: number) {
-    //  /home/explore/bookshelves/{id}
     return `${EXPLORE_BOOKSHELVES_ROUTE}/${id}`;
   }
 

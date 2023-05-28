@@ -45,10 +45,24 @@
     }
 
     .menu-list {
-      padding: 0 15px;
 
       .title {
-        //font-size:
+        font-size: 16px;
+      }
+
+      .menu-sublist {
+        .subtitle {
+          font-size: 14px;
+
+          &:hover {
+            font-weight: 500;
+            cursor: pointer;
+          }
+        }
+
+        mat-list {
+          padding: 0 !important;
+        }
       }
     }
   }

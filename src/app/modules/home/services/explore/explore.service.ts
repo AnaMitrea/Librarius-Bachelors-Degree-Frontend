@@ -22,4 +22,8 @@ export class ExploreService {
   getCategoriesByBookshelf(): Observable<any> {
     return this.apiService.getCategoriesByBookshelf();
   }
+
+  getCategoriesBooks(maxResults: number): Observable<any> {
+    return this.apiService.getCategoriesBooks((maxResults > 1) ? maxResults : 10);
+  }
 }

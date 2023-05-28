@@ -7,7 +7,7 @@ export const mapBookDtoToBook = (dto: any, idx: number) => {
     id: U.path(['id'], dto),
     position: `assets/home/top/top-material-${idx + 1}.png`,
     src: `${API_GUTENBERG_URL}${U.path(['coverImageUrl'], dto)}`,
-    alt: "book",
+    alt: 'book',
     title: U.path(['title'], dto),
     author: U.path(['author'], dto)
   }

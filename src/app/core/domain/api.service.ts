@@ -114,6 +114,13 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  getCategoriesBooks(maxResults: number): Observable<any> {
+    return this.http.get(`${API_URL}/library/book/categories?maxResults=${maxResults}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // http://localhost:5164/api/library/bookshelf/categories
   getCategoriesByBookshelf(): Observable<any> {
     return this.http.get(`${API_URL}/library/categories`).pipe(
