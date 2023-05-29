@@ -1,0 +1,21 @@
+@import "styles";
+
+.table-container {
+  margin-top: 40px;
+  height: auto;
+
+  h2 {
+    color: $dark-green;
+    letter-spacing: 2px;
+  }
+
+  .buttons {
+    margin-bottom: 10px;
+  }
+
+  .leaderboard-table {
+    margin-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+

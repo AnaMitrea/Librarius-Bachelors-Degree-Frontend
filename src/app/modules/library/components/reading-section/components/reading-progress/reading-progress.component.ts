@@ -37,7 +37,7 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
 
   @HostListener('window:popstate')
   onWindowPopState() {
-    // alert("on back button");
+    alert("Are you sure you want to close the book?\nTake a moment to reflect on what you've read and savor the knowledge gained.");
     this.saveStoreReadingTime();
     this.saveReadingTimeForBook();
 
@@ -47,7 +47,7 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
   @HostListener('document:visibilitychange', ['$event'])
   onVisibilityChange(event: Event) {
     if (document.hidden) {
-      // alert("on tab change");
+      alert("Are you sure you want to close the book?\nTake a moment to reflect on what you've read and savor the knowledge gained.");
       this.saveStoreReadingTime();
       this.saveReadingTimeForBook();
       return false;

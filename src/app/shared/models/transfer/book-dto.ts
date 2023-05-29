@@ -41,6 +41,10 @@ export interface ReadingTimeDto {
   seconds: number;
 }
 
+export interface BookIdReadingTimeRequestDto {
+  bookId: number;
+}
+
 export interface BookReadingTimeRequestDto {
   bookId: number;
   timeSpent: number;

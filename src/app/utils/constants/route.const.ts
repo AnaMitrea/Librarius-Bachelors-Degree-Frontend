@@ -25,6 +25,14 @@ export const EXPLORE_CATEGORIES_ROUTE = '/home/explore/categories';
 // --- CHALLENGES ---
 export const CHALLENGES_ROUTE = '/home/challenges';
 
+// --- LEADERBOARD ---
+export const LEADERBOARDS_ROUTE = '/home/leaderboards';
+
+export const LEADERBOARDS_GLOBAL_MINUTES_ROUTE = '/home/leaderboards/global/minutes';
+export const LEADERBOARDS_GLOBAL_BOOKS_ROUTE = '/home/leaderboards/global/books';
+export const LEADERBOARDS_GLOBAL_POINTS_ROUTE = '/home/leaderboards/global/points';
+export const LEADERBOARDS_FRIENDS_ROUTE = '/home/leaderboards/friends';
+
 
 // --- Library ---
 export const LIBRARY_ROUTE = '/library';

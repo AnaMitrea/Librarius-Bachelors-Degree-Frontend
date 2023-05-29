@@ -5,6 +5,7 @@ import {
   EXPLORE_ROUTE,
   HOME_ROUTE,
   LANDING_ROUTE,
+  LEADERBOARDS_ROUTE,
   USER_ROUTE,
   USER_SETTINGS_ROUTE
 } from "@app-utils/constants";
@@ -22,6 +23,7 @@ export class TopBarComponent implements OnInit, OnChanges {
   protected readonly HOME_ROUTE = HOME_ROUTE;
   protected readonly EXPLORE_ROUTE = EXPLORE_ROUTE;
   protected readonly CHALLENGES_ROUTE = CHALLENGES_ROUTE;
+  protected readonly LEADERBOARDS_ROUTE = LEADERBOARDS_ROUTE;
   private isFullscreen = false;
 
   constructor(private router: Router, private authService: AuthService) {}

@@ -8,6 +8,22 @@ import { TrophiesComponent } from "@app-modules/home/components/challenges/compo
 import {ChallengesContainerComponent} from "@app-modules/home/components/challenges/challenges-container.component";
 import {BookshelvesExploreComponent} from "@app-modules/home/components/explore/components/bookshelves-explore/bookshelves-explore.component";
 import {CategoriesExploreComponent} from "@app-modules/home/components/explore/components/categories-explore/categories-explore.component";
+import {LeaderboardContainerComponent} from "@app-modules/home/components/leaderboard/leaderboard-container.component";
+import {
+  GlobalLeaderboardComponent
+} from "@app-modules/home/components/leaderboard/components/global-leaderboard/global-leaderboard.component";
+import {
+  FriendsLeaderboardComponent
+} from "@app-modules/home/components/leaderboard/components/friends-leaderboard/friends-leaderboard.component";
+import {
+  BooksGlobalLeaderboardComponent
+} from "@app-modules/home/components/leaderboard/components/global-leaderboard/components/books-global-leaderboard/books-global-leaderboard.component";
+import {
+  PointsGlobalLeaderboardComponent
+} from "@app-modules/home/components/leaderboard/components/global-leaderboard/components/points-global-leaderboard/points-global-leaderboard.component";
+import {
+  MinutesGlobalLeaderboardComponent
+} from "@app-modules/home/components/leaderboard/components/global-leaderboard/components/minutes-global-leaderboard/minutes-global-leaderboard.component";
 
 const routes: Routes = [
   {
@@ -49,6 +65,44 @@ const routes: Routes = [
             path: ':category',
             component: TrophiesComponent
           }
+        ]
+      },
+      {
+        path: 'leaderboards',
+        component: LeaderboardContainerComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'global',
+            pathMatch: 'full'
+          },
+          {
+            path: 'global',
+            component: GlobalLeaderboardComponent,
+            children: [
+              {
+                path: '',
+                redirectTo: 'minutes',
+                pathMatch: 'full'
+              },
+              {
+                path: 'minutes',
+                component: MinutesGlobalLeaderboardComponent
+              },
+              {
+                path: 'books',
+                component: BooksGlobalLeaderboardComponent
+              },
+              {
+                path: 'points',
+                component: PointsGlobalLeaderboardComponent
+              },
+            ]
+          },
+          {
+            path: 'friends',
+            component: FriendsLeaderboardComponent
+          },
         ]
       }
     ]

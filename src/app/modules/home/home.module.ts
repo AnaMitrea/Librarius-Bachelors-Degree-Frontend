@@ -24,6 +24,18 @@ import { CategoriesExploreComponent } from './components/explore/components/cate
 import {BooksCarouselComponent} from "@app-shared/components/books-carousel/books-carousel.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatLineModule} from "@angular/material/core";
+import {LeaderboardContainerComponent} from "@app-modules/home/components/leaderboard/leaderboard-container.component";
+import { FriendsLeaderboardComponent } from './components/leaderboard/components/friends-leaderboard/friends-leaderboard.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatTableModule} from "@angular/material/table";
+import {
+  GlobalLeaderboardComponent
+} from "@app-modules/home/components/leaderboard/components/global-leaderboard/global-leaderboard.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { BooksGlobalLeaderboardComponent } from './components/leaderboard/components/global-leaderboard/components/books-global-leaderboard/books-global-leaderboard.component';
+import { PointsGlobalLeaderboardComponent } from './components/leaderboard/components/global-leaderboard/components/points-global-leaderboard/points-global-leaderboard.component';
+import { MinutesGlobalLeaderboardComponent } from './components/leaderboard/components/global-leaderboard/components/minutes-global-leaderboard/minutes-global-leaderboard.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -37,22 +49,32 @@ import {MatLineModule} from "@angular/material/core";
     TrophiesComponent,
     ChallengesContainerComponent,
     BookshelvesExploreComponent,
-    CategoriesExploreComponent
+    CategoriesExploreComponent,
+    LeaderboardContainerComponent,
+    FriendsLeaderboardComponent,
+    GlobalLeaderboardComponent,
+    BooksGlobalLeaderboardComponent,
+    PointsGlobalLeaderboardComponent,
+    MinutesGlobalLeaderboardComponent
   ],
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        SharedModule,
-        CarouselModule,
-        FlexModule,
-        MatCardModule,
-        MatChipsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatTabsModule,
-        MatListModule,
-        MatTooltipModule,
-        MatLineModule
-    ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    SharedModule,
+    CarouselModule,
+    FlexModule,
+    MatCardModule,
+    MatChipsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTabsModule,
+    MatListModule,
+    MatTooltipModule,
+    MatLineModule,
+    MatInputModule,
+    MatTableModule,
+    MatButtonToggleModule,
+    MatSortModule
+  ]
 })
 export class HomeModule { }

@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
 import {BookService} from "@app-modules/library/services/book/book.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {Subject, takeUntil} from "rxjs";
-import {TimeTrackerService} from "@app-modules/library/services/time-tracker/time-tracker.service";
 import {MatDialog} from "@angular/material/dialog";
 import {
   BookmarkDialogComponent
@@ -88,7 +87,6 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
 
   @HostListener('document:visibilitychange', ['$event'])
   onVisibilityChange(event: Event) {
-
     if (document.hidden) {
       // alert("on tab change");
       return false;

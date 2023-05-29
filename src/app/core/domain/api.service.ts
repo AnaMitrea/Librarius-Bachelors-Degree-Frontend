@@ -18,6 +18,7 @@ import {
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
 import {
+  BookIdReadingTimeRequestDto,
   BookReadingTimeRequestDto,
   LikeReviewRequestDto,
   ReviewRequestDto,
@@ -152,6 +153,28 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  // -> LEADERBOARDS
+  getAllUsersRankByMinutesDesc(): Observable<any> {
+    return this.http.get(`${API_URL}/library/user/all/minutes-logged`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getAllUsersRankByNumberOfBooksDesc(): Observable<any> {
+    return this.http.get(`${API_URL}/library/user/all/number-of-books`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getAllUsersRankByPointsDesc(): Observable<any> {
+    return this.http.get(`${API_URL}/user/all/points`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // --- LIBRARY ---
   // Author
   getAuthorInformation(authorId: number): Observable<any> {
@@ -231,8 +254,8 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  getUserAllReadingTimeSpentForBooks(): Observable<any> {
-    return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent`).pipe(
+  getUserReadingTimeSpentByBookId(body: BookIdReadingTimeRequestDto): Observable<any> {
+    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
