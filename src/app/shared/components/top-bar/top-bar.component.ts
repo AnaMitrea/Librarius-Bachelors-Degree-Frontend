@@ -10,6 +10,7 @@ import {
   USER_SETTINGS_ROUTE
 } from "@app-utils/constants";
 import {AuthService} from "@app-modules/landing/shared/services/auth/auth.service";
+import {UserStoreService} from "@app-shared/services/store/user-store.service";
 
 @Component({
   selector: 'app-top-bar',
@@ -26,7 +27,11 @@ export class TopBarComponent implements OnInit, OnChanges {
   protected readonly LEADERBOARDS_ROUTE = LEADERBOARDS_ROUTE;
   private isFullscreen = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private sharedUserService: UserStoreService
+  ) {}
 
   @HostListener('document:fullscreenchange', ['$event'])
   onFullscreenChange(event: Event) {
@@ -72,9 +77,9 @@ export class TopBarComponent implements OnInit, OnChanges {
   }
 
   onLogoutCLick() {
-    // todo clear state
-
+    this.sharedUserService.resetStoreState({});
     this.authService.logout();
+
     this.router.navigate([LANDING_ROUTE]);
   }
 

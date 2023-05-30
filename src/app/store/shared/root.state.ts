@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
-import {SetEarnedTrophiesAction, SetReadingTimeForBook, SetUserInformation} from './root.actions';
+import {ResetStoreState, SetEarnedTrophiesAction, SetReadingTimeForBook, SetUserInformation} from './root.actions';
 import { Trophies, UserActivity, UserStats } from "@app-store/models/shared-user.model";
 import {updateReadingTimeForBook, updateUserInfo} from "@app-store/utils";
 
@@ -48,5 +48,10 @@ export class RootState implements NgxsOnInit{
   @Action(SetReadingTimeForBook)
   updateReadingTimeForBookId(ctx : StateContext<SharedUserStateModel>, { payload }: SetReadingTimeForBook) {
     ctx.setState(updateReadingTimeForBook(payload));
+  }
+
+  @Action(ResetStoreState)
+  resetStoreState(ctx : StateContext<SharedUserStateModel>, { payload }: ResetStoreState) {
+    ctx.setState(payload);
   }
 }

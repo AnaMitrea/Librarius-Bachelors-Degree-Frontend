@@ -17,6 +17,7 @@ export const updateUserInfo = (payload: any): StateOperator<SharedUserStateModel
     stats: patch<SharedUserStateModel['stats']>({
       points: payload.points,
       level: payload.level
-    })
+    }),
+    isDataFetched: true
   })
 };

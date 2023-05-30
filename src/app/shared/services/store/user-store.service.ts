@@ -36,4 +36,9 @@ export class UserStoreService {
   public updateReadingTimeForBookId(payload: any) {
     return new Actions.SetReadingTimeForBook(payload);
   }
+
+  @Dispatch()
+  public resetStoreState(payload: any) {
+    return new Actions.ResetStoreState(payload);
+  }
 }

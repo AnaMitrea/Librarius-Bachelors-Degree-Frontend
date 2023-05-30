@@ -14,3 +14,8 @@ export class SetUserInformation {
   static readonly type = '[Shared] Set User information';
   constructor(public payload: any) { }
 }
+
+export class ResetStoreState {
+  static readonly type = '[Shared] ResetStoreState';
+  constructor(public payload: any) { }
+}

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {TOKEN_NAME_LOCAL_STORAGE} from "@app-core/constants";
+import {SHARED_USER_STATE_LOCAL_STORAGE_KEY, TOKEN_NAME_LOCAL_STORAGE} from "@app-core/constants";
 import {BehaviorSubject, tap} from "rxjs";
 import {ApiService} from "@app-core/domain/api.service";
 import jwt_decode from "jwt-decode";
@@ -12,6 +12,7 @@ import {UserStoreService} from "@app-shared/services/store/user-store.service";
 })
 export class AuthService {
   private readonly TOKEN_NAME = TOKEN_NAME_LOCAL_STORAGE;
+  private readonly STORE_KEY = SHARED_USER_STATE_LOCAL_STORAGE_KEY;
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
@@ -58,6 +59,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.TOKEN_NAME);
+    localStorage.removeItem(this.STORE_KEY);
     this._isLoggedIn$.next(false);
   }
 }
