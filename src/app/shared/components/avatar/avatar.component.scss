@@ -1,0 +1,27 @@
+@import "styles";
+
+.avatar-holder {
+  height: 40px;
+  float: left;
+  width: 40px;
+  padding: 10px 5px;
+
+  .avatar {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+    border: solid 1px #fff;
+
+    .avatar-text {
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      line-height: 100%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+}

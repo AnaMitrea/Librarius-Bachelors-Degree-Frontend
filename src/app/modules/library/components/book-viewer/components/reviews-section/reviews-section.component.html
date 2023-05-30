@@ -8,11 +8,8 @@
        fxLayoutAlign="start none"
        fxLayoutGap="20px"
   >
-    <div class="avatar-holder">
-      <div [ngClass]="['avatar', 'bg_color_1']">
-        <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{getFirstLetter('Ana')}}</div>
-      </div>
-    </div>
+<!--    TODO get username from state-->
+    <app-avatar [userNameInitial]="getFirstLetter('Ana')"></app-avatar>
 
     <div class="review-comment-box"
          fxLayout="column"
@@ -58,11 +55,7 @@
         fxLayoutGap="20px"
          *ngFor="let review of reviews"
     >
-      <div class="avatar-holder">
-        <div [ngClass]="['avatar', 'bg_color_2']">
-          <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{review.user.nameInitial}}</div>
-        </div>
-      </div>
+      <app-avatar [userNameInitial]="review.user.nameInitial"></app-avatar>
 
       <div class="review-details">
         <div>

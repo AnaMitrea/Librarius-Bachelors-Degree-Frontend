@@ -1,28 +1,30 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
-import {SetEarnedTrophiesAction, SetReadingTimeForBook} from './root.actions';
+import {SetEarnedTrophiesAction, SetReadingTimeForBook, SetUserInformation} from './root.actions';
 import { Trophies, UserActivity, UserStats } from "@app-store/models/shared-user.model";
-import {updateReadingTimeForBook} from "@app-store/utils";
+import {updateReadingTimeForBook, updateUserInfo} from "@app-store/utils";
 
 export interface SharedUserStateModel {
   username: string;
   stats: UserStats;
   activity: UserActivity;
   earnedTrophies: Trophies;
+  isDataFetched: boolean;
 }
 
 const defaults: SharedUserStateModel = {
-  username: 'User',
+  username: '',
   stats: {
     points: 0,
-    level: 'Beginner'
+    level: ''
   },
   activity: {
     bookTimeTracker: {},
     currentStreak: 0,
     longestStreak: 0
   },
-  earnedTrophies: {}
+  earnedTrophies: {},
+  isDataFetched: false
 };
 
 @State<SharedUserStateModel>({
@@ -31,7 +33,12 @@ const defaults: SharedUserStateModel = {
 })
 @Injectable()
 export class RootState implements NgxsOnInit{
-  ngxsOnInit(ctx: StateContext<any>): void {}
+  ngxsOnInit(ctx: StateContext<SharedUserStateModel>): void {}
+
+  @Action(SetUserInformation)
+  setUserInformation(ctx : StateContext<SharedUserStateModel>, { payload }: SetUserInformation) {
+    ctx.setState(updateUserInfo(payload));
+  }
 
   @Action(SetEarnedTrophiesAction)
   setEarnedTrophies({ patchState }: StateContext<SharedUserStateModel>, { payload }: SetEarnedTrophiesAction) {

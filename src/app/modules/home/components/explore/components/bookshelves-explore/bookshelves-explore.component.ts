@@ -5,7 +5,7 @@ import {Subject, takeUntil} from "rxjs";
 import {ExploreService} from "@app-modules/home/services/explore/explore.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {ExploreBookshelfBooksDto, BookshelfDto} from "@app-modules/home/shared/models/explore.dto";
-import {mapBookDtoToBook} from "@app-modules/home/components/home/services/transformers";
+import {mapBookDtoToBook} from "src/app/modules/home/components/home/shared/transformers";
 import {Book} from "@app-modules/home/shared/models";
 
 @Component({

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Book } from '../../../shared/models';
-import { mapBookDtoToBook } from './transformers';
+import { Book } from '../../../../shared/models';
+import { mapBookDtoToBook } from '../../shared/transformers';
 import { ApiService } from "@app-core/domain/api.service";
 
 @Injectable({

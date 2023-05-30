@@ -6,7 +6,7 @@ import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import { EXPLORE_BOOKSHELVES_ROUTE, EXPLORE_CATEGORIES_ROUTE } from "@app-utils/constants";
 import {ExploreCategoryBooksDto} from "@app-modules/home/shared/models/explore.dto";
 import {Book} from "@app-modules/home/shared/models";
-import {mapBookDtoToBook} from "@app-modules/home/components/home/services/transformers";
+import {mapBookDtoToBook} from "src/app/modules/home/components/home/shared/transformers";
 
 @Component({
   selector: 'app-categories-explore',

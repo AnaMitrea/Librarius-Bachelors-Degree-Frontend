@@ -99,6 +99,13 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // --- HOME ---
+  getReadingFeedBooks(): Observable<any> {
+    return this.http.get(`${this.API_LIBRARY_BASE_URL}/user/reading-feed`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // -> EXPLORE
   // http://localhost:5164/api/library/bookshelf
   getBookshelves(): Observable<any> {
@@ -311,9 +318,9 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // --- USER ---
-  // http://localhost:5164/api/user
+  // http://localhost:5164/api/user/information
   getUserInformation(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_ROUTE}`).pipe(
+    return this.http.get(`${API_URL}${USER_ROUTE}/information`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Book } from '../../../../shared/models';
 import { NOW, WEEK } from '@app-utils/constants';
-import { TrendingService } from '@app-modules/home/components/home/services/trending.service';
+import { TrendingService } from '@app-modules/home/components/home/services/trending/trending.service';
 
 @Component({
   selector: 'app-trending-section',

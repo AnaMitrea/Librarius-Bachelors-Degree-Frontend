@@ -9,4 +9,14 @@ export const updateReadingTimeForBook = (payload: any): StateOperator<SharedUser
       })
     })
   })
-}
+};
+
+export const updateUserInfo = (payload: any): StateOperator<SharedUserStateModel> => {
+  return patch<SharedUserStateModel>({
+    username: payload.username,
+    stats: patch<SharedUserStateModel['stats']>({
+      points: payload.points,
+      level: payload.level
+    })
+  })
+};

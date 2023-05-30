@@ -115,19 +115,21 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.disableStatesAfterSubmit();
+      if (result) {
+        this.disableStatesAfterSubmit();
 
-      const body: SendReviewRequestDto = {
-        reviewContent: result.reviewContent,
-        bookId: result.bookInformation.id,
-        rating: result.overallRating
-      };
+        const body: SendReviewRequestDto = {
+          reviewContent: result.reviewContent,
+          bookId: result.bookInformation.id,
+          rating: result.overallRating
+        };
 
-      this.bookService.setReview(body)
-        .pipe(take(1))
-        .subscribe((data: ApiResponseModel<any>) => {
-          this.initAllReviewsSubscription();
-        });
+        this.bookService.setReview(body)
+          .pipe(take(1))
+          .subscribe((data: ApiResponseModel<any>) => {
+            this.initAllReviewsSubscription();
+          });
+      }
     });
   }
 

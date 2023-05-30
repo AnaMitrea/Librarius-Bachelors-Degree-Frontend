@@ -9,3 +9,8 @@ export class SetReadingTimeForBook {
   static readonly type = '[Shared] Reading time tracker';
   constructor(public payload: any) { }
 }
+
+export class SetUserInformation {
+  static readonly type = '[Shared] Set User information';
+  constructor(public payload: any) { }
+}

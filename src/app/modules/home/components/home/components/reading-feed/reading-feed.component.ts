@@ -1,116 +1,53 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {ReadingFeedService} from "@app-modules/home/components/home/services/reading-feed/reading-feed.service";
+import {Subject, takeUntil} from "rxjs";
+import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
+import {UserReadingFeed} from "@app-shared/models/transfer/user-dto";
+import {LIBRARY_BOOK_ROUTE} from "@app-utils/constants";
 
 @Component({
   selector: 'app-reading-feed',
   templateUrl: './reading-feed.component.html',
-  styleUrls: ['./reading-feed.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./reading-feed.component.scss']
 })
-export class ReadingFeedComponent implements OnInit{
-  users = [
-    {
-      username: 'Ana',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Maria',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Andrei',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Mihnea',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Ana',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Maria',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Andrei',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Mihnea',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Ana',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Maria',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Andrei',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    },
-    {
-      username: 'Mihnea',
-      book: {
-        title: 'Book',
-        url: ''
-      }
-    }
-  ]
+export class ReadingFeedComponent implements OnInit, OnDestroy{
+  private destroy$ = new Subject<void>();
 
-  constructor(private router: Router) {}
+  users!: UserReadingFeed[];
+
+  constructor(
+    private router: Router,
+    private readingFeedService: ReadingFeedService
+  ) {}
 
   ngOnInit(): void {
-
+    this.initSubscriptions();
   }
 
-  getBackgroundColor(): string {
-    const randomNumber = Math.floor(Math.random() * 9) + 1;
-    return `bg_color_${randomNumber}`;
-  }
+  initSubscriptions() {
+    this.readingFeedService.getReadingFeedBooks()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: ApiResponseModel<any>) => {
 
-  getFirstLetter(text: string): string {
-    return text.substring(0, 1);
+        this.users = data.result.map((item: any) => ({
+          username: item.username,
+          nameInitial: item.nameInitial,
+          book: {
+            id: item.book.id,
+            title: item.book.title,
+            url: `${LIBRARY_BOOK_ROUTE}/${item.book.id}`
+          }
+        }));
+      });
   }
 
   onBookTitleClick(url: string) {
     this.router.navigateByUrl(url);
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

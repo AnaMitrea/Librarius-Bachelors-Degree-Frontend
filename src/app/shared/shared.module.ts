@@ -10,6 +10,7 @@ import { TopBarComponent } from './components';
 import { RatingComponent } from './components/rating/rating.component';
 import { BookCategoryPipe } from './pipes/book-category-pipe';
 import {MatMenuModule} from "@angular/material/menu";
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 @NgModule({
     imports: [
@@ -25,12 +26,14 @@ import {MatMenuModule} from "@angular/material/menu";
   declarations: [
     TopBarComponent,
     RatingComponent,
-    BookCategoryPipe
+    BookCategoryPipe,
+    AvatarComponent
   ],
-  exports: [
-    TopBarComponent,
-    RatingComponent,
-    BookCategoryPipe
-  ]
+    exports: [
+        TopBarComponent,
+        RatingComponent,
+        BookCategoryPipe,
+        AvatarComponent
+    ]
 })
 export class SharedModule { }
