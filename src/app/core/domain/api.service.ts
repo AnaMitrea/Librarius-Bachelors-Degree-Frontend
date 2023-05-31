@@ -275,6 +275,13 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  searchBooksAndAuthorsByFilter(body: any): Observable<any> {
+    return this.http.post(`${this.API_LIBRARY_BASE_URL}/searchbar`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   getBookData(id: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/${id}`).pipe(
       this.handleHttpError(),

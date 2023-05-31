@@ -14,6 +14,15 @@ import {
 export class BookService {
   constructor(private apiService: ApiService) {}
 
+  searchBooksAndAuthorsByFilter(filter: string): Observable<any> {
+    const body = {
+      searchBy: filter,
+      maxResults: 5
+    };
+
+    return this.apiService.searchBooksAndAuthorsByFilter(body);
+  }
+
   getBookData(id: string): Observable<any> {
     return this.apiService.getBookData(id);
   }

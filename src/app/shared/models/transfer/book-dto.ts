@@ -14,6 +14,14 @@ export interface BookDto {
   link: string;
 }
 
+export interface MinimalBookDto {
+  id: string;
+  author: AuthorDto;
+  title: string;
+  coverImageUrl: string;
+  link: string;
+}
+
 export interface CompletedBookRequestDto {
   bookId: string;
   timeSpent: number;

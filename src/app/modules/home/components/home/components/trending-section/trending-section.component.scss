@@ -11,3 +11,13 @@
     width: 23%;
   }
 }
+
+@media only screen and (max-width: 913px) {
+  .reading-feed {
+    display: none;
+  }
+
+  .books-carousel {
+    width: 95% !important;
+  }
+}
