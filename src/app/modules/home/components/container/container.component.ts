@@ -19,9 +19,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (this.sharedUserStoreService.isDataFetched === false) {
-      this.initUserSubscription();
-    }
+    this.initUserSubscription();
   }
 
   initUserSubscription() {
@@ -30,6 +28,14 @@ export class ContainerComponent implements OnInit, OnDestroy {
       .subscribe((data: ApiResponseModel<UserAppModel>) => {
         if(data) {
           this.sharedUserStoreService.setUserInformation(data.result)
+        }
+      });
+
+    this.userAppService.getUserBooksReadingTracker()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: ApiResponseModel<UserAppModel>) => {
+        if(data) {
+          this.sharedUserStoreService.updateReadingTimeForBook(data.result)
         }
       });
   }

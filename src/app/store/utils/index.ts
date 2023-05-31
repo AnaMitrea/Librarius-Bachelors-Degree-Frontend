@@ -18,6 +18,10 @@ export const updateUserInfo = (payload: any): StateOperator<SharedUserStateModel
       points: payload.points,
       level: payload.level
     }),
+    activity: patch<SharedUserStateModel['activity']>({
+      currentStreak: payload.currentStreak,
+      longestStreak: payload.longestStreak
+    }),
     isDataFetched: true
   })
 };

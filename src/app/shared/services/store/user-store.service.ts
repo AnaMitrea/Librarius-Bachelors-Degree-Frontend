@@ -8,17 +8,26 @@ import {Trophies} from "@app-store/models/shared-user.model";
   providedIn: 'root'
 })
 export class UserStoreService {
+
+  // @ts-ignore
+  @SelectSnapshot(({ sharedUserState }) => sharedUserState?.username)
+  public username: any;
+
+  // @ts-ignore
+  @SelectSnapshot(({ sharedUserState }) => sharedUserState?.stats)
+  public stats: any;
+
   // @ts-ignore
   @SelectSnapshot(({ sharedUserState }) => sharedUserState?.earnedTrophies)
   public userEarnedTrophies: any;
 
   // @ts-ignore
-  @SelectSnapshot(({ sharedUserState }) => sharedUserState?.activity.bookTimeTracker)
-  public bookTimeTracker: any;
-
-  // @ts-ignore
   @SelectSnapshot(({ sharedUserState }) => sharedUserState?.isDataFetched)
   public isDataFetched: any;
+
+  // @ts-ignore
+  @SelectSnapshot(({ sharedUserState }) => sharedUserState?.activity)
+  public activity: any;
 
   constructor() { }
 
@@ -33,7 +42,7 @@ export class UserStoreService {
   }
 
   @Dispatch()
-  public updateReadingTimeForBookId(payload: any) {
+  public updateReadingTimeForBook(payload: any) {
     return new Actions.SetReadingTimeForBook(payload);
   }
 

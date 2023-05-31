@@ -12,4 +12,16 @@ export class UserAppService {
   getUserInformation(): Observable<any> {
     return this.apiService.getUserInformation();
   }
+
+  getUserBooksReadingTracker(): Observable<any> {
+    return this.apiService.getUserBooksReadingTracker();
+  }
+
+  getUserStreaks(): Observable<any> {
+    return this.apiService.getUserStreaks();
+  }
+
+  getUserActivity(): Observable<any> {
+    return this.apiService.getUserActivity();
+  }
 }

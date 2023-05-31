@@ -1,5 +1,4 @@
 <!-- SCREEN VIEW -->
-
 <mat-toolbar [ngClass]="hasSideNavBar ? 'hasNavBar' : ''"
              fxShow="true" fxShow.lt-md="false"
             fxLayout="row" fxLayoutAlign="space-between center"
@@ -27,7 +26,7 @@
   <div fxLayout="row" fxLayoutAlign="start center">
 
     <form class="search-bar" (submit)="onSubmitPreventRefresh($event)">
-      <mat-form-field class="search-bar-field"
+      <mat-form-field class="search-bar-custom"
                       appearance="outline"
                       color="accent"
                       subscriptSizing="dynamic">

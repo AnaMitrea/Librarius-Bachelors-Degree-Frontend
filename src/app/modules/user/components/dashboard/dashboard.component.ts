@@ -7,6 +7,8 @@ import {Utils as U} from "@app-utils/lodash/utils";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {DashboardUserInformationDto} from "@app-modules/user/components/dashboard/models";
 import {Subject, Subscription, takeUntil} from "rxjs";
+import {UserStoreService} from "@app-shared/services/store/user-store.service";
+import {UserAppService} from "@app-shared/services/app/user/user-app.service";
 
 @Component({
   selector: 'user-dashboard',
@@ -33,22 +35,29 @@ export class DashboardComponent implements OnInit, OnDestroy{
 
   constructor(
     public router: Router,
-    private dashboardService: UserDashboardService
+    private dashboardService: UserDashboardService,
+    private sharedUserStoreService: UserStoreService,
+    private userService: UserAppService
   ) {}
 
   ngOnInit(): void {
-    this.dashboardService.getUserInformation()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data: ApiResponseModel<any>) => {
-      this.userInformation = (U.path(['result'], data)) as DashboardUserInformationDto;
-    })
-
-    // this.dashboardService.getUserActivity()
+    this.initUserFromState();
+    // this.userService.getUserActivity()
     // .pipe(takeUntil(this.destroy$))
     // .subscribe((data: ApiResponseModel) => {
     //   this.userActivityDates = U.path(['result', ''], data);
     // });
     this.userActivityDates = this.datesToHighlight;
+  }
+
+  initUserFromState() {
+    this.userInformation = {
+      username: this.sharedUserStoreService.username,
+      currentStreak: this.sharedUserStoreService.activity.currentStreak,
+      longestStreak: this.sharedUserStoreService.activity.longestStreak,
+      points: this.sharedUserStoreService.stats.points,
+      level: this.sharedUserStoreService.stats.level
+    };
   }
 
   setStreakDateClass() {

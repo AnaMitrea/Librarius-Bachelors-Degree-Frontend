@@ -9,15 +9,5 @@ export class UserDashboardService {
 
   constructor(private apiService: ApiService) {}
 
-  getUserInformation(): Observable<any> {
-    return this.apiService.getUserInformation();
-  }
 
-  getUserStreaks(): Observable<any> {
-    return this.apiService.getUserStreaks();
-  }
-
-  getUserActivity(): Observable<any> {
-    return this.apiService.getUserActivity();
-  }
 }

@@ -25,7 +25,7 @@ export class TimeTrackerService {
   }
 
   setInitialTimeValue(bookId: string) {
-    const bookTrack = this.userStoreService.bookTimeTracker[bookId];
+    const bookTrack = this.userStoreService.activity.bookTimeTracker[bookId];
     if (bookTrack) {
       this.timeSpentBook = bookTrack.timeSpentReading;
     } else {
@@ -35,7 +35,7 @@ export class TimeTrackerService {
   }
 
   updateReadingTimeForBook(bookId: string) {
-    this.userStoreService.updateReadingTimeForBookId({
+    this.userStoreService.updateReadingTimeForBook({
       [bookId]: {
         timeSpentReading: this.timeSpentBook
       }
@@ -43,6 +43,6 @@ export class TimeTrackerService {
   }
 
   getTimeSpentOnBook() {
-    return this.timeSpentBook;
+    return this.timeSpentBook ?? 0;
   }
 }

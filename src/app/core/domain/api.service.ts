@@ -183,6 +183,14 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // --- LIBRARY ---
+  // READING TRACKER MINUTES SPENT
+  getUserBooksReadingTracker(): Observable<any> {
+    return this.http.get(`${this.API_LIBRARY_BASE_URL}/user/reading-tracker`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // Author
   getAuthorInformation(authorId: number): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BASE_URL}/author/${authorId}`).pipe(
@@ -281,6 +289,7 @@ export class ApiService extends HttpServiceBaseService {
       this.handleErrorForToaster()
     );
   }
+
 
   getBookData(id: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/${id}`).pipe(

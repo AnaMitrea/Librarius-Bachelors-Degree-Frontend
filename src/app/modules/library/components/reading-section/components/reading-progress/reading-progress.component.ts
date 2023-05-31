@@ -95,8 +95,6 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
     this.bookService.saveReadingTimeForBook(body)
       .pipe(take(1))
       .subscribe((data: ApiResponseModel<any>) => {
-        console.log("saveReadingTimeForBook")
-        console.log(data);
       });
   }
 
