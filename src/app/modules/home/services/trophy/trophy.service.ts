@@ -30,4 +30,12 @@ export class TrophyService {
   getUserInProgressTrophies(): Observable<any> {
     return this.apiService.getUserInProgressTrophies();
   }
+
+  joinChallenge(id: number): Observable<any>  {
+    return this.apiService.joinTrophyChallenge(id);
+  }
+
+  leaveChallenge(id: number): Observable<any>  {
+    return this.apiService.leaveTrophyChallenge(id);
+  }
 }

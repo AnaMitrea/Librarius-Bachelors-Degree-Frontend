@@ -138,6 +138,20 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // -> CHALLENGES
+  joinTrophyChallenge(id: number): Observable<any> {
+    return this.http.get(`${this.API_TROPHY_BASE_URL}/join/${id}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  leaveTrophyChallenge(id: number): Observable<any> {
+    return this.http.get(`${this.API_TROPHY_BASE_URL}/leave/${id}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // http://localhost:5164/api/trophy/challenges?category=...&limit=...
   getTrophiesByCategory(category: string, limit = false): Observable<any> {
     return this.http.get(`${this.API_TROPHY_BASE_URL}/challenges?category=${category}&limit=${limit}`).pipe(
@@ -363,7 +377,7 @@ export class ApiService extends HttpServiceBaseService {
       this.handleErrorForToaster()
     );
   }
-  
+
   // http://localhost:5164/api/user/dashboard/overview/books
   getUserOverviewBooks(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/overview/books`).pipe(

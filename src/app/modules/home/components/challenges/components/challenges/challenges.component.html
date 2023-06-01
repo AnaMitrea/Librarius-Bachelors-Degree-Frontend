@@ -43,8 +43,10 @@
            fxLayoutGap="10px"
            *ngFor="let trophy of (challenges[categoryTitle].trophies)"
       >
-        <img [ngClass]="true ? 'grey-border' : 'green-border'" [src]=trophy.imageSrcPath alt="badge">
-
+        <img [ngClass]="trophy.isWon ? 'green-border' : 'grey-border'" [src]=trophy.imageSrcPath alt="badge">
+        <span class="green-text status">
+      {{ trophy.isWon ? "Completed" : ""}}
+    </span>
         <div class="information"
              fxLayout="column"
              fxLayoutAlign="space-between center"
@@ -56,9 +58,20 @@
 
         <button mat-stroked-button
                 color="primary"
-                [disabled]="!true"
-                (click)="onJoinChallengeClick(trophy.id)"
-        >Join Challenge</button>
+                *ngIf="!isChallengeJoined(trophy.id)"
+                [disabled]="trophy.isWon"
+                (click)="toggleJoinChallenge(trophy.id)"
+        >{{ trophy.isWon ? "Challenge won" : "Join Challenge"}}</button>
+
+        <button mat-stroked-button
+                color="warn"
+                *ngIf="isChallengeJoined(trophy.id)"
+                [ngClass]="{'joined': isChallengeJoined(trophy.id)}"
+                title="Leave Challenge"
+                (click)="toggleJoinChallenge(trophy.id)"
+        >
+          Leave Challenge
+        </button>
       </div>
     </div>
   </div>

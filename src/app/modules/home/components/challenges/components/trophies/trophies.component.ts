@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
 import {TrophyService} from "@app-modules/home/services/trophy/trophy.service";
 import {TrophyChallengeModel} from "@app-modules/home/shared/models/trophy-challenge.model";
 import {ActivatedRoute} from "@angular/router";
 import {Utils as U} from "@app-utils/lodash/utils";
 import {take} from "rxjs";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
+import {UserStoreService} from "@app-store/services/user-store.service";
 
 @Component({
   selector: 'app-trophies',
@@ -15,13 +15,12 @@ import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 export class TrophiesComponent implements OnInit{
   trophies: TrophyChallengeModel[] = [];
   categoryTitle = '';
-
-  joined: any[] = [];
+  joined: number[] = [];
 
   constructor(
     private trophyService: TrophyService,
-    private route: ActivatedRoute,
-    private location: Location
+    private userStoreService: UserStoreService,
+    private route: ActivatedRoute
   ) {
     this.route.url.subscribe(url => {
       this.categoryTitle = U.path(['path'], url[0]);
@@ -29,11 +28,36 @@ export class TrophiesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.trophyService.getTrophiesByCategory(this.categoryTitle, false).pipe(
-      take(1)
-    ).subscribe((data: ApiResponseModel<any>)=> {
-      this.trophies = data.result ?? [];
+    this.initSubscriptions();
+  }
+
+  initSubscriptions() {
+    this.trophyService.getTrophiesByCategory(this.categoryTitle, false)
+      .pipe(take(1))
+      .subscribe((data: ApiResponseModel<TrophyChallengeModel[]>)=> {
+        if (data.result) {
+          this.trophies = data.result.map((trophy: TrophyChallengeModel) => {
+            if (!this.userStoreService.userEarnedTrophies[this.categoryTitle]) {
+              trophy.isWon = false;
+            }
+            else if (this.userStoreService.userEarnedTrophies[this.categoryTitle].some((item: TrophyChallengeModel) => item.id === trophy.id)) {
+              trophy.isWon = true;
+            }
+
+            return trophy;
+          });
+        } else {
+          this.trophies = [];
+        }
     });
+
+    this.trophyService.getUserInProgressTrophiesByCategory(this.categoryTitle)
+      .pipe(take(1))
+      .subscribe((data: ApiResponseModel<TrophyChallengeModel[]>) => {
+        if (data) {
+          this.joined = data.result.map(item => item.id);
+        }
+      });
   }
 
   onBackButton() {
@@ -41,36 +65,36 @@ export class TrophiesComponent implements OnInit{
   }
 
   isChallengeJoined(challengeId: number): boolean {
-    // Add code to check whether the challenge with the given ID has been joined by the user
-    // Return true if the challenge has been joined, false otherwise
-
     return this.joined.includes(challengeId);
   }
 
-  isChallengeCompleted(challengeId: number) {
-    return false;
-  }
-
-  buttonText(challengeId: number): string {
-    const joined = this.isChallengeJoined(challengeId);
-    return joined ? 'Challenge joined' : 'Join challenge';
-  }
-
   private addChallengeId(challengeId: number) {
-    // Add code to save the challenge ID here, e.g.:
-    // this.challengeService.joinChallenge(this.challengeId);
-    this.joined.push(challengeId);
+
+    this.trophyService.joinChallenge(challengeId)
+      .pipe(take(1))
+      .subscribe((data:ApiResponseModel<boolean>) => {
+        if (data) {
+          this.joined.push(challengeId);
+
+          this.initSubscriptions();
+        }
+      });
   }
 
   private removeChallengeId(challengeId: number) {
-    // Add code to remove the challenge ID here, e.g.:
-    // this.challengeService.leaveChallenge(this.challengeId);
-    this.joined.filter(id => id !== challengeId);
+    this.trophyService.leaveChallenge(challengeId)
+      .pipe(take(1))
+      .subscribe((data:ApiResponseModel<boolean>) => {
+        if (data) {
+          this.joined = this.joined.filter(id => id !== challengeId);
+
+          this.initSubscriptions();
+        }
+      });
   }
 
   toggleJoinChallenge(challengeId: number) {
-    const joined = this.isChallengeJoined(challengeId);
-    if (joined) {
+    if (this.isChallengeJoined(challengeId)) {
       this.removeChallengeId(challengeId);
     } else {
       this.addChallengeId(challengeId);
