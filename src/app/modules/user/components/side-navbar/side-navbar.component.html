@@ -11,8 +11,8 @@
     </div>
   </div>
   <div class="user-info-container" fxLayout="column" fxLayoutAlign="start none">
-    <div fxLayout="column" fxLayoutAlign="start center">
-      <img src='assets/user/cat.jpg' alt=''>
+    <div fxLayout="column" fxLayoutAlign="start center" class="component-avatar">
+      <app-avatar [userNameInitial]=this.userName [hasWhiteBoxShadow]="true"></app-avatar>
     </div>
     <div class='profile'
          @fadeInOut *ngIf="collapsed"

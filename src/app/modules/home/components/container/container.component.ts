@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {UserStoreService} from "@app-store/services/user-store.service";
-import {UserAppService} from "@app-shared/services/app/user/user-app.service";
+import {UserService} from "@app-shared/services/app/user/user.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {UserAppModel} from "@app-shared/models/user-app.model";
 
@@ -15,7 +15,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private sharedUserStoreService: UserStoreService,
-    private userAppService: UserAppService
+    private userAppService: UserService
   ) {}
 
   ngOnInit(): void {

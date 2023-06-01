@@ -370,6 +370,13 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  getUserInProgressBooks(): Observable<any> {
+    return this.http.get(`${API_URL}${LIBRARY_ROUTE}/user/reading/in-progress`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // http://localhost:5164/api/user/dashboard/activity
   getUserActivity(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/activity`).pipe(

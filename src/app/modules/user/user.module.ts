@@ -19,6 +19,9 @@ import {
 import { UserOverviewComponent } from './components/dashboard/tabs-components/user-overview/user-overview.component';
 import { TrophyCaseComponent } from './components/dashboard/tabs-components/trophy-case/trophy-case.component';
 import { ClubsComponent } from './components/dashboard/tabs-components/clubs/clubs.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {HomeModule} from "@app-modules/home/home.module";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { ClubsComponent } from './components/dashboard/tabs-components/clubs/clu
     FlexModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule,
+    HomeModule,
+    MatButtonModule
   ],
   providers: [
     MatDatepickerModule,

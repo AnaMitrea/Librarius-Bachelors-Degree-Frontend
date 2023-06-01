@@ -13,3 +13,9 @@ export interface ChallengeCategoryModel {
     trophies: TrophyChallengeModel[];
   };
 }
+
+
+
+export interface TrophiesByCategoryModel {
+  [category: string]: TrophyChallengeModel[];
+}

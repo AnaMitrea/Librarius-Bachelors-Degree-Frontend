@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class UserAppService {
+export class UserService {
 
   constructor(private apiService: ApiService) { }
 
@@ -18,5 +18,9 @@ export class UserAppService {
   }
   getUserActivity(): Observable<any> {
     return this.apiService.getUserActivity();
+  }
+
+  getUserInProgressBooks(): Observable<any> {
+    return this.apiService.getUserInProgressBooks();
   }
 }

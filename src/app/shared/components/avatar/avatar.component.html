@@ -1,5 +1,8 @@
 <div class="avatar-holder" *ngIf="userNameInitial">
-  <div [ngClass]="['avatar', getBackgroundColor()]">
+  <div [ngClass]="{
+    'avatar': !hasWhiteBoxShadow,
+    'avatar-white-bkg': hasWhiteBoxShadow
+  }" [class]="getBackgroundColor()">
     <div class="avatar-text" fxLayout="row" fxLayoutAlign="center center">{{userNameInitial}}</div>
   </div>
 </div>

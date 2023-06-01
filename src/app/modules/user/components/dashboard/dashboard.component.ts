@@ -7,7 +7,7 @@ import { formatDate } from '@angular/common';
 import {DashboardUserInformationDto} from "@app-modules/user/components/dashboard/models";
 import {Subject, takeUntil} from "rxjs";
 import {UserStoreService} from "@app-store/services/user-store.service";
-import {UserAppService} from "@app-shared/services/app/user/user-app.service";
+import {UserService} from "@app-shared/services/app/user/user.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 
 @Component({
@@ -30,23 +30,16 @@ export class DashboardComponent implements OnInit, OnDestroy{
   userInformation!: DashboardUserInformationDto;
   userActivityDates!: any[];
 
-  // todo remove this
-  // datesToHighlight = ["2023-05-01T18:30:00.000Z", "2023-05-24T18:30:00.000Z","2023-05-25T18:30:00.000Z", "2023-05-26T18:30:00.000Z", "2023-05-27T18:30:00.000Z", "2023-05-29T18:30:00.000Z"];
-  datesToHighlight = ["2023-05-01", "2023-05-24","2023-05-25", "2023-05-26", "2023-05-27", "2023-05-29"];
-  // datesToHighlight = ["01/06/2023", "02/06/2023"];
-
-
   constructor(
     public router: Router,
     private dashboardService: UserDashboardService,
     private sharedUserStoreService: UserStoreService,
-    private userService: UserAppService
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.initUserFromState();
     this.initUserSubscriptions();
-    // this.userActivityDates = this.datesToHighlight;
   }
 
   initUserFromState() {

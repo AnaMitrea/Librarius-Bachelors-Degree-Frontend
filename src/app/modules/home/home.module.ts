@@ -38,43 +38,46 @@ import { MinutesGlobalLeaderboardComponent } from './components/leaderboard/comp
 import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
-  declarations: [
-    ContainerComponent,
-    BooksCarouselComponent,
-    TrendingSectionComponent,
-    ReadingFeedComponent,
-    HomeComponent,
-    ExploreComponent,
-    ChallengesComponent,
-    TrophiesComponent,
-    ChallengesContainerComponent,
-    BookshelvesExploreComponent,
-    CategoriesExploreComponent,
-    LeaderboardContainerComponent,
-    FriendsLeaderboardComponent,
-    GlobalLeaderboardComponent,
-    BooksGlobalLeaderboardComponent,
-    PointsGlobalLeaderboardComponent,
-    MinutesGlobalLeaderboardComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    SharedModule,
-    CarouselModule,
-    FlexModule,
-    MatCardModule,
-    MatChipsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTabsModule,
-    MatListModule,
-    MatTooltipModule,
-    MatLineModule,
-    MatInputModule,
-    MatTableModule,
-    MatButtonToggleModule,
-    MatSortModule
-  ]
+    declarations: [
+        ContainerComponent,
+        BooksCarouselComponent,
+        TrendingSectionComponent,
+        ReadingFeedComponent,
+        HomeComponent,
+        ExploreComponent,
+        ChallengesComponent,
+        TrophiesComponent,
+        ChallengesContainerComponent,
+        BookshelvesExploreComponent,
+        CategoriesExploreComponent,
+        LeaderboardContainerComponent,
+        FriendsLeaderboardComponent,
+        GlobalLeaderboardComponent,
+        BooksGlobalLeaderboardComponent,
+        PointsGlobalLeaderboardComponent,
+        MinutesGlobalLeaderboardComponent
+    ],
+    exports: [
+        BooksCarouselComponent
+    ],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        SharedModule,
+        CarouselModule,
+        FlexModule,
+        MatCardModule,
+        MatChipsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTabsModule,
+        MatListModule,
+        MatTooltipModule,
+        MatLineModule,
+        MatInputModule,
+        MatTableModule,
+        MatButtonToggleModule,
+        MatSortModule
+    ]
 })
 export class HomeModule { }

@@ -63,7 +63,6 @@ export class BooksCarouselComponent {
   }
 
   onAuthorClick(id: number) {
-    // this.router.navigate([LIBRARY_AUTHOR_ROUTE, id]).then();
     const url = this.router.createUrlTree([LIBRARY_AUTHOR_ROUTE, id]);
     const fullUrl = this.location.prepareExternalUrl(url.toString());
     window.open(fullUrl, '_blank');
@@ -72,6 +71,4 @@ export class BooksCarouselComponent {
   processName(author: string): string {
     return processAuthorName(author);
   }
-
-
 }
