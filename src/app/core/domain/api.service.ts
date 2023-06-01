@@ -14,7 +14,7 @@ import {
   USER_DASHBOARD_TROPHY_ROUTE,
   USER_ROUTE,
   USER_STATISTICS_ROUTE,
-  USER_WISHLIST_ROUTE
+  USER_FAVORITES_ROUTE
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
 import {
@@ -147,14 +147,28 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   getUserCompletedTrophies(): Observable<any> {
-    return this.http.get(`${this.API_TROPHY_BASE_URL}/user`).pipe(
+    return this.http.get(`${this.API_TROPHY_BASE_URL}/user/completed`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
   getUserCompletedTrophiesByCategory(category: string): Observable<any> {
-    return this.http.get(`${this.API_TROPHY_BASE_URL}/user?category=${category}`).pipe(
+    return this.http.get(`${this.API_TROPHY_BASE_URL}/user/completed?category=${category}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getUserInProgressTrophies(): Observable<any> {
+    return this.http.get(`${this.API_TROPHY_BASE_URL}/user/in-progress`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getUserInProgressTrophiesByCategory(category: string): Observable<any> {
+    return this.http.get(`${this.API_TROPHY_BASE_URL}/user/in-progress?category=${category}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
@@ -342,14 +356,6 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  // http://localhost:5164/api/user/dashboard/streaks
-  getUserStreaks(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/streaks`).pipe(
-      this.handleHttpError(),
-      this.handleErrorForToaster()
-    );
-  }
-
   // http://localhost:5164/api/user/dashboard/activity
   getUserActivity(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/activity`).pipe(
@@ -357,26 +363,10 @@ export class ApiService extends HttpServiceBaseService {
       this.handleErrorForToaster()
     );
   }
-
-  // http://localhost:5164/api/user/dashboard/overview/trophies
-  getUserOverviewTrophies(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/overview/trophies`).pipe(
-      this.handleHttpError(),
-      this.handleErrorForToaster()
-    );
-  }
-
+  
   // http://localhost:5164/api/user/dashboard/overview/books
   getUserOverviewBooks(): Observable<any> {
     return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/overview/books`).pipe(
-      this.handleHttpError(),
-      this.handleErrorForToaster()
-    );
-  }
-
-  // http://localhost:5164/api/user/dashboard/trophy-case
-  getUserTrophyCase(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_DASHBOARD_TROPHY_ROUTE}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
@@ -390,9 +380,9 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  // http://localhost:5164/api/user/wishlist
-  getUserWishlist(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_WISHLIST_ROUTE}`).pipe(
+  // http://localhost:5164/api/user/favorites
+  getUserFavorites(): Observable<any> {
+    return this.http.get(`${API_URL}${USER_FAVORITES_ROUTE}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

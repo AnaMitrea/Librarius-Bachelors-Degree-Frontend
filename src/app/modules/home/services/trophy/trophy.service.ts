@@ -22,4 +22,12 @@ export class TrophyService {
   getUserCompletedTrophies(): Observable<any> {
     return this.apiService.getUserCompletedTrophies();
   }
+
+  getUserInProgressTrophiesByCategory(category: string): Observable<any> {
+    return this.apiService.getUserInProgressTrophiesByCategory(category);
+  }
+
+  getUserInProgressTrophies(): Observable<any> {
+    return this.apiService.getUserInProgressTrophies();
+  }
 }

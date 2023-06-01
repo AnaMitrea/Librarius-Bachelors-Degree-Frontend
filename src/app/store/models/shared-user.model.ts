@@ -12,9 +12,7 @@ export interface UserActivity {
 }
 
 export interface Trophies {
-  [category: string]: {
-    trophies: TrophyChallengeModel[];
-  };
+  [category: string]: TrophyChallengeModel[];
 }
 
 export interface ReadingTimeTracker {

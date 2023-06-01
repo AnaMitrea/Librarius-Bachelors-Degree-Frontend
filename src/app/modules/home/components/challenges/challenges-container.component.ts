@@ -2,8 +2,7 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {TrophyService} from "@app-modules/home/services/trophy/trophy.service";
-import {UserStoreService} from "@app-shared/services/store/user-store.service";
-import {transformEarnedTrophiesData} from "@app-utils/data-transformers";
+import {UserStoreService} from "@app-store/services/user-store.service";
 
 @Component({
   selector: 'app-challenges-container',
@@ -28,9 +27,8 @@ export class ChallengesContainerComponent implements OnInit, OnDestroy{
     this.trophyService.getUserCompletedTrophies()
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: ApiResponseModel<any>)=> {
-        const earnedTrophies = data.result ?? [];
-        const transformedEarnedTrophies = transformEarnedTrophiesData(earnedTrophies);
-        this.sharedUserStoreService.setEarnedTrophies(transformedEarnedTrophies);
+        const earnedTrophies = data.result ?? {};
+        this.sharedUserStoreService.setEarnedTrophies(earnedTrophies);
       });
   }
 

@@ -5,7 +5,7 @@ import {BehaviorSubject, tap} from "rxjs";
 import {ApiService} from "@app-core/domain/api.service";
 import jwt_decode from "jwt-decode";
 import {AuthJwtToken} from "@app-modules/landing/shared/models";
-import {UserStoreService} from "@app-shared/services/store/user-store.service";
+import {UserStoreService} from "@app-store/services/user-store.service";
 
 @Injectable({
   providedIn: 'root'

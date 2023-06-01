@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { INavbarConfig, navbarConfig } from './models';
 import { Router } from '@angular/router';
+import {UserStoreService} from "@app-store/services/user-store.service";
 
 interface SideNavToggle {
   screenWidth: number;
@@ -35,21 +36,26 @@ export class SideNavbarComponent implements OnInit {
   collapsed = false;
   screenWidth = 0;
 
-  userName: string;
-  userStatus: string;
-  userPoints: number;
+  userName!: string;
+  userLevel!: string;
+  userPoints!: number;
 
-
-  constructor(public router: Router) {
-    this.userName = '';
-    this.userStatus = 'Beginner';
-    this.userPoints = 0;
+  constructor(
+    private router: Router,
+    private userStoreService: UserStoreService
+  ) {
     this.navData = navbarConfig;
+    this.setUserData();
+  }
+
+  setUserData() {
+    this.userName = this.userStoreService.username ?? '';
+    this.userLevel = this.userStoreService.stats.level ?? '';
+    this.userPoints = this.userStoreService.stats.points ?? 0;
   }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-    this.userName = 'User';
   }
 
   @HostListener('window:resize', ['$event'])

@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {UserStoreService} from "@app-shared/services/store/user-store.service";
+import {UserStoreService} from "@app-store/services/user-store.service";
 
 @Injectable({
   providedIn: 'root'

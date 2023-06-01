@@ -4,6 +4,7 @@ export interface TrophyChallengeModel {
   category: string;
   instructions: string;
   imageSrcPath: string;
+  isWon: boolean;
 }
 
 export interface ChallengeCategoryModel {

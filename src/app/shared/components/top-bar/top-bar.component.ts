@@ -12,7 +12,7 @@ import {
   USER_SETTINGS_ROUTE
 } from "@app-utils/constants";
 import {AuthService} from "@app-modules/landing/shared/services/auth/auth.service";
-import {UserStoreService} from "@app-shared/services/store/user-store.service";
+import {UserStoreService} from "@app-store/services/user-store.service";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {API_GUTENBERG_URL} from "@app-core/constants";

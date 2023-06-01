@@ -15,9 +15,9 @@ export const navbarConfig: INavbarConfig[] = [
     label: 'Dashboard'
   },
   {
-    routeLink: 'wishlist',
+    routeLink: 'favorites',
     icon: 'favorite_border',
-    label: 'Wishlist'
+    label: 'Favorites'
   },
   {
     routeLink: 'authors',
