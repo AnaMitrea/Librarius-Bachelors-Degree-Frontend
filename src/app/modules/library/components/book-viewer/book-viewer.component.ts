@@ -20,6 +20,7 @@ export class BookViewerComponent implements OnInit, OnDestroy  {
   currentPath: string;
   bookData!: BookDto;
   avgReadingTime!: ReadingTimeDto;
+  addedToFavorite = false;
   ratingValue = 0;
   maxStars = 10;
 
@@ -76,7 +77,11 @@ export class BookViewerComponent implements OnInit, OnDestroy  {
   }
 
   onAddToFavorite(id: string) {
-    console.log(id);
+    this.bookService.toggleFavoriteBookForUser(Number(this.bookId))
+      .pipe(take(1))
+      .subscribe((data: ApiResponseModel<boolean>) => {
+        if (data) this.addedToFavorite = data.result;
+      })
   }
 
   ngOnDestroy(): void {

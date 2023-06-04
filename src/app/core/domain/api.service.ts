@@ -361,6 +361,13 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  toggleFavoriteBookForUser(body: any): Observable<any> {
+    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/favorite/toggle`, body).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   // --- USER ---
   // http://localhost:5164/api/user/information
   getUserInformation(): Observable<any> {

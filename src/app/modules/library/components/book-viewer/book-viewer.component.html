@@ -24,8 +24,8 @@
            fxLayout.sm="column"
            fxLayout.xs="column"
            fxLayoutAlign="start center">
-        <button class="wishlist-button" matTooltip="Add to wishlist" mat-fab (click)='this.onAddToFavorite(this.bookData.id)'>
-          <mat-icon>favorite</mat-icon>
+        <button class="wishlist-button" matTooltip="Add to favorite" mat-fab (click)='this.onAddToFavorite(this.bookData.id)'>
+          <mat-icon>{{addedToFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
         </button>
         <div class="rating-stars">
           <app-rating

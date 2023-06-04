@@ -62,4 +62,12 @@ export class BookService {
   saveReadingTimeForBook(body: BookReadingTimeRequestDto): Observable<any> {
     return this.apiService.updateUserReadingTimeSpent(body);
   }
+
+  toggleFavoriteBookForUser(bookId: number): Observable<any> {
+    const body = {
+      bookId
+    };
+
+    return this.apiService.toggleFavoriteBookForUser(body);
+  }
 }

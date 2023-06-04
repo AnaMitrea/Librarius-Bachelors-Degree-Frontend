@@ -68,7 +68,7 @@ export interface ReviewRequestDto {
 export interface ReviewResponseDto {
   id: number;
   content: string;
-  likes: number;
+  likesCount: number;
   liked: boolean;
   timeValue: string;
   timeUnit: string;

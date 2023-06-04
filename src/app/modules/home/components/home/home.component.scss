@@ -13,7 +13,7 @@
 }
 
 .collections {
-  margin: 10px 0;
+  margin: 30px 0;
   padding: 20px;
   background: #E7E7E7FF;
 
@@ -99,6 +99,22 @@
     }
   }
 }
+
+.exploration {
+  height: 150px;
+
+  .exploration-title {
+    color: $dark-green;
+    font-weight: 600;
+    font-size: 1.4em;
+  }
+
+  .exploration-subtitle {
+    color: $dark-green;
+    font-size: 0.9em;
+  }
+}
+
 
 @media only screen and (max-width: 1200px) {
   .collection-container {

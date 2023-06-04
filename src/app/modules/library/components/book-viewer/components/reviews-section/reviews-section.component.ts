@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormControl} from "@angular/forms";
 import {MatRadioChange} from "@angular/material/radio";
 import {BookService} from "@app-modules/library/services/book/book.service";
-import {Subject, take} from "rxjs";
+import {Observable, Subject, take} from "rxjs";
 import {
   BookDto,
   LikeReviewRequestDto,
@@ -84,20 +84,16 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
 
     const body: LikeReviewRequestDto = {
       ReviewID: id,
-      isLiked: this.reviews[likedReviewIdx].liked
+      isLiked: !this.reviews[likedReviewIdx].liked
     };
 
     this.bookService.updateReviewLike(body)
       .pipe(take(1))
       .subscribe((data: ApiResponseModel<any>) => {
-        this.setLikedFlag(id, data.result);
+        if (data && likedReviewIdx !== -1) {
+          this.reviews[likedReviewIdx].liked = !this.reviews[likedReviewIdx].liked;
+        }
       });
-  }
-
-  setLikedFlag(likedReviewIdx: number, result: boolean) {
-    if (likedReviewIdx !== -1) {
-      this.reviews[likedReviewIdx].liked = result;
-    }
   }
 
   getFirstLetter(text: string): string {
@@ -155,16 +151,16 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
   onReviewDelete(reviewId: number) {
     this.bookService.removeReview(reviewId)
       .pipe(take(1))
       .subscribe((data: ApiResponseModel<boolean>) => {
         this.initAllReviewsSubscription();
       });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
