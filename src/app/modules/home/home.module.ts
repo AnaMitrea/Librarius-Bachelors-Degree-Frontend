@@ -19,8 +19,7 @@ import { TrophiesComponent } from '@app-modules/home/components/challenges/compo
 import { ChallengesContainerComponent } from '@app-modules/home/components/challenges/challenges-container.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatListModule} from "@angular/material/list";
-import { BookshelvesExploreComponent } from './components/explore/components/bookshelves-explore/bookshelves-explore.component';
-import { CategoriesExploreComponent } from './components/explore/components/categories-explore/categories-explore.component';
+import { CategoriesExploreContainerComponent } from './components/explore/components/categories-explore/categories-explore-container.component';
 import {BooksCarouselComponent} from "@app-shared/components/books-carousel/books-carousel.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatLineModule} from "@angular/material/core";
@@ -36,6 +35,15 @@ import { BooksGlobalLeaderboardComponent } from './components/leaderboard/compon
 import { PointsGlobalLeaderboardComponent } from './components/leaderboard/components/global-leaderboard/components/points-global-leaderboard/points-global-leaderboard.component';
 import { MinutesGlobalLeaderboardComponent } from './components/leaderboard/components/global-leaderboard/components/minutes-global-leaderboard/minutes-global-leaderboard.component';
 import {MatSortModule} from "@angular/material/sort";
+import { EntireBookshelfExploreComponent } from '@app-modules/home/components/explore/components/bookshelves-explore-container/components/entire-bookshelf-explore/entire-bookshelf-explore.component';
+import { EntireCategoryExploreComponent } from './components/explore/components/categories-explore/components/entire-category-explore/entire-category-explore.component';
+import { PreviewBookshelfExploreComponent } from './components/explore/components/bookshelves-explore-container/components/preview-bookshelf-explore/preview-bookshelf-explore.component';
+import { PreviewCategoryExploreComponent } from './components/explore/components/categories-explore/components/preview-category-explore/preview-category-explore.component';
+import {
+  BookshelvesExploreContainerComponent
+} from "@app-modules/home/components/explore/components/bookshelves-explore-container/bookshelves-explore-container.component";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
     declarations: [
@@ -48,36 +56,42 @@ import {MatSortModule} from "@angular/material/sort";
         ChallengesComponent,
         TrophiesComponent,
         ChallengesContainerComponent,
-        BookshelvesExploreComponent,
-        CategoriesExploreComponent,
+        BookshelvesExploreContainerComponent,
+        CategoriesExploreContainerComponent,
         LeaderboardContainerComponent,
         FriendsLeaderboardComponent,
         GlobalLeaderboardComponent,
         BooksGlobalLeaderboardComponent,
         PointsGlobalLeaderboardComponent,
-        MinutesGlobalLeaderboardComponent
+        MinutesGlobalLeaderboardComponent,
+        EntireBookshelfExploreComponent,
+        EntireCategoryExploreComponent,
+        PreviewBookshelfExploreComponent,
+        PreviewCategoryExploreComponent
     ],
     exports: [
         BooksCarouselComponent
     ],
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        SharedModule,
-        CarouselModule,
-        FlexModule,
-        MatCardModule,
-        MatChipsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatTabsModule,
-        MatListModule,
-        MatTooltipModule,
-        MatLineModule,
-        MatInputModule,
-        MatTableModule,
-        MatButtonToggleModule,
-        MatSortModule
-    ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    SharedModule,
+    CarouselModule,
+    FlexModule,
+    MatCardModule,
+    MatChipsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTabsModule,
+    MatListModule,
+    MatTooltipModule,
+    MatLineModule,
+    MatInputModule,
+    MatTableModule,
+    MatButtonToggleModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatExpansionModule
+  ]
 })
 export class HomeModule { }

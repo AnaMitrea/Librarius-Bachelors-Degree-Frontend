@@ -95,35 +95,5 @@
 
   .books {
     width: 80%;
-
-    .books-container {
-      margin: 20px;
-      width: 95%;
-      border-bottom: 1px solid $light1;
-
-      .breadcrumbs {
-        padding: 20px 40px;
-
-        .title {
-          font-size: 14px;
-          color: var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, 0.60));
-
-          &:hover {
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: underline;
-          }
-        }
-
-        .subtitle {
-          font-size: 16px;
-          &:hover {
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: underline;
-          }
-        }
-      }
-    }
   }
 }

@@ -30,7 +30,7 @@
               <ul class="menu-sublist">
                 <li class="menu-sublist-item"
                     *ngFor="let category of bookshelf.categories"
-                    (click)="scrollToBookshelf(category.id)"
+                    (click)="scrollToBookshelf(category.title, category.id)"
                 >
                   <span class="subtitle" [matTooltip]="category.title">{{ category.title }}</span>
                 </li>
@@ -41,31 +41,8 @@
       </div>
     </div>
   </div>
-  <div class="books" *ngIf="bookshelfCategories">
-    <ng-container *ngFor="let bookshelf of bookshelfCategories">
-        <div class="books-container"
-             *ngFor="let category of bookshelf.categories"
-             [id]="category.id"
-        >
-          <div class="breadcrumbs">
-            <span class="title" (click)="onBookshelfTitleClick(getHeaderRouteForBookshelf(bookshelf.bookshelfId))">
-              {{bookshelf.bookshelfTitle}}
-            </span>
-            <span> > </span>
-            <span class="subtitle"
-                  (click)="onCategoryTitleClick(getHeaderRouteForCategory(category.id))"
-            >
-              {{getSliderTitle(category.title, category.totalBooks)}}
-            </span>
-          </div>
-
-          <app-books-carousel
-            [booksSlides]="category.books"
-            [clickableHeaderTitle]="false"
-            [showTopNumbers]="false"
-          ></app-books-carousel>
-        </div>
-    </ng-container>
+  <div class="books">
+    <router-outlet></router-outlet>
   </div>
 </div>
 

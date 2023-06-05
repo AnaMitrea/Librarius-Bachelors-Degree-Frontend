@@ -21,7 +21,7 @@
           <mat-list>
             <mat-list-item
               *ngFor="let key of getBookshelfKeys()"
-              (click)="scrollToBookshelf(bookshelves[key].id)"
+              (click)="scrollToBookshelf(key, bookshelves[key].id)"
             >
               <mat-icon matListItemIcon>collections_bookmark</mat-icon>
               <span matListItemTitle
@@ -34,19 +34,8 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-  <div class="books" *ngIf="bookshelves">
-    <div class="books-container"
-         *ngFor="let key of getBookshelfKeys()"
-         [id]="bookshelves[key].id"
-    >
-      <app-books-carousel
-        [booksSlides]="bookshelves[key].books"
-        [headerTitle]="getSliderTitle(key, bookshelves[key].totalBooks)"
-        [clickableHeaderTitle]="true"
-        [headerRoute]="getHeaderRouteForBookshelf(bookshelves[key].id)"
-        [showTopNumbers]="false"
-      ></app-books-carousel>
-    </div>
+  <div class="books">
+    <router-outlet></router-outlet>
   </div>
 </div>
 

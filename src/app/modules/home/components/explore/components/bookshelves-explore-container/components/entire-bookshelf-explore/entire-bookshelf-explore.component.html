@@ -1,0 +1,46 @@
+<ng-container *ngIf="bookshelf && bookshelfTitle">
+  <div class="bookshelf-container">
+    <span class="bookshelf-title">{{bookshelfTitle}}
+      <span class="book-counter" *ngIf="bookshelf[bookshelfTitle]">
+        ({{bookshelf[bookshelfTitle].totalBooks}} books)
+      </span>
+    </span>
+
+    <ng-container *ngIf="bookshelf[bookshelfTitle]?.books">
+
+      <ng-container *ngFor="let letter of Object.keys(bookshelf[bookshelfTitle].books)">
+        <div class="letter-category"  fxLayout="row" fxLayoutAlign="start center">
+          <span class="breadcrumb-symbol"> > </span>
+          <span>{{ letter }}</span>
+        </div>
+
+        <div class="books"
+             fxLayout="row wrap"
+             fxLayout.lt-md="column"
+             fxLayoutAlign="start none"
+
+        >
+          <div class='book-item'
+               fxFlex="20%"
+               fxFlex.lt-md="100%"
+               fxLayout="column"
+               fxLayoutAlign="center center"
+               *ngFor="let book of bookshelf[bookshelfTitle].books[letter]">
+            <div class="item-content">
+              <mat-card class="book-card" (click)="redirectToBookUrl(book.id)">
+                <mat-card-content>
+                  <img [src]="getCoverImageUrl(book.coverImageUrl)" [matTooltip]="book.title" alt="cover image">
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <mat-card-footer>
+              <div class="description" fxLayout="column" fxLayoutAlign="center center">
+                <span class="description-title">{{book.title}}</span>
+              </div>
+            </mat-card-footer>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>

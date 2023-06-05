@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookshelvesExploreComponent } from './bookshelves-explore.component';
+import { BookshelvesExploreContainerComponent } from './bookshelves-explore-container.component';
 
 describe('BookshelvesExploreComponent', () => {
-  let component: BookshelvesExploreComponent;
-  let fixture: ComponentFixture<BookshelvesExploreComponent>;
+  let component: BookshelvesExploreContainerComponent;
+  let fixture: ComponentFixture<BookshelvesExploreContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookshelvesExploreComponent ]
+      declarations: [ BookshelvesExploreContainerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BookshelvesExploreComponent);
+    fixture = TestBed.createComponent(BookshelvesExploreContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

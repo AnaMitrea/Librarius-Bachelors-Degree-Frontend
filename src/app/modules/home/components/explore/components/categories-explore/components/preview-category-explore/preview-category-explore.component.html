@@ -1,0 +1,24 @@
+<ng-container *ngFor="let bookshelf of bookshelfCategories">
+  <div class="books-container"
+       *ngFor="let category of bookshelf.categories"
+       [id]="category.id"
+  >
+    <div class="breadcrumbs">
+            <span class="title" (click)="onBookshelfTitleClick(getHeaderRouteForBookshelf(bookshelf.bookshelfTitle))">
+              {{bookshelf.bookshelfTitle}}
+            </span>
+      <span> > </span>
+      <span class="subtitle"
+            (click)="onCategoryTitleClick(getHeaderRouteForCategory(category.title))"
+      >
+              {{getSliderTitle(category.title, category.totalBooks)}}
+            </span>
+    </div>
+
+    <app-books-carousel
+      [booksSlides]="category.books"
+      [clickableHeaderTitle]="false"
+      [showTopNumbers]="false"
+    ></app-books-carousel>
+  </div>
+</ng-container>

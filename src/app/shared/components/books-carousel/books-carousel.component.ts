@@ -59,7 +59,9 @@ export class BooksCarouselComponent {
   }
 
   redirectToBookUrl(id: string) {
-    this.router.navigate([LIBRARY_BOOK_ROUTE, id]).then();
+    const url = this.router.createUrlTree([LIBRARY_BOOK_ROUTE, id]);
+    const fullUrl = this.location.prepareExternalUrl(url.toString());
+    window.open(fullUrl, '_blank');
   }
 
   onAuthorClick(id: number) {

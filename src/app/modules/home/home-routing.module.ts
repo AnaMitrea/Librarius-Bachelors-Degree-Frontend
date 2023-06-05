@@ -6,8 +6,7 @@ import { ExploreComponent } from "@app-modules/home/components/explore/explore.c
 import { ChallengesComponent } from "@app-modules/home/components/challenges/components/challenges/challenges.component";
 import { TrophiesComponent } from "@app-modules/home/components/challenges/components/trophies/trophies.component";
 import {ChallengesContainerComponent} from "@app-modules/home/components/challenges/challenges-container.component";
-import {BookshelvesExploreComponent} from "@app-modules/home/components/explore/components/bookshelves-explore/bookshelves-explore.component";
-import {CategoriesExploreComponent} from "@app-modules/home/components/explore/components/categories-explore/categories-explore.component";
+import {CategoriesExploreContainerComponent} from "@app-modules/home/components/explore/components/categories-explore/categories-explore-container.component";
 import {LeaderboardContainerComponent} from "@app-modules/home/components/leaderboard/leaderboard-container.component";
 import {
   GlobalLeaderboardComponent
@@ -24,6 +23,21 @@ import {
 import {
   MinutesGlobalLeaderboardComponent
 } from "@app-modules/home/components/leaderboard/components/global-leaderboard/components/minutes-global-leaderboard/minutes-global-leaderboard.component";
+import {
+  PreviewBookshelfExploreComponent
+} from "@app-modules/home/components/explore/components/bookshelves-explore-container/components/preview-bookshelf-explore/preview-bookshelf-explore.component";
+import {
+  EntireBookshelfExploreComponent
+} from "@app-modules/home/components/explore/components/bookshelves-explore-container/components/entire-bookshelf-explore/entire-bookshelf-explore.component";
+import {
+  PreviewCategoryExploreComponent
+} from "@app-modules/home/components/explore/components/categories-explore/components/preview-category-explore/preview-category-explore.component";
+import {
+  EntireCategoryExploreComponent
+} from "@app-modules/home/components/explore/components/categories-explore/components/entire-category-explore/entire-category-explore.component";
+import {
+  BookshelvesExploreContainerComponent
+} from "@app-modules/home/components/explore/components/bookshelves-explore-container/bookshelves-explore-container.component";
 
 const routes: Routes = [
   {
@@ -45,11 +59,31 @@ const routes: Routes = [
           },
           {
             path: 'bookshelves',
-            component: BookshelvesExploreComponent
+            component: BookshelvesExploreContainerComponent,
+            children: [
+              {
+                path: '',
+                component: PreviewBookshelfExploreComponent
+              },
+              {
+                path: ':title',
+                component: EntireBookshelfExploreComponent
+              }
+            ]
           },
           {
             path: 'categories',
-            component: CategoriesExploreComponent
+            component: CategoriesExploreContainerComponent,
+            children: [
+              {
+                path: '',
+                component: PreviewCategoryExploreComponent
+              },
+              {
+                path: ':title',
+                component: EntireCategoryExploreComponent
+              }
+            ]
           }
         ]
       },

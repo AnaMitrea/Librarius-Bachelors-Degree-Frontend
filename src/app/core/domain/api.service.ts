@@ -115,15 +115,132 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  getBookshelfBooks(maxResults: number): Observable<any> {
-    return this.http.get(`${API_URL}/library/book/bookshelves?maxResults=${maxResults}`).pipe(
+  getBookshelfBooks(maxResults?: number, title?: string): Observable<any> {
+    if (maxResults) {
+      if (title) {
+        return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/bookshelves?maxResults=${maxResults}&title=${title}&books=true`).pipe(
+          this.handleHttpError(),
+          this.handleErrorForToaster()
+        );
+      }
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/bookshelves?maxResults=${maxResults}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+
+    if (title) {
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/bookshelves?title=${title}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/bookshelves?books=true`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
-  getCategoriesBooks(maxResults: number): Observable<any> {
-    return this.http.get(`${API_URL}/library/book/categories?maxResults=${maxResults}`).pipe(
+  getBookshelfWithOrderedBooks(maxResults?: number, title?: string): Observable<any> {
+    if (maxResults) {
+      if (title) {
+        return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/bookshelves?maxResults=${maxResults}&title=${title}&books=true`).pipe(
+          this.handleHttpError(),
+          this.handleErrorForToaster()
+        );
+      }
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/bookshelves?maxResults=${maxResults}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+
+    if (title) {
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/bookshelves?title=${title}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/bookshelves?books=true`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getBookshelfNoBooks(title?: string): Observable<any> {
+    if (title) {
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/bookshelves?&title=${title}&books=false`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/bookshelves?books=false`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getCategoriesBooks(maxResults?: number, title?: string): Observable<any> {
+    if (maxResults) {
+      if (title) {
+        return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/categories?maxResults=${maxResults}&title=${title}&books=true`).pipe(
+          this.handleHttpError(),
+          this.handleErrorForToaster()
+        );
+      }
+      //
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/categories?maxResults=${maxResults}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+
+    if (title) {
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/categories?title=${title}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/categories?books=true`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getCategoriesBooksNoBooks(title?: string): Observable<any> {
+    if (title) {
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/categories?&title=${title}&books=false`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/categories?books=false`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  getCategoriesWithOrderedBooks(startFrom: string, maxResults?: number, title?: string): Observable<any> {
+    if (maxResults) {
+      if (title) {
+        return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&maxResults=${maxResults}&title=${title}&books=true`).pipe(
+          this.handleHttpError(),
+          this.handleErrorForToaster()
+        );
+      }
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&maxResults=${maxResults}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+
+    if (title) {
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&title=${title}&books=true`).pipe(
+        this.handleHttpError(),
+        this.handleErrorForToaster()
+      );
+    }
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&books=true`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

@@ -15,15 +15,32 @@ export class ExploreService {
     return this.apiService.getBookshelves();
   }
 
-  getBookshelvesBooks(maxResults: number): Observable<any> {
-    return this.apiService.getBookshelfBooks((maxResults > 1) ? maxResults : 10);
+  getBookshelvesBooks(maxResults?: number, title?: string): Observable<any> {
+     return this.apiService.getBookshelfBooks(maxResults, title);
+  }
+
+  getBookshelvesWithOrderedBooks(maxResults?: number, title?: string): Observable<any> {
+    return this.apiService.getBookshelfWithOrderedBooks(maxResults, title);
+  }
+
+  getBookshelfNoBooks(title?: string): Observable<any> {
+    return this.apiService.getBookshelfNoBooks(title);
   }
 
   getCategoriesByBookshelf(): Observable<any> {
     return this.apiService.getCategoriesByBookshelf();
   }
 
-  getCategoriesBooks(maxResults: number): Observable<any> {
-    return this.apiService.getCategoriesBooks((maxResults > 1) ? maxResults : 10);
+  getCategoriesBooks(maxResults?: number): Observable<any> {
+    return this.apiService.getCategoriesBooks(maxResults);
   }
+
+  getCategoriesBooksNoBooks(title?: string): Observable<any> {
+    return this.apiService.getCategoriesBooksNoBooks(title);
+  }
+
+  getCategoriesWithOrderedBooks(startFrom: string, maxResults?: number, title?: string): Observable<any> {
+    return this.apiService.getCategoriesWithOrderedBooks(startFrom, maxResults, title);
+  }
+
 }

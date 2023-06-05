@@ -78,11 +78,6 @@ export class AuthorComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
   getPenGifSrc(materialIdx: number): string {
     switch ((materialIdx % 4)) {
       case 0:
@@ -102,5 +97,10 @@ export class AuthorComponent implements OnInit, OnDestroy {
       .subscribe((data : ApiResponseModel<any>) => {
         this.isUserSubscribed = data.result;
       });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

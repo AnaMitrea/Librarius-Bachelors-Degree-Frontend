@@ -1,0 +1,14 @@
+<ng-container *ngIf="bookshelves">
+  <div class="books-container"
+       *ngFor="let key of getBookshelfKeys()"
+       [id]="bookshelves[key].id"
+  >
+    <app-books-carousel
+      [booksSlides]="bookshelves[key].books"
+      [headerTitle]="getSliderTitle(key, bookshelves[key].totalBooks)"
+      [clickableHeaderTitle]="true"
+      [headerRoute]="getHeaderRouteForBookshelf(key)"
+      [showTopNumbers]="false"
+    ></app-books-carousel>
+  </div>
+</ng-container>

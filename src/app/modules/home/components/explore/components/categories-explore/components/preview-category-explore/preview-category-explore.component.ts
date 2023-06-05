@@ -1,19 +1,19 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
+import {ExploreCategoryBooksDto} from "@app-modules/home/shared/models/explore.dto";
 import {Router} from "@angular/router";
 import {ExploreService} from "@app-modules/home/services/explore/explore.service";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
-import { EXPLORE_BOOKSHELVES_ROUTE, EXPLORE_CATEGORIES_ROUTE } from "@app-utils/constants";
-import {ExploreCategoryBooksDto} from "@app-modules/home/shared/models/explore.dto";
 import {Book} from "@app-modules/home/shared/models";
-import {mapBookDtoToBook} from "src/app/modules/home/components/home/shared/transformers";
+import {mapBookDtoToBook} from "@app-modules/home/components/home/shared/transformers";
+import {EXPLORE_BOOKSHELVES_ROUTE, EXPLORE_CATEGORIES_ROUTE} from "@app-utils/constants";
 
 @Component({
-  selector: 'app-categories-explore',
-  templateUrl: './categories-explore.component.html',
-  styleUrls: ['./categories-explore.component.scss']
+  selector: 'app-preview-category-explore',
+  templateUrl: './preview-category-explore.component.html',
+  styleUrls: ['./preview-category-explore.component.scss']
 })
-export class CategoriesExploreComponent implements OnInit, OnDestroy{
+export class PreviewCategoryExploreComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
   bookshelfCategories!: ExploreCategoryBooksDto[];
 
@@ -54,10 +54,12 @@ export class CategoriesExploreComponent implements OnInit, OnDestroy{
     return booksData.map((book, idx) => mapBookDtoToBook(book, idx));
   }
 
-  scrollToBookshelf(id: number): void {
+  scrollToBookshelf(key: string, id: number): void {
     const element = document.getElementById(String(id));
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }  else {
+      this.router.navigate([EXPLORE_CATEGORIES_ROUTE, `${key}`]);
     }
   }
 
@@ -65,12 +67,12 @@ export class CategoriesExploreComponent implements OnInit, OnDestroy{
     return `${key} (${counter})`;
   }
 
-  getHeaderRouteForCategory(id: number) {
-    return `${EXPLORE_CATEGORIES_ROUTE}/${id}`;
+  getHeaderRouteForCategory(key: string) {
+    return `${EXPLORE_CATEGORIES_ROUTE}/${key}`;
   }
 
-  getHeaderRouteForBookshelf(id: number) {
-    return `${EXPLORE_BOOKSHELVES_ROUTE}/${id}`;
+  getHeaderRouteForBookshelf(key: string) {
+    return `${EXPLORE_BOOKSHELVES_ROUTE}/${key}`;
   }
 
   onTabRedirect(path: string) {
