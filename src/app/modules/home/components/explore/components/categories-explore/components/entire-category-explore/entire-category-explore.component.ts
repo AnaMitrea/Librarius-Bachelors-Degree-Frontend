@@ -11,12 +11,11 @@ import {API_GUTENBERG_URL} from "@app-core/constants";
   templateUrl: './entire-category-explore.component.html',
   styleUrls: ['./entire-category-explore.component.scss'],
 })
-export class EntireCategoryExploreComponent implements OnInit, OnDestroy {
+export class EntireCategoryExploreComponent implements OnInit{
   bookshelfCategories!: OrderedExploreCategoryBooksDto[];
 
-  maxResults = 10;
   currentPage = 0;
-  pageSize = 10;
+  pageSize = 5;
 
   constructor(private router: Router, private exploreService: ExploreService) {}
 
@@ -24,21 +23,27 @@ export class EntireCategoryExploreComponent implements OnInit, OnDestroy {
     this.initSubscription('A');
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe from any subscriptions to avoid memory leaks
-  }
-
   initSubscription(startFrom: string) {
     this.exploreService
       .getCategoriesWithOrderedBooks(startFrom)
       .pipe(take(1))
-      .subscribe((data: ApiResponseModel<any>) => {
+      .subscribe((data: ApiResponseModel<OrderedExploreCategoryBooksDto[]>) => {
         this.bookshelfCategories = data.result;
       });
   }
 
   onPageChange(event: any) {
     this.currentPage = event.pageIndex;
+
+    // Get the next starting letter based on the current page index
+    // Paginator length = 6 -> maximum letter starts: A, F, K, P, U, Z
+    const startingLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lettersPerPage = 5; // Number of letters displayed per page
+    const totalPages = Math.ceil(startingLetters.length / lettersPerPage); // Total number of pages
+    const nextLetterIndex = (this.currentPage % totalPages) * lettersPerPage;
+    const nextStartingLetter = startingLetters.charAt(nextLetterIndex);
+
+    this.initSubscription(nextStartingLetter);
   }
 
   redirectToBookUrl(id: string) {
