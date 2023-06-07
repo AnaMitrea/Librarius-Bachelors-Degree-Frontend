@@ -3,8 +3,13 @@
      fxLayoutAlign="center center"
 >
   <mat-chip-listbox aria-label="Leaderboards selection">
-    <mat-chip-option (click)="onChipClick(LEADERBOARDS_FRIENDS_ROUTE)">Friends</mat-chip-option>
-    <mat-chip-option (click)="onChipClick(LEADERBOARDS_ROUTE)">Leaderboard</mat-chip-option>
+    <mat-chip-option
+      (click)="onChipClick(LEADERBOARDS_LEVEL_ROUTE)"
+    >Level</mat-chip-option>
+
+    <mat-chip-option
+      (click)="onChipClick(LEADERBOARDS_ROUTE)"
+    >Leaderboard</mat-chip-option>
   </mat-chip-listbox>
 </div>
 

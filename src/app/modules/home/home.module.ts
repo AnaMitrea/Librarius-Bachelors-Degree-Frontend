@@ -24,7 +24,6 @@ import {BooksCarouselComponent} from "@app-shared/components/books-carousel/book
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatLineModule} from "@angular/material/core";
 import {LeaderboardContainerComponent} from "@app-modules/home/components/leaderboard/leaderboard-container.component";
-import { FriendsLeaderboardComponent } from './components/leaderboard/components/friends-leaderboard/friends-leaderboard.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatTableModule} from "@angular/material/table";
 import {
@@ -44,6 +43,7 @@ import {
 } from "@app-modules/home/components/explore/components/bookshelves-explore-container/bookshelves-explore-container.component";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatExpansionModule} from "@angular/material/expansion";
+import { LevelComponent } from './components/leaderboard/components/level/level.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +59,6 @@ import {MatExpansionModule} from "@angular/material/expansion";
         BookshelvesExploreContainerComponent,
         CategoriesExploreContainerComponent,
         LeaderboardContainerComponent,
-        FriendsLeaderboardComponent,
         GlobalLeaderboardComponent,
         BooksGlobalLeaderboardComponent,
         PointsGlobalLeaderboardComponent,
@@ -67,7 +66,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
         EntireBookshelfExploreComponent,
         EntireCategoryExploreComponent,
         PreviewBookshelfExploreComponent,
-        PreviewCategoryExploreComponent
+        PreviewCategoryExploreComponent,
+        LevelComponent
     ],
     exports: [
         BooksCarouselComponent

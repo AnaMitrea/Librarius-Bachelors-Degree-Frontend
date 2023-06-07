@@ -1,0 +1,41 @@
+<mat-card class="level-container"
+          fxLayout="column" fxLayoutAlign="center none">
+  <div class="progress-details-title">Your Current Progress:</div>
+  <div class="level-title">{{ currentLevel.name }}</div>
+  <div class="points-container"
+       fxLayout="row" fxLayoutAlign="center center" >
+    <div class="points-icon">
+      <mat-icon>star</mat-icon>
+    </div>
+    <div class="points-value">{{ currentLevel.points }}</div>
+    <div class="points-icon">
+      <mat-icon>star</mat-icon>
+    </div>
+  </div>
+
+  <div class="level-hierarchy">
+    <h3>Hierarchy:</h3>
+    <mat-list>
+      <ng-container *ngFor="let level of levels; let i = index">
+        <mat-list-item [ngClass]="{ 'active': level.points <= currentLevel.points, 'item-content': true }">
+          <div class="level-content"
+               fxLayout="column"
+               fxLayoutAlign="center center">
+            <div class="level-progress-bar"></div>
+            <div class="level-name">{{ level.name }}</div>
+            <div class="level-points">{{ level.points }} points</div>
+            <ng-container>
+              <div class="divider"></div>
+            </ng-container>
+
+            <ng-container *ngIf="i == levels.length - 1">
+              <div class="congratulations">
+                Congratulations! You have reached the highest level!
+              </div>
+            </ng-container>
+          </div>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </div>
+</mat-card>

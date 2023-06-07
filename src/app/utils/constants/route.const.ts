@@ -31,7 +31,7 @@ export const LEADERBOARDS_ROUTE = '/home/leaderboards';
 export const LEADERBOARDS_GLOBAL_MINUTES_ROUTE = '/home/leaderboards/global/minutes';
 export const LEADERBOARDS_GLOBAL_BOOKS_ROUTE = '/home/leaderboards/global/books';
 export const LEADERBOARDS_GLOBAL_POINTS_ROUTE = '/home/leaderboards/global/points';
-export const LEADERBOARDS_FRIENDS_ROUTE = '/home/leaderboards/friends';
+export const LEADERBOARDS_LEVEL_ROUTE = '/home/leaderboards/level';
 
 
 // --- Library ---

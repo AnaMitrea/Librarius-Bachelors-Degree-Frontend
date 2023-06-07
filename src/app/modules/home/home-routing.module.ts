@@ -12,9 +12,6 @@ import {
   GlobalLeaderboardComponent
 } from "@app-modules/home/components/leaderboard/components/global-leaderboard/global-leaderboard.component";
 import {
-  FriendsLeaderboardComponent
-} from "@app-modules/home/components/leaderboard/components/friends-leaderboard/friends-leaderboard.component";
-import {
   BooksGlobalLeaderboardComponent
 } from "@app-modules/home/components/leaderboard/components/global-leaderboard/components/books-global-leaderboard/books-global-leaderboard.component";
 import {
@@ -38,6 +35,7 @@ import {
 import {
   BookshelvesExploreContainerComponent
 } from "@app-modules/home/components/explore/components/bookshelves-explore-container/bookshelves-explore-container.component";
+import {LevelComponent} from "@app-modules/home/components/leaderboard/components/level/level.component";
 
 const routes: Routes = [
   {
@@ -134,8 +132,8 @@ const routes: Routes = [
             ]
           },
           {
-            path: 'friends',
-            component: FriendsLeaderboardComponent
+            path: 'level',
+            component: LevelComponent
           },
         ]
       }

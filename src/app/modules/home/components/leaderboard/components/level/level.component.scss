@@ -1,0 +1,113 @@
+@import "styles";
+
+
+.level-container {
+  height: auto;
+  border: 1px solid $light1;
+  padding: 20px;
+  border-radius: 5px;
+  color: black;
+
+  .progress-details-title {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.level-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: $light-orange;
+}
+
+.points-container {
+  margin-bottom: 10px;
+
+  .points-icon {
+    font-size: 48px;
+    margin: 10px;
+    color: $light-orange;
+  }
+
+  .points-value {
+    font-size: 36px;
+    font-weight: 400;
+    color: $light-orange;
+  }
+}
+
+
+.level-hierarchy {
+  text-align: center;
+  margin-top: 10px;
+
+  .item-content {
+    height: auto;
+    //border: 1px solid black;
+  }
+}
+
+.level-content {
+  text-align: center;
+  padding-bottom: 20px;
+
+  .level-progress-bar {
+    height: 10px;
+    width: 100%;
+    background-color: $light1;
+  }
+
+  .level-name {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: grey;
+    position: relative;
+    z-index: 1;
+  }
+
+  .level-points {
+    font-size: 13px;
+    color: #777;
+  }
+
+  .divider {
+    margin-top: 10px;
+    height: 40px;
+    width: 3px;
+    background-color: $light1;
+  }
+
+  .congratulations {
+    color: $light1;
+  }
+}
+
+.active {
+  .level-progress-bar {
+    background-color: green;
+  }
+
+  .level-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: $dark-black;
+  }
+
+  .level-points {
+    color: $dark-black;
+  }
+
+  .divider {
+    margin-top: 10px;
+    height: 40px;
+    width: 3px;
+    background-color: $dark-black;
+  }
+
+  .congratulations {
+    color: green;
+  }
+}
