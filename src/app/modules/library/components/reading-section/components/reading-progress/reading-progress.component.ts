@@ -66,7 +66,7 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
          this.isButtonDisabled = this.isAlreadyFinished;
         });
 
-      this.bookService.getBookAverageReadingTime(this.bookId)
+      this.bookService.getBookAverageReadingTime(Number(this.bookId))
         .pipe(take(1))
         .subscribe((data: ApiResponseModel<any>) => {
           this.avgReadingTime = data.result;
@@ -87,9 +87,12 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
   }
 
   saveReadingTimeForBook() {
+    const timeSpent = this.timeTrackerService.getTimeSpentOnBook();
+    if (timeSpent < 1) return;
+
     const body: BookReadingTimeRequestDto = {
       bookId: parseInt(this.bookId, 10),
-      timeSpent: this.timeTrackerService.getTimeSpentOnBook()
+      timeSpent: timeSpent
     };
 
     this.bookService.saveReadingTimeForBook(body)

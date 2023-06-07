@@ -35,6 +35,8 @@ export class TimeTrackerService {
   }
 
   updateReadingTimeForBook(bookId: string) {
+    if (this.timeSpentBook < 1) return;
+
     this.userStoreService.updateReadingTimeForBook({
       [bookId]: {
         minutesSpent: this.timeSpentBook
@@ -43,6 +45,6 @@ export class TimeTrackerService {
   }
 
   getTimeSpentOnBook() {
-    return this.timeSpentBook ?? 0;
+    return this.timeSpentBook;
   }
 }

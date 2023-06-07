@@ -391,7 +391,7 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  getBookAverageReadingTime(id: string): Observable<any> {
+  getBookAverageReadingTime(id: number): Observable<any> {
     const body = {
       bookId: id
     };

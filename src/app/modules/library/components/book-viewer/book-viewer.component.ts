@@ -48,7 +48,7 @@ export class BookViewerComponent implements OnInit, OnDestroy  {
           this.bookData = data.result;
       });
 
-      this.bookService.getBookAverageReadingTime(this.bookId)
+      this.bookService.getBookAverageReadingTime(Number(this.bookId))
         .pipe(takeUntil(this.destroy$))
         .subscribe((data: ApiResponseModel<ReadingTimeDto>) => {
           this.avgReadingTime = data.result;
