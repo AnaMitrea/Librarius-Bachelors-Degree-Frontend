@@ -43,7 +43,7 @@ import {
 } from "@app-modules/home/components/explore/components/bookshelves-explore-container/bookshelves-explore-container.component";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatExpansionModule} from "@angular/material/expansion";
-import { LevelComponent } from './components/leaderboard/components/level/level.component';
+import {LevelComponent} from "@app-modules/home/components/leaderboard/components/level/level.component";
 
 @NgModule({
     declarations: [

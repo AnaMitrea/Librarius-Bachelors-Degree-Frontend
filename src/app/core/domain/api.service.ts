@@ -294,6 +294,15 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   // -> LEADERBOARDS
+  // - LEVEL
+  getLevelsOrderedAsc(asc = true): Observable<any> {
+    return this.http.get(`${API_URL}/level/all?asc=${asc}`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  // - RANKING
   getAllUsersRankByMinutesDesc(): Observable<any> {
     return this.http.get(`${API_URL}/library/user/all/minutes-logged`).pipe(
       this.handleHttpError(),
