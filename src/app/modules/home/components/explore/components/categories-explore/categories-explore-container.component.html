@@ -30,7 +30,7 @@
               <ul class="menu-sublist">
                 <li class="menu-sublist-item"
                     *ngFor="let category of bookshelf.categories"
-                    (click)="scrollToBookshelf(category.title, category.id)"
+                    (click)="scrollToBookshelf(bookshelf.bookshelfTitle, category.title, category.id)"
                 >
                   <span class="subtitle" [matTooltip]="category.title">{{ category.title }}</span>
                 </li>

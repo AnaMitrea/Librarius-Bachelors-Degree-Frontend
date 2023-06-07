@@ -207,7 +207,7 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  getCategoriesBooksNoBooks(title?: string): Observable<any> {
+  getCategoriesWithNoBooks(title?: string): Observable<any> {
     if (title) {
       return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/categories?&title=${title}&books=false`).pipe(
         this.handleHttpError(),
@@ -220,27 +220,15 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  getCategoriesWithOrderedBooks(startFrom: string, maxResults?: number, title?: string): Observable<any> {
+  getCategoriesWithOrderedBooks(startFrom: string, bookshelfTitle: string, categoryTitle: string, maxResults?: number): Observable<any> {
     if (maxResults) {
-      if (title) {
-        return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&maxResults=${maxResults}&title=${title}&books=true`).pipe(
-          this.handleHttpError(),
-          this.handleErrorForToaster()
-        );
-      }
-      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&maxResults=${maxResults}&books=true`).pipe(
+      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&bookshelfTitle=${bookshelfTitle}&categoryTitle=${categoryTitle}&maxResults=${maxResults}&books=true`).pipe(
         this.handleHttpError(),
         this.handleErrorForToaster()
       );
     }
 
-    if (title) {
-      return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&title=${title}&books=true`).pipe(
-        this.handleHttpError(),
-        this.handleErrorForToaster()
-      );
-    }
-    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&books=true`).pipe(
+    return this.http.get(`${API_URL}${LIBRARY_BOOK_ROUTE}/ordered/categories?startFrom=${startFrom}&bookshelfTitle=${bookshelfTitle}&categoryTitle=${categoryTitle}&books=true`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

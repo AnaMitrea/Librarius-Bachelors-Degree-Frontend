@@ -9,10 +9,10 @@
             </span>
       <span> > </span>
       <span class="subtitle"
-            (click)="onCategoryTitleClick(getHeaderRouteForCategory(category.title))"
+            (click)="onCategoryTitleClick(getHeaderRouteForCategory(bookshelf.bookshelfTitle, category.title))"
       >
-              {{getSliderTitle(category.title, category.totalBooks)}}
-            </span>
+        {{getSliderTitle(category.title, category.totalBooks)}}
+      </span>
     </div>
 
     <app-books-carousel

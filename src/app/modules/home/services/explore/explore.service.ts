@@ -35,12 +35,12 @@ export class ExploreService {
     return this.apiService.getCategoriesBooks(maxResults);
   }
 
-  getCategoriesBooksNoBooks(title?: string): Observable<any> {
-    return this.apiService.getCategoriesBooksNoBooks(title);
+  getCategoriesWithNoBooks(title?: string): Observable<any> {
+    return this.apiService.getCategoriesWithNoBooks(title);
   }
 
-  getCategoriesWithOrderedBooks(startFrom: string, maxResults?: number, title?: string): Observable<any> {
-    return this.apiService.getCategoriesWithOrderedBooks(startFrom, maxResults, title);
+  getCategoriesWithOrderedBooks(startFrom: string, bookshelfTitle: string, categoryTitle: string, maxResults?: number): Observable<any> {
+    return this.apiService.getCategoriesWithOrderedBooks(startFrom, bookshelfTitle, categoryTitle, maxResults);
   }
 
 }

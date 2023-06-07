@@ -54,35 +54,16 @@ export class PreviewCategoryExploreComponent implements OnInit, OnDestroy{
     return booksData.map((book, idx) => mapBookDtoToBook(book, idx));
   }
 
-  scrollToBookshelf(key: string, id: number): void {
-    const element = document.getElementById(String(id));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }  else {
-      this.router.navigate([EXPLORE_CATEGORIES_ROUTE, `${key}`]);
-    }
-  }
-
   getSliderTitle(key: string, counter: number) {
     return `${key} (${counter})`;
   }
 
-  getHeaderRouteForCategory(key: string) {
-    return `${EXPLORE_CATEGORIES_ROUTE}/${key}`;
+  getHeaderRouteForCategory(bookshelfKey: string, key: string) {
+    return `${EXPLORE_CATEGORIES_ROUTE}/${bookshelfKey}/${key}`;
   }
 
   getHeaderRouteForBookshelf(key: string) {
     return `${EXPLORE_BOOKSHELVES_ROUTE}/${key}`;
-  }
-
-  onTabRedirect(path: string) {
-    const url = path === 'bookshelves' ? EXPLORE_BOOKSHELVES_ROUTE : EXPLORE_CATEGORIES_ROUTE;
-    this.router.navigateByUrl(url);
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   onCategoryTitleClick(path: string) {
@@ -91,5 +72,10 @@ export class PreviewCategoryExploreComponent implements OnInit, OnDestroy{
 
   onBookshelfTitleClick(path: string) {
     this.router.navigate([path]).then();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

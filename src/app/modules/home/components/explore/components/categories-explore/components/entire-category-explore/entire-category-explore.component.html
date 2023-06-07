@@ -1,56 +1,64 @@
 <ng-container *ngIf="bookshelfCategories">
-  <mat-paginator
-    [pageSizeOptions]="[5]"
-    [showFirstLastButtons]="false"
-    [hidePageSize]="true"
-    [length]="30"
-    (page)="onPageChange($event)"
-  ></mat-paginator>
+  <div class="content">
 
-  <ng-container *ngFor="let category of bookshelfCategories">
-    <h2>{{ category.bookshelfTitle }}</h2>
+    <mat-paginator
+      [pageSizeOptions]="[5]"
+      [showFirstLastButtons]="false"
+      [hidePageSize]="true"
+      [length]="30"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
 
-    <ng-container *ngFor="let orderedCategory of category.categories">
-      <h3>{{ orderedCategory.title }}</h3>
-      <p>Total Books: {{ orderedCategory.totalBooks }}</p>
+    <ng-container *ngFor="let category of bookshelfCategories">
+      <h2 class="title">{{ category.bookshelfTitle }}</h2>
 
-      <ng-container *ngFor="let booksByLetter of orderedCategory.books | keyvalue">
-        <mat-accordion multi>
-<!--          <mat-expansion-panel [expanded]="true">-->
-          <mat-expansion-panel [expanded]="false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{ booksByLetter.key }}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
+      <ng-container *ngFor="let orderedCategory of category.categories">
+        <div class="category-container">
+          <div class="category-details">
+            <span class="subtitle"> > {{ orderedCategory.title }}</span>
+            <span class="books-number">   ({{ orderedCategory.totalBooks }} books)</span>
+          </div>
 
-            <div class="books" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutAlign="start none">
-              <div
-                class="book-item"
-                fxFlex="20%"
-                fxFlex.lt-md="100%"
-                fxLayout="column"
-                fxLayoutAlign="center center"
-                *ngFor="let book of booksByLetter.value"
-              >
-                <div class="item-content">
-                  <mat-card class="book-card" (click)="redirectToBookUrl(book.id)">
-                    <mat-card-content>
-                      <img [src]="getCoverImageUrl(book.coverImageUrl)" [matTooltip]="book.title" alt="cover image">
-                    </mat-card-content>
-                  </mat-card>
-                </div>
-                <mat-card-footer>
-                  <div class="description" fxLayout="column" fxLayoutAlign="center center">
-                    <span class="description-title">{{ book.title }}</span>
+          <ng-container *ngFor="let booksByLetter of orderedCategory.books | keyvalue">
+            <div class="letter-category-container">
+              <mat-accordion multi>
+                <mat-expansion-panel [expanded]="true">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="letter-title">
+                      {{ booksByLetter.key }}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <div class="books" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutAlign="start none">
+                    <div
+                      class="book-item"
+                      fxFlex="20%"
+                      fxFlex.lt-md="100%"
+                      fxLayout="column"
+                      fxLayoutAlign="center center"
+                      *ngFor="let book of booksByLetter.value"
+                    >
+                      <div class="item-content">
+                        <mat-card class="book-card" (click)="redirectToBookUrl(book.id)">
+                          <mat-card-content>
+                            <img [src]="getCoverImageUrl(book.coverImageUrl)" [matTooltip]="book.title" alt="cover image">
+                          </mat-card-content>
+                        </mat-card>
+                      </div>
+                      <mat-card-footer>
+                        <div class="description" fxLayout="column" fxLayoutAlign="center center">
+                          <span class="description-title">{{ book.title }}</span>
+                        </div>
+                      </mat-card-footer>
+                    </div>
                   </div>
-                </mat-card-footer>
-              </div>
+                </mat-expansion-panel>
+              </mat-accordion>
             </div>
-          </mat-expansion-panel>
-        </mat-accordion>
+          </ng-container>
+        </div>
       </ng-container>
     </ng-container>
-  </ng-container>
 
+  </div>
 </ng-container>

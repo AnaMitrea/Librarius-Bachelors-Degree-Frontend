@@ -80,7 +80,7 @@ const routes: Routes = [
                 component: PreviewCategoryExploreComponent
               },
               {
-                path: ':title',
+                path: ':bookshelfTitle/:categoryTitle',
                 component: EntireCategoryExploreComponent
               }
             ]

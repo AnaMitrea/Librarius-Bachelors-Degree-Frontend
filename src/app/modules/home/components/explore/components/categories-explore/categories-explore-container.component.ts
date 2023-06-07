@@ -28,19 +28,19 @@ export class CategoriesExploreContainerComponent implements OnInit{
   }
 
   initSubscription() {
-    this.exploreService.getCategoriesBooksNoBooks()
+    this.exploreService.getCategoriesWithNoBooks()
       .pipe(take(1))
       .subscribe((data: ApiResponseModel<any>) => {
         this.bookshelfCategories = data.result;
       });
   }
 
-  scrollToBookshelf(key: string, id: number): void {
+  scrollToBookshelf(bookshelfKey: string, key: string, id: number): void {
     const element = document.getElementById(String(id));
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }  else {
-      this.router.navigate([EXPLORE_CATEGORIES_ROUTE, `${key}`]);
+      this.router.navigate([EXPLORE_CATEGORIES_ROUTE, `${bookshelfKey}`, `${key}`]);
     }
   }
 
