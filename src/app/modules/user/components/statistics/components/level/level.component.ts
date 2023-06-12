@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Level, UserStats} from "@app-modules/home/components/leaderboard/models/level.dto";
-import {LevelAssignService} from "@app-modules/home/components/leaderboard/services/level/level-assign.service";
+import {LevelAssignService} from "@app-modules/user/services/statistics/level/level-assign.service";
 import {Subject, takeUntil} from "rxjs";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {UserStoreService} from "@app-store/services/user-store.service";

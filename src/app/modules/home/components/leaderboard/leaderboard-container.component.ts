@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {LEADERBOARDS_LEVEL_ROUTE, LEADERBOARDS_ROUTE} from "@app-utils/constants";
+import {LEADERBOARDS_ROUTE} from "@app-utils/constants";
 import { Router} from "@angular/router";
 
 @Component({
@@ -7,8 +7,7 @@ import { Router} from "@angular/router";
   templateUrl: './leaderboard-container.component.html',
   styleUrls: ['./leaderboard-container.component.scss']
 })
-export class LeaderboardContainerComponent implements OnInit, OnDestroy{
-  protected readonly LEADERBOARDS_LEVEL_ROUTE = LEADERBOARDS_LEVEL_ROUTE;
+export class LeaderboardContainerComponent implements OnInit, OnDestroy {
   protected readonly LEADERBOARDS_ROUTE = LEADERBOARDS_ROUTE;
 
   constructor(

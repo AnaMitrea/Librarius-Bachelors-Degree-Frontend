@@ -1,15 +1,18 @@
 <mat-card class="level-container"
           fxLayout="column" fxLayoutAlign="center none">
-  <div class="progress-details-title">Your Current Progress</div>
+  <div class="progress-details-title">Current level</div>
   <div class="level-title">{{ userStats.level }}</div>
   <div class="points-container"
-       fxLayout="row" fxLayoutAlign="center center" >
-    <div class="points-icon">
-      <mat-icon>star</mat-icon>
-    </div>
-    <div class="points-value">{{ userStats.points }}</div>
-    <div class="points-icon">
-      <mat-icon>star</mat-icon>
+       fxLayout="column" fxLayoutAlign="center center" >
+    <div class="progress-details-subtitle">Current points</div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div class="points-icon">
+        <mat-icon>star</mat-icon>
+      </div>
+      <div class="points-value">{{ userStats.points }}</div>
+      <div class="points-icon">
+        <mat-icon>star</mat-icon>
+      </div>
     </div>
   </div>
 

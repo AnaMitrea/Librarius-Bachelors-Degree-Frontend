@@ -1,0 +1,17 @@
+@import "styles";
+
+.level-container {
+  padding: 40px;
+
+  .title {
+    color: $dark-green;
+    font-size: 30px;
+    font-weight: 500;
+    border-bottom: 1px solid $dark-green;
+  }
+
+  .level-container-component {
+    width: 75%;
+    margin: 30px 10%;
+  }
+}

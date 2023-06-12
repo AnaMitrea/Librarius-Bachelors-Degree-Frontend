@@ -35,7 +35,7 @@ import {
 import {
   BookshelvesExploreContainerComponent
 } from "@app-modules/home/components/explore/components/bookshelves-explore-container/bookshelves-explore-container.component";
-import {LevelComponent} from "@app-modules/home/components/leaderboard/components/level/level.component";
+import {LevelComponent} from "@app-modules/user/components/statistics/components/level/level.component";
 
 const routes: Routes = [
   {
