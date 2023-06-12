@@ -3,7 +3,6 @@ import { USER_DASHBOARD_CLUBS_ROUTE, USER_DASHBOARD_ROUTE, USER_DASHBOARD_TROPHY
 import { IsActiveMatchOptions, Router } from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {UserDashboardService} from "@app-modules/user/services/dashboard/user-dashboard.service";
-import { formatDate } from '@angular/common';
 import {DashboardUserInformationDto} from "@app-modules/user/components/dashboard/models";
 import {Subject, takeUntil} from "rxjs";
 import {UserStoreService} from "@app-store/services/user-store.service";

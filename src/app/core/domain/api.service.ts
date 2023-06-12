@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpContext, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpContext} from "@angular/common/http";
 import {catchError, Observable, of, throwError} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {CACHE_REQUEST} from "@app-core/interceptor/cache-request-interceptor/tokens";
@@ -11,7 +11,6 @@ import {
   USER_AUTHORS_ROUTE,
   USER_DASHBOARD_CLUBS_ROUTE,
   USER_DASHBOARD_ROUTE,
-  USER_DASHBOARD_TROPHY_ROUTE,
   USER_ROUTE,
   USER_STATISTICS_ROUTE,
   USER_FAVORITES_ROUTE
@@ -492,7 +491,7 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   getUserInProgressBooks(): Observable<any> {
-    return this.http.get(`${API_URL}${LIBRARY_ROUTE}/user/reading/in-progress`).pipe(
+    return this.http.get(`${API_URL}${LIBRARY_ROUTE}/user/book/reading/in-progress`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

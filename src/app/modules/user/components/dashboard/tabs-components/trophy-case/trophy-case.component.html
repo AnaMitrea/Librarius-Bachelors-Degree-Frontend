@@ -1,0 +1,52 @@
+<div class="trophies-finished-container"
+     fxLayout="column"
+     fxLayoutAlign="center none"
+     fxLayoutGap="20px"
+     *ngIf="trophiesFinished"
+>
+  <div class="container-header">Your Won Trophies</div>
+  <div class="categories"
+       fxLayout="column"
+       fxLayoutAlign="space-between center"
+       fxLayoutGap="3%"
+  >
+    <ng-container *ngIf="!hasEmptyData(trophiesFinished)">
+      <ng-container  *ngFor="let categoryTitle of Object.keys(trophiesFinished)">
+        <ng-container *ngIf="!hasEmptyData(trophiesFinished[categoryTitle])">
+          <div class="category">
+            <div class="category-title"><span> {{categoryTitle}} </span></div>
+
+            <div class="challenges"
+                 fxLayout="row wrap"
+                 fxLayout.xs="column"
+                 fxLayoutAlign="start center"
+            >
+              <div class="challenge"
+                   fxFlex="23%"
+                   fxFlex.xs="100%"
+                   fxLayout="column"
+                   fxLayoutAlign="space-between center"
+                   fxLayoutGap="10px"
+                   *ngFor="let trophy of (trophiesFinished[categoryTitle])"
+              >
+                <img class="green-border" [src]=trophy.imageSrcPath alt="badge">
+                <span class="green-text status">Completed</span>
+                <div class="information"
+                     fxLayout="column"
+                     fxLayoutAlign="space-between center"
+                     fxLayoutGap="10px"
+                >
+                  <span class="challenge-title">{{trophy.title}}</span>
+                  <span class="challenge-instructions">{{trophy.instructions}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="hasEmptyData(trophiesFinished)">
+      <span>No challenges in progress.</span>
+    </ng-container>
+  </div>
+</div>

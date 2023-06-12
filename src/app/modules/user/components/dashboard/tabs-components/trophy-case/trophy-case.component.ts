@@ -1,21 +1,58 @@
-import { Component } from '@angular/core';
-import {USER_DASHBOARD_ROUTE, USER_DASHBOARD_CLUBS_ROUTE, USER_DASHBOARD_TROPHY_ROUTE} from "@app-utils/constants";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {TrophiesByCategoryModel} from "@app-modules/home/shared/models/trophy-challenge.model";
+import {TrophyService} from "@app-modules/home/services/trophy/trophy.service";
+import {Subject, takeUntil} from "rxjs";
+import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 
 @Component({
   selector: 'app-trophy-case',
   templateUrl: './trophy-case.component.html',
   styleUrls: ['./trophy-case.component.scss']
 })
-export class TrophyCaseComponent {
-  protected readonly USER_DASHBOARD_ROUTE = USER_DASHBOARD_ROUTE;
-  protected readonly USER_DASHBOARD_CLUBS_ROUTE = USER_DASHBOARD_CLUBS_ROUTE;
-  protected readonly USER_DASHBOARD_TROPHY_ROUTE = USER_DASHBOARD_TROPHY_ROUTE;
+export class TrophyCaseComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+  protected readonly Object = Object;
 
-  constructor(public router: Router) {
+  trophiesFinished!: TrophiesByCategoryModel;
+
+  constructor(
+    public router: Router,
+    private trophyService: TrophyService
+  ) {}
+
+  ngOnInit(): void {
+    this.initSubscriptions();
   }
 
-  onClickNavigate(path: string) {
-    this.router.navigateByUrl(path);
+  initSubscriptions() {
+    this.initTrophiesSubscription();
+  }
+
+  initTrophiesSubscription() {
+    this.trophyService.getUserCompletedTrophies()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: ApiResponseModel<TrophiesByCategoryModel>) => {
+        if (data) {
+          this.trophiesFinished = data.result;
+        }
+      })
+  }
+
+  hasEmptyData(data: any): boolean {
+    if (Array.isArray(data) && data.length < 1) {
+      return true;
+    }
+
+    if (typeof data === 'object' && Object.keys(data).length < 1) {
+      return true;
+    }
+
+    return false;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

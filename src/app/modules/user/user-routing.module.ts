@@ -48,7 +48,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'wishlist',
+        path: 'favorites',
         component: WishlistComponent
       },
       {
