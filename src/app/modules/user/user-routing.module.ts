@@ -5,7 +5,6 @@ import {
   AuthorsComponent,
   ContainerComponent,
   DashboardComponent,
-  SettingsComponent,
   StatisticsComponent,
   WishlistComponent
 } from "@app-modules/user/components";
@@ -15,7 +14,6 @@ import {
 import {
   TrophyCaseComponent
 } from "@app-modules/user/components/dashboard/tabs-components/trophy-case/trophy-case.component";
-import { ClubsComponent } from "@app-modules/user/components/dashboard/tabs-components/clubs/clubs.component";
 
 
 const routes: Routes = [
@@ -40,11 +38,7 @@ const routes: Routes = [
           {
             path: 'trophy-case',
             component: TrophyCaseComponent,
-          },
-          {
-            path: 'clubs',
-            component: ClubsComponent,
-          },
+          }
         ]
       },
       {
@@ -58,10 +52,6 @@ const routes: Routes = [
       {
         path: 'statistics',
         component: StatisticsComponent
-      },
-      {
-        path: 'settings',
-        component: SettingsComponent
       }
     ],
   }

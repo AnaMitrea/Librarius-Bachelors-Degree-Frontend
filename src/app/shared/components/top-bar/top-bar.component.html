@@ -79,10 +79,6 @@
         <mat-icon>fullscreen</mat-icon>
       </button>
 
-      <button (click)='openNotifications()'
-              mat-icon-button aria-label="notification">
-        <mat-icon>notifications_none</mat-icon>
-      </button>
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
         <mat-icon>menu</mat-icon>
       </button>
@@ -90,10 +86,6 @@
         <button mat-menu-item (click)="onProfileClick()">
           <mat-icon>face</mat-icon>
           <span>Profile</span>
-        </button>
-        <button mat-menu-item (click)="onSettingsClick()">
-          <mat-icon>settings</mat-icon>
-          <span>Settings</span>
         </button>
         <button mat-menu-item (click)="onLogoutCLick()">
           <mat-icon>power_settings_new</mat-icon>
@@ -146,12 +138,6 @@
       <span class="mobile-link">Fullscreen</span>
     </div>
 
-    <div fxLayout="column" fxLayoutAlign="center center"
-         (click)='openNotifications()' >
-      <mat-icon>notifications_none</mat-icon>
-      <span class="mobile-link">Notifications</span>
-    </div>
-
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
       <mat-icon>menu</mat-icon>
     </button>
@@ -159,10 +145,6 @@
       <button mat-menu-item (click)="onProfileClick()">
         <mat-icon>face</mat-icon>
         <span>Profile</span>
-      </button>
-      <button mat-menu-item (click)="onSettingsClick()">
-        <mat-icon>settings</mat-icon>
-        <span>Settings</span>
       </button>
       <button mat-menu-item (click)="onLogoutCLick()">
         <mat-icon>power_settings_new</mat-icon>

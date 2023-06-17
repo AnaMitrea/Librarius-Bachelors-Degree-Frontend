@@ -28,10 +28,5 @@ export const navbarConfig: INavbarConfig[] = [
     routeLink: 'statistics',
     icon: 'show_chart',
     label: 'Statistics'
-  },
-  {
-    routeLink: 'settings',
-    icon: 'settings',
-    label: 'Settings'
   }
 ];

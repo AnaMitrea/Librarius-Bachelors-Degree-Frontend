@@ -56,14 +56,6 @@
          (click)="onClickNavigate(USER_DASHBOARD_TROPHY_ROUTE)"
       >Trophy Case</a>
     </li>
-    <li [ngClass]="[router.isActive(USER_DASHBOARD_CLUBS_ROUTE, matchOptions) ? 'selected' : '']">
-      <a class="tab"
-         [routerLink]="[USER_DASHBOARD_CLUBS_ROUTE]"
-         routerLinkActive="selected"
-         [routerLinkActiveOptions]="{exact: true}"
-         (click)="onClickNavigate(USER_DASHBOARD_CLUBS_ROUTE)"
-      >Clubs</a>
-    </li>
   </ul>
 </div>
 

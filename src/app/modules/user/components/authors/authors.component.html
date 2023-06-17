@@ -1,1 +1,21 @@
-<p>authors works!</p>
+<div class="container" fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="30px">
+  <span class="title">Your Author Subscriptions</span>
+
+  <div *ngFor="let author of authors"
+       fxLayout="row wrap" fxLayoutAlign="start center"
+  >
+    <div class="author-container" fxLayout="column" fxLayoutAlign="center center">
+      <div class="profile-picture">
+        <img class="bordered-image" src="assets/author/author-profile.svg" alt="profile picture">
+      </div>
+
+      <div class="author-description">
+        <span *ngIf="author">{{author.name}}</span>
+      </div>
+
+      <button mat-stroked-button color="accent" (click)="removeAuthorSubscription(author.id)">Remove</button>
+    </div>
+  </div>
+</div>
+
+

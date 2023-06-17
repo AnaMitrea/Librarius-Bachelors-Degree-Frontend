@@ -1,1 +1,31 @@
-<p>wishlist works!</p>
+<div class="favorite-container">
+  <p class="title">Favorites ({{getBooksNumber()}})</p>
+
+  <div class="books"
+       fxLayout="row wrap"
+       fxLayout.lt-md="column"
+       fxLayoutAlign="start none">
+
+    <div class='book-item'
+         fxFlex="20%"
+         fxFlex.lt-md="100%"
+         fxLayout="column"
+         fxLayoutAlign="center center"
+         *ngFor="let book of books"
+    >
+      <div class="item-content">
+        <mat-card class="book-card" (click)="redirectToBookUrl(book.id)">
+          <mat-card-content>
+            <img [src]=book.src [matTooltip]=book.title alt="cover image">
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-card-footer>
+        <div class='description' fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
+          <span class='description-title'>{{book.title}}</span>
+          <button mat-stroked-button color="accent" (click)="removeFromFavorite(book.id)">Remove</button>
+        </div>
+      </mat-card-footer>
+    </div>
+  </div>
+</div>

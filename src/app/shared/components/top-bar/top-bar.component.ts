@@ -14,7 +14,7 @@ import {
 import {AuthService} from "@app-modules/landing/shared/services/auth/auth.service";
 import {UserStoreService} from "@app-store/services/user-store.service";
 import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
+import {Observable, take} from "rxjs";
 import {API_GUTENBERG_URL} from "@app-core/constants";
 import {BookService} from "@app-modules/library/services/book/book.service";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
@@ -36,30 +36,6 @@ export class TopBarComponent implements OnInit, OnChanges {
   private isFullscreen = false;
 
   searchCtrl = new FormControl('');
-  options: any[] = [
-    {
-      type: 'book',
-      author: 'aabala',
-      id: 44244,
-      title: 'A',
-      src: '/cache/epub/44244/pg44244.cover.medium.jpg'
-    },
-    {
-      type: 'book',
-      author: 'aabala',
-      id: 5001,
-      title: 'A',
-      src: '/cache/epub/5001/pg5001.cover.medium.jpg'
-    },
-    {
-      type: 'author',
-      author: '',
-      id: 6215,
-      title: 'Ana BananaBABDBFDKGKKGIujjjjgjg Domnu',
-      src: '/cache/epub/5001/pg5001.cover.medium.jpg'
-    }
-  ];
-
   filteredOptions!: Observable<any>;
 
 
@@ -101,16 +77,8 @@ export class TopBarComponent implements OnInit, OnChanges {
     }
   }
 
-  openNotifications() {
-
-  }
-
   onProfileClick() {
     this.router.navigate([USER_ROUTE]);
-  }
-
-  onSettingsClick() {
-    this.router.navigate([USER_SETTINGS_ROUTE]);
   }
 
   onLogoutCLick() {
@@ -126,9 +94,8 @@ export class TopBarComponent implements OnInit, OnChanges {
 
   filterOnEnter(event: KeyboardEvent) {
     if (event.code === 'Enter' && this.searchCtrl.value) {
-      this.filteredOptions = this.booksService.searchBooksAndAuthorsByFilter(this.searchCtrl.value);
-
-      console.log("enter");
+      this.filteredOptions = this.booksService.searchBooksAndAuthorsByFilter(this.searchCtrl.value)
+        .pipe(take(1));
     }
   }
 

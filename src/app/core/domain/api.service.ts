@@ -366,8 +366,6 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   getBookContent(id: string): Observable<any> {
-    // TODO add this.cacheOptions for cached data response
-
     return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/read?id=${id}`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
@@ -375,25 +373,14 @@ export class ApiService extends HttpServiceBaseService {
   }
 
   checkUserFinishedBook(id: string): Observable<any> {
-    return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/${id}/check-reading-completed`).pipe(
+    return this.http.get(`${API_URL}/library/user/book/${id}/check-reading-completed`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
   markBookAsFinished(body: BookReadingTimeRequestDto): Observable<any> {
-    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/complete-reading`, body).pipe(
-      this.handleHttpError(),
-      this.handleErrorForToaster()
-    );
-  }
-
-  getBookWordCount(id: string): Observable<any> {
-    const body = {
-      bookId: id
-    };
-
-    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/word-count`, body).pipe(
+    return this.http.post(`${API_URL}/library/user/book/complete-reading`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
@@ -410,15 +397,8 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  getUserReadingTimeSpentByBookId(body: BookIdReadingTimeRequestDto): Observable<any> {
-    return this.http.post(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent`, body).pipe(
-      this.handleHttpError(),
-      this.handleErrorForToaster()
-    );
-  }
-
   updateUserReadingTimeSpent(body: BookReadingTimeRequestDto): Observable<any> {
-    return this.http.put(`${this.API_LIBRARY_BOOK_BASE_URL}/time-spent/update`, body).pipe(
+    return this.http.put(`${API_URL}/library/user/book/time-spent/update`, body).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
@@ -430,7 +410,6 @@ export class ApiService extends HttpServiceBaseService {
       this.handleErrorForToaster()
     );
   }
-
 
   getBookData(id: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/${id}`).pipe(
@@ -505,33 +484,24 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  // http://localhost:5164/api/user/dashboard/overview/books
-  getUserOverviewBooks(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_DASHBOARD_ROUTE}/overview/books`).pipe(
-      this.handleHttpError(),
-      this.handleErrorForToaster()
-    );
-  }
-
-  // http://localhost:5164/api/user/dashboard/clubs
-  getUserClubs(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_DASHBOARD_CLUBS_ROUTE}`).pipe(
-      this.handleHttpError(),
-      this.handleErrorForToaster()
-    );
-  }
-
-  // http://localhost:5164/api/user/favorites
+  // http://localhost:5164/api/library/user/favorite/books
   getUserFavorites(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_FAVORITES_ROUTE}`).pipe(
+    return this.http.get(`${API_URL}/library/user/favorite/books`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
   }
 
-  // http://localhost:5164/api/user/authors
+  removeUserFavoriteBook(bookId: string): Observable<any> {
+    return this.http.delete(`${API_URL}/library/user/favorite/${bookId}/remove`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
+  // http://localhost:5164/api/library/user/authors
   getUserAuthors(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_AUTHORS_ROUTE}`).pipe(
+    return this.http.get(`${API_URL}/library/user/authors`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );
