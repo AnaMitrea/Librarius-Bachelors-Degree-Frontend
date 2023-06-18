@@ -13,7 +13,7 @@
   </span>
 </div>
 
-<div class="progress-bar-container"
+<div [ngClass]="['progress-bar-container', colorModeClass]"
      fxLayout="column"
      fxLayoutAlign="start none">
   <div class="progress-bar"

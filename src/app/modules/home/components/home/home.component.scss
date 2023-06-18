@@ -33,7 +33,7 @@
     gap: 20px;
     padding: 0 10%;
 
-    .bck-color1 {
+    .bck-color0 {
       background: rgb(255,179,186);
 
       &:hover {
@@ -42,7 +42,7 @@
       }
     }
 
-    .bck-color2 {
+    .bck-color1 {
       background: rgb(255,223,186);
 
       &:hover {
@@ -51,7 +51,7 @@
       }
     }
 
-    .bck-color3 {
+    .bck-color2 {
       background: rgb(255,255,186);
 
       &:hover {
@@ -60,7 +60,7 @@
       }
     }
 
-    .bck-color4 {
+    .bck-color3 {
       background: rgb(186,255,201);
 
       &:hover {
@@ -88,13 +88,14 @@
       .collection-description {
         box-sizing: border-box;
         position: absolute;
-        top: 75%;
-        left: 40%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 1;
         color: white;
         font-size: 1.2vw;
         font-weight: 600;
-        text-shadow: 1px 1px 2px rgb(100, 100, 100);
+        text-shadow: 1px 1px 2px black;
       }
     }
   }
@@ -120,5 +121,9 @@
   .collection-container {
     grid-template-columns: repeat(1, 1fr) !important;
     grid-template-rows: repeat(4, 1fr) !important;
+  }
+
+  .collection-description {
+    font-size: 1.2em !important;
   }
 }

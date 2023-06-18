@@ -1,5 +1,5 @@
 <div
-  class='reading-section'
+  [ngClass]="['reading-section', colorModeClass]"
   fxLayout="row"
   fxLayoutAlign="start none">
   <div [ngClass]="['reading-content', colorModeClass, fontFamilyClass]">
@@ -9,12 +9,13 @@
     <app-reading-options-tab
       (colorModeEvent)="changeColorMode($event)"
       (fontFamilyEvent)="changeFontFamily($event)"
-      (fontSizeEvent)="changeFontSize($event)"
       (readerWidthEvent)="changeReaderWidth($event)"
     ></app-reading-options-tab>
   </div>
 </div>
 
-<div class="reading-progress-bar">
-  <app-reading-progress></app-reading-progress>
+<div>
+  <app-reading-progress
+    [colorModeClass]="colorModeClass"
+  ></app-reading-progress>
 </div>

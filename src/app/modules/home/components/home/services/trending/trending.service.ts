@@ -16,6 +16,10 @@ export class TrendingService {
     private apiService: ApiService
   ) { }
 
+  getRandomBookshelves(): Observable<any> {
+    return this.apiService.getRandomBookshelves();
+  }
+
   getTrendingBooks(duration: string): Observable<Book[]> {
     return this.apiService.getTrendingBooksForDuration(duration).pipe(
         map((response: any) => response.result.map(mapBookDtoToBook))

@@ -10,6 +10,21 @@
   }
 }
 
+.color-mode-white {
+  background: #FFF !important;
+  color: #000 !important;
+}
+
+.color-mode-sepia {
+  background: $sepia !important;
+  color: #000 !important;
+}
+
+.color-mode-black {
+  background: $iron !important;
+  color: #FFF !important;
+}
+
 .progress-bar-container {
   background-color: white;
   z-index: 2;

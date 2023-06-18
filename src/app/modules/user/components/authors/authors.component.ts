@@ -31,8 +31,27 @@ export class AuthorsComponent implements OnInit, OnDestroy{
   }
 
   removeAuthorSubscription(id: number) {
-
+    this.userAuthorService.removeAuthorSubscription(id)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.userAuthorService.getUserAuthors()
+          .pipe(take(1))
+          .subscribe((data: ApiResponseModel<any>) => {
+            if (data) {
+              this.authors = data.result;
+            }
+          })
+      });
   }
+
+  isEmpty() {
+    return this.authors ? this.authors.length === 0 : true;
+  }
+
+  getAuthorsNumber() {
+    return this.authors ? this.authors.length : 0;
+  }
+
 
   ngOnDestroy(): void {
   }

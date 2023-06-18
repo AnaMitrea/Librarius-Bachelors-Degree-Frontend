@@ -46,18 +46,23 @@ export class WishlistComponent implements OnInit, OnDestroy {
   removeFromFavorite(id: string) {
     this.userWishlistService.removeUserFavoriteBook(id)
       .pipe(take(1))
-      .subscribe();
-    this.userWishlistService.getUserFavoriteBooks()
-      .pipe(take(1))
-      .subscribe((data: ApiResponseModel<any>) => {
-        if (data) {
-          this.books = this.mapBooks(data.result);
-        }
+      .subscribe(() => {
+        this.userWishlistService.getUserFavoriteBooks()
+          .pipe(take(1))
+          .subscribe((data: ApiResponseModel<any>) => {
+            if (data) {
+              this.books = this.mapBooks(data.result);
+            }
+          });
       });
   }
 
   getBooksNumber() {
-    return this.books.length;
+    return this.books ? this.books.length : 0;
+  }
+
+  isEmpty() {
+    return this.books ? this.books.length === 0 : true;
   }
 
   ngOnDestroy(): void {

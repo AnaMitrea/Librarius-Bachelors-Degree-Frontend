@@ -3,10 +3,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { getErrorMessagePassword, getErrorMsgRequiredValue } from "@app-modules/landing/shared/forms/errors/error-messages";
 import {AuthService} from "@app-modules/landing/shared/services/auth/auth.service";
 import {Router} from "@angular/router";
-import {HOME_ROUTE} from "@app-utils/constants";
+import {HOME_ROUTE, POSITION_CLASS} from "@app-utils/constants";
 import {Utils as U} from "@app-utils/lodash/utils";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
-import {Subject, takeUntil} from "rxjs";
+import {Subject, takeUntil, timer} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private toasterService: ToastrService,
     private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
@@ -53,7 +55,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         if(!!data && !!U.path(['result', 'jwtToken'], data))
           this.router.navigateByUrl(`${HOME_ROUTE}`)
             .then(() => {
-            window.location.reload();
+              if (data.result.hasWon) {
+                timer(1000).subscribe(() => {
+                  this.toasterService.success("Check your profile for won challenges!", "Congratulations", POSITION_CLASS);
+                });
+              }
           });
     });
   }

@@ -446,6 +446,13 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
+  getRandomBookshelves(): Observable<any> {
+    return this.http.get(`${this.API_LIBRARY_BASE_URL}/bookshelf/home-explore`).pipe(
+      this.handleHttpError(),
+      this.handleErrorForToaster()
+    );
+  }
+
   getTrendingBooksForDuration(duration: string): Observable<any> {
     return this.http.get(`${this.API_LIBRARY_BOOK_BASE_URL}/trending?duration=${duration}`).pipe(
       this.handleHttpError(),
@@ -507,9 +514,8 @@ export class ApiService extends HttpServiceBaseService {
     );
   }
 
-  // http://localhost:5164/api/user/statistics
-  getUserStatistics(): Observable<any> {
-    return this.http.get(`${API_URL}${USER_STATISTICS_ROUTE}`).pipe(
+  removeAuthorSubscription(id: number): Observable<any> {
+    return this.http.delete(`${API_URL}/library/user/authors/${id}/remove`).pipe(
       this.handleHttpError(),
       this.handleErrorForToaster()
     );

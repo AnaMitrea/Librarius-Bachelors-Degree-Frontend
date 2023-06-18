@@ -1,6 +1,5 @@
 import {
   Component,
-  HostListener,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -22,29 +21,12 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
 
   colorModeClass: string = 'color-mode-white';
   fontFamilyClass: string = 'font-family-serif';
-  fontSizeClass: string = 'font-size-medium';
   readerWidthClass: string = 'reader-width-large';
 
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService
   ) {}
-
-  @HostListener('window:popstate')
-  onWindowPopState() {
-    // alert("on back button");
-
-    return false;
-  }
-
-  @HostListener('document:visibilitychange', ['$event'])
-  onVisibilityChange(event: Event) {
-    if (document.hidden) {
-      // alert("on tab change");
-      return false;
-    }
-    return true;
-  }
 
   ngOnInit() {
     this.initSubscription();
@@ -69,10 +51,6 @@ export class ReadingSectionComponent implements OnInit, OnDestroy {
 
   changeFontFamily(fontFamily: string) {
     this.fontFamilyClass = fontFamily;
-  }
-
-  changeFontSize(fontSize: string) {
-    this.fontSizeClass = fontSize;
   }
 
   changeReaderWidth(readerWidth: string) {

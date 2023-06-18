@@ -1,10 +1,12 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import { TimeTrackerService } from '@app-modules/library/services/time-tracker/time-tracker.service';
 import { take } from 'rxjs';
 import { ApiResponseModel } from '@app-core/domain/model/api-response-model';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
 import {BookReadingTimeRequestDto} from "@app-shared/models/transfer/book-dto";
+import {ToastrService} from "ngx-toastr";
+import {POSITION_CLASS} from "@app-utils/constants";
 
 @Component({
   selector: 'app-reading-progress',
@@ -12,6 +14,8 @@ import {BookReadingTimeRequestDto} from "@app-shared/models/transfer/book-dto";
   styleUrls: ['./reading-progress.component.scss']
 })
 export class ReadingProgressComponent implements OnInit, OnDestroy {
+  @Input() colorModeClass!: string;
+
   bookId!: string;
   isAlreadyFinished!: boolean;
 
@@ -28,7 +32,8 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private timeTrackerService: TimeTrackerService
+    private timeTrackerService: TimeTrackerService,
+    private toasterService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -98,6 +103,9 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
     this.bookService.saveReadingTimeForBook(body)
       .pipe(take(1))
       .subscribe((data: ApiResponseModel<any>) => {
+        if (data && data.result === true) {
+          this.toasterService.success("Check your profile for won challenges!", "Congratulations", POSITION_CLASS);
+        }
       });
   }
 
@@ -136,10 +144,11 @@ export class ReadingProgressComponent implements OnInit, OnDestroy {
       this.bookService.markBookAsFinished(body)
         .pipe(take(1))
         .subscribe((data: ApiResponseModel<any>) => {
-          console.log("onFinishReadingBook");
-          console.log(data);
+          if (data && data.result === true) {
+            this.toasterService.success("Check your profile for won challenges!", "Congratulations", POSITION_CLASS);
+          }
         });
-
+      this.isButtonDisabled = true;
       this.saveStoreReadingTime();
       this.timeTrackerService.stopTimer();
     }

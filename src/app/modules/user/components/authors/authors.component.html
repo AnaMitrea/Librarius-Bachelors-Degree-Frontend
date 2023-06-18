@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="30px">
-  <span class="title">Your Author Subscriptions</span>
-
+  <div class="title">Your Author Subscriptions ({{getAuthorsNumber()}})</div>
+  <div *ngIf="authors && isEmpty()"> There are no active subscriptions.</div>
   <div *ngFor="let author of authors"
        fxLayout="row wrap" fxLayoutAlign="start center"
   >

@@ -1,5 +1,7 @@
-<div class="favorite-container">
-  <p class="title">Favorites ({{getBooksNumber()}})</p>
+<div class="favorite-container"  fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="30px">
+  <div class="title">Favorites ({{getBooksNumber()}})</div>
+
+  <div *ngIf="books && isEmpty()"> There are no favorite books.</div>
 
   <div class="books"
        fxLayout="row wrap"

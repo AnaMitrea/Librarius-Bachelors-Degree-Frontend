@@ -12,4 +12,8 @@ export class UserAuthorsService {
   getUserAuthors(): Observable<any> {
     return this.apiService.getUserAuthors();
   }
+
+  removeAuthorSubscription(id: number): Observable<any> {
+    return this.apiService.removeAuthorSubscription(id);
+  }
 }

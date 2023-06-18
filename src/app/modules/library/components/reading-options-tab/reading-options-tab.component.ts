@@ -12,10 +12,9 @@ export class ReadingOptionsTabComponent implements OnInit{
   @Output() fontSizeEvent = new EventEmitter<string>();
   @Output() readerWidthEvent = new EventEmitter<string>();
 
-  colorModeControl = new FormControl('');
-  fontFamilyControl = new FormControl('');
-  fontSizeControl = new FormControl('');
-  readerWidthControl = new FormControl('');
+  colorModeControl = new FormControl('color-mode-white');
+  fontFamilyControl = new FormControl('font-family-serif');
+  readerWidthControl = new FormControl('reader-width-large');
 
   ngOnInit() {
     this.colorModeControl.valueChanges.subscribe(value => {
@@ -24,10 +23,6 @@ export class ReadingOptionsTabComponent implements OnInit{
 
     this.fontFamilyControl.valueChanges.subscribe(value => {
       if (value) this.changeFontFamily(value);
-    });
-
-    this.fontSizeControl.valueChanges.subscribe(value => {
-      if (value) this.changeFontSize(value);
     });
 
     this.readerWidthControl.valueChanges.subscribe(value => {
@@ -41,10 +36,6 @@ export class ReadingOptionsTabComponent implements OnInit{
 
   changeFontFamily(fontFamily: string) {
     this.fontFamilyEvent.emit(fontFamily);
-  }
-
-  changeFontSize(fontSize: string) {
-    this.fontSizeEvent.emit(fontSize);
   }
 
   changeReaderWidth(readerWidth: string) {
