@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpContext} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of, throwError} from "rxjs";
 import {ToastrService} from "ngx-toastr";
-import {CACHE_REQUEST} from "@app-core/interceptor/cache-request-interceptor/tokens";
 import {HttpServiceBaseService} from "@app-core/domain/http-service-base.service";
 import {Utils as U} from "@app-utils/lodash/utils";
 import {API_URL} from "@app-core/constants";
 import {
   LIBRARY_BOOK_ROUTE, LIBRARY_ROUTE,
-  USER_AUTHORS_ROUTE,
-  USER_DASHBOARD_CLUBS_ROUTE,
   USER_DASHBOARD_ROUTE,
-  USER_ROUTE,
-  USER_STATISTICS_ROUTE,
-  USER_FAVORITES_ROUTE
+  USER_ROUTE
 } from "@app-utils/constants";
 import {USERNAME_OR_PASSWORD_INVALID} from "@app-core/constants/toaster-error-messages";
 import {
-  BookIdReadingTimeRequestDto,
   BookReadingTimeRequestDto,
   LikeReviewRequestDto,
   ReviewRequestDto,
@@ -32,10 +26,6 @@ export class ApiService extends HttpServiceBaseService {
   readonly API_LIBRARY_BASE_URL = `${API_URL}${LIBRARY_ROUTE}`;
   readonly API_LIBRARY_BOOK_BASE_URL = `${API_URL}${LIBRARY_BOOK_ROUTE}`;
   readonly API_TROPHY_BASE_URL = `${API_URL}/trophy`;
-
-  readonly cacheOptions = {
-    context: new HttpContext().set(CACHE_REQUEST, true)
-  };
 
   constructor(
     private http: HttpClient,
@@ -65,20 +55,6 @@ export class ApiService extends HttpServiceBaseService {
 
       this.toasterService.error(message, title, override);
       return of(null);
-    });
-  }
-
-  private handleAndRethrowErrorForToaster(
-    message = 'Oops, something went wrong.',
-    title = 'Error',
-    override = { positionClass: 'toast-bottom-left' })
-  {
-    return catchError((httpErr) => {
-      const httpError = U.path(['error', 'errors'], httpErr);
-      message = httpError && httpError.length ? httpError[0].message : message;
-
-      this.toasterService.error(message, title, override);
-      return throwError(httpError);
     });
   }
 
