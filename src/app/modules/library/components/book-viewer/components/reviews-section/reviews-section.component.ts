@@ -18,6 +18,7 @@ import {
 } from "@app-modules/library/components/book-viewer/components/star-rating/star-rating.component";
 import {ToastrService} from "ngx-toastr";
 import {POSITION_CLASS} from "@app-utils/constants";
+import {UserStoreService} from "@app-store/services/user-store.service";
 
 @Component({
   selector: 'app-reviews-section',
@@ -43,7 +44,8 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
   constructor(
     private bookService: BookService,
     public dialog: MatDialog,
-    private toasterService: ToastrService
+    private toasterService: ToastrService,
+    private storeService: UserStoreService
   ) {}
 
   ngOnInit(): void {
@@ -99,8 +101,8 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
       });
   }
 
-  getFirstLetter(text: string): string {
-    return text.substring(0, 1);
+  getFirstLetter(): string {
+    return this.storeService.username.substring(0, 1);
   }
 
   submitComment() {

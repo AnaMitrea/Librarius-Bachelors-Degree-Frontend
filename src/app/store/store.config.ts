@@ -1,7 +1,5 @@
 import {NgxsLoggerPluginOptions} from "@ngxs/logger-plugin";
 import {RootState} from "@app-store/shared/root.state";
-
-// TODO add all the states from each module
 export const STATES_MODULES = [
   RootState,
 

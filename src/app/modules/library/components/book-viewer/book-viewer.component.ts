@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '@app-modules/library/services/book/book.service';
 import {BookDto, ReadingTimeDto} from '@app-shared/models/transfer/book-dto';
 import {API_GUTENBERG_URL} from "@app-core/constants";
-import {LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE, LIBRARY_ROUTE, READ} from '@app-utils/constants';
+import {LIBRARY_AUTHOR_ROUTE, LIBRARY_BOOK_ROUTE, READ} from '@app-utils/constants';
 import {Subject, take, takeUntil} from "rxjs";
 import {ApiResponseModel} from "@app-core/domain/model/api-response-model";
 import {processAuthorName} from "@app-utils/data-transformers";
@@ -30,8 +30,7 @@ export class BookViewerComponent implements OnInit, OnDestroy  {
     private bookService: BookService,
     private location: Location
   ) {
-    // todo do the correct link
-    this.currentPath = this.location.path();
+    this.currentPath = `http://localhost:4200/${this.location.path()}`;
   }
 
   ngOnInit(): void {

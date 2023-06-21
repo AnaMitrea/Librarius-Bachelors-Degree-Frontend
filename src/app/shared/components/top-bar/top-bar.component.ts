@@ -8,8 +8,7 @@ import {
   LEADERBOARDS_ROUTE,
   LIBRARY_AUTHOR_ROUTE,
   LIBRARY_BOOK_ROUTE,
-  USER_ROUTE,
-  USER_SETTINGS_ROUTE
+  USER_ROUTE
 } from "@app-utils/constants";
 import {AuthService} from "@app-modules/landing/shared/services/auth/auth.service";
 import {UserStoreService} from "@app-store/services/user-store.service";
@@ -112,7 +111,6 @@ export class TopBarComponent implements OnInit, OnChanges {
     console.log(entityId);
     console.log(entityType);
 
-    // todo go to route
     this.searchCtrl.reset();
 
     if (entityType === 'Book')

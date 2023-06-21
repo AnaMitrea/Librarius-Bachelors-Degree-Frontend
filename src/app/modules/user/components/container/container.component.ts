@@ -21,10 +21,6 @@ export class ContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // if (this.sharedUserStoreService.isDataFetched === false) {
-    //   this.initUserSubscription();
-    // }
-// TODO remove this !!!
     this.initUserSubscription();
   }
 
